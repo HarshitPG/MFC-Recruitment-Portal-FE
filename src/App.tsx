@@ -1,14 +1,13 @@
-import "./App.css";
-import MainWrapper from "./wrappers/MainWrapper";
-import BaseWrapper from "./wrappers/BaseWrapper";
-import Landing from "./sections/Landing";
-import Dashboard from "./dashboard/Dashboard";
 import {
-  BrowserRouter as Router,
   Route,
-  Routes,
-  BrowserRouter,
+  BrowserRouter as Router,
+  Routes
 } from "react-router-dom";
+import "./App.css";
+import Dashboard from "./dashboard/Dashboard";
+import Signup from "./sections/Signup";
+import BaseWrapper from "./wrappers/BaseWrapper";
+import MainWrapper from "./wrappers/MainWrapper";
 
 function App() {
   return (
@@ -20,7 +19,7 @@ function App() {
       <MainWrapper>
         <Router>
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />{" "}
           </Routes>
         </Router>

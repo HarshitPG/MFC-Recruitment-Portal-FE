@@ -1,0 +1,58 @@
+.mainbox {
+
+    max-width: 400px;
+    margin: 0 auto; 
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .textforSignup {
+    color: rgb(255, 165, 0);
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type='text'],
+  input[type='email'],
+  input[type='password'] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: black
+  }
+  
+  .error {
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .textforSignupbutton {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(226, 149, 7);
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .textforSignupbutton:hover {
+    background-color: #fb7e02;
+  }
+  
