@@ -1,6 +1,7 @@
 import Input from "../components/Input";
 import Button from "../components/Button";
 import BoundingBox from "../components/BoundingBox";
+import { Link } from "react-router-dom";
 const Landing = () => {
   return (
     <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark">
@@ -14,9 +15,9 @@ const Landing = () => {
               IS RECRUITING
             </span>
             <div className="mt-6 text-xs md:text-base">
-              <a className="nes-btn" href="/dashboard">
+              <Link className="nes-btn" to="/dashboard">
                 Go to Dashboard &rarr;
-              </a>
+              </Link>
             </div>
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0">
