@@ -17,7 +17,7 @@ body {
 }
 .btn-header {
   width: 15rem;
-  height: 5rem;
+  height: 100%;
 }
 .profile {
   height: calc(100% - 5rem);
