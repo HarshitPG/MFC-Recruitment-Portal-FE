@@ -7,20 +7,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <BaseWrapper>
-      <link
-        href="https://unpkg.com/nes.css@2.2.1/css/nes.min.css"
-        rel="stylesheet"
-      />
-      <MainWrapper>
-        <BrowserRouter>
+    <BrowserRouter>
+      <BaseWrapper>
+        <link
+          href="https://unpkg.com/nes.css@2.2.1/css/nes.min.css"
+          rel="stylesheet"
+        />
+        <MainWrapper>
           <Routes>
             <Route path="/" element={<Landing />}></Route>
             <Route path="dashboard" element={<Dashboard />} />
           </Routes>
-        </BrowserRouter>
-      </MainWrapper>
-    </BaseWrapper>
+        </MainWrapper>
+      </BaseWrapper>
+    </BrowserRouter>
   );
 }
 
