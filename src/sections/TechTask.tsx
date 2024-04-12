@@ -11,6 +11,8 @@ interface Props {
 }
 const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
   const [filteredTasks, setFilteredTask] = useState<Task[]>([]);
+  const [showModal, setShowModal] = useState(false);
+  const [taskState, setTaskState] = useState("");
   useEffect(() => {
     // Based on the sub-domain we are filtering the task
     const filteredTask = techTaskData.filter(
@@ -87,6 +89,10 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
               <button
                 type="button"
                 className="nes-btn is-error  custom-nes-error"
+                onClick={() => {
+                  setShowModal(true);
+                  setTaskState(task.title);
+                }}
               >
                 Submit Task
               </button>
@@ -94,12 +100,57 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
           ))}
         </div>
       )}
+      {showModal && <Modal task={taskState} setShowModal={setShowModal} />}
     </div>
   );
 };
 
 export default TechTask;
-
+function Modal({
+  task,
+  setShowModal,
+}: {
+  task: string;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  return (
+    <div
+      className="bg-black p-4 min-w-[40vw] min-h-[30vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 nes-container is-dark is-rounded --submit-container"
+      style={{ position: "absolute" }}
+    >
+      <form method="">
+        <p className="title text-xl">Submit Task</p>
+        <input
+          type="text"
+          id="dark_field"
+          className="nes-input is-dark"
+          placeholder="Github Repository Link"
+          name={`${task}-github`}
+          required
+        />
+        <input
+          type="text"
+          id="dark_field"
+          className="nes-input is-dark"
+          placeholder="Demo Link"
+          name={`${task}-demo`}
+        />
+        <menu className="dialog-menu mt-4">
+          <button
+            className="nes-btn"
+            type="button"
+            onClick={() => setShowModal(false)}
+          >
+            Cancel
+          </button>
+          <button className="nes-btn is-error" type="submit" onClick={() => {}}>
+            Submit
+          </button>
+        </menu>
+      </form>
+    </div>
+  );
+}
 const techTaskData = [
   {
     label: "frontend",

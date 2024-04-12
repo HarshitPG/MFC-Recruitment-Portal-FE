@@ -37,3 +37,7 @@ body {
 .btn-back {
   position: absolute !important;
 }
+
+.--submit-container {
+  background-color: #000000 !important;
+}

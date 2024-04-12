@@ -52,9 +52,9 @@ const Task = () => {
           <button
             type="button"
             onClick={() => setSelectedSubDomain("")}
-            className="nes-btn is-error absolute -top-2 -left-2 z-[50] h-fit btn-back"
+            className="nes-btn is-error absolute -top-2 -right-2 z-[50] h-fit btn-back"
           >
-            &larr; Back
+            <i className="nes-icon close is-small"></i>
           </button>
         )}
         <p className="title dark-nes-container">Tasks</p>
