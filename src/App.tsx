@@ -15,8 +15,8 @@ function App() {
         />
         <MainWrapper>
           <Routes>
-            <Route path="/" element={<Landing />}></Route>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/dashboard" element={<Dashboard />} />{" "}
           </Routes>
         </MainWrapper>
       </BaseWrapper>
