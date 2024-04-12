@@ -9,3 +9,6 @@
 body {
   background: linear-gradient(to top, #202020, #000000);
 }
+.custom-nes-error {
+  background-color: #fc7a00 !important;
+}

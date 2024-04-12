@@ -6,6 +6,10 @@ import Landing from "./sections/Landing";
 function App() {
   return (
     <BaseWrapper>
+      <link
+        href="https://unpkg.com/nes.css@2.2.1/css/nes.min.css"
+        rel="stylesheet"
+      />
       <NavWrapper>Nav</NavWrapper>
       <MainWrapper>
         <Landing />
