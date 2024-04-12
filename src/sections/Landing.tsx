@@ -13,7 +13,7 @@ const Landing = () => {
             <span className="text-light text-base md:text-2xl">
               IS RECRUITING
             </span>
-            <div className="mt-6">
+            <div className="mt-6 text-xs md:text-base">
               <a className="nes-btn" href="/dashboard">
                 Go to Dashboard &rarr;
               </a>
