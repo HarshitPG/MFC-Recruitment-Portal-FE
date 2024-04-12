@@ -12,3 +12,13 @@ body {
 .custom-nes-error {
   background-color: #fc7a00 !important;
 }
+.dark-nes-container {
+  background: #0e0e0e !important;
+}
+.btn-header {
+  width: 15rem;
+  height: 5rem;
+}
+.profile {
+  height: calc(100% - 5rem);
+}
