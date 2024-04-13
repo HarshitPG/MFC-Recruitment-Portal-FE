@@ -11,7 +11,7 @@ const Landing = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-
+  console.log(error);
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = {

@@ -44,6 +44,7 @@ const Signup: React.FC = () => {
       }
 
       setError(false);
+      console.error(error);
     } catch (error) {
       console.log(error);
       toast.error("Invalid Username or Password", {
