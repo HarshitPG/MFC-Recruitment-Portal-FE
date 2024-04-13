@@ -1,8 +1,78 @@
 import Input from "../components/Input";
 import Button from "../components/Button";
 import BoundingBox from "../components/BoundingBox";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 const Landing = () => {
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = {
+      email,
+      password,
+    };
+    try {
+      const response = await axios.post(
+        "http://localhost:5001/auth/login",
+        formData
+      );
+      if (response.data.token) {
+        document.cookie = "jwtToken=" + response.data.token;
+        toast.success("OK", {
+          className: "custom-bg",
+          autoClose: 3000,
+          theme: "dark",
+        });
+        localStorage.setItem("id", response.data.id);
+        localStorage.setItem("name", response.data.username);
+        localStorage.setItem("email", response.data.email);
+        fetchUserDetails(response.data.id);
+        console.log("response.data.id", response.data.id);
+        navigate("/dashboard");
+      }
+
+      setError(false);
+    } catch (error) {
+      console.log(error);
+      toast.error("Invalid Username or Password", {
+        className: "custom-bg-error",
+        autoClose: 3000,
+        theme: "dark",
+      });
+      setError(true);
+    }
+  };
+
+  const fetchUserDetails = async (userId: string) => {
+    try {
+      const id = localStorage.getItem("id");
+
+      if (!id) {
+        throw new Error("User id not found in localStorage");
+      }
+      const token = Cookies.get("jwtToken");
+      const response = await axios.get(
+        `http://localhost:5001/user/user/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ` + `${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+      localStorage.setItem("userDetails", JSON.stringify(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark">
       <BoundingBox>
@@ -21,12 +91,23 @@ const Landing = () => {
             </div>
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0">
-            <form className="flex flex-col gap-3 md:gap-6 w-full md:w-[60%] mx-auto">
-              <Input label={"email"} placeholder="Email" type="text" />
+            <form
+              className="flex flex-col gap-3 md:gap-6 w-full md:w-[60%] mx-auto"
+              onSubmit={handleLogin}
+            >
+              <Input
+                label={"email"}
+                placeholder="Vit-Email"
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
               <Input
                 label={"password"}
                 placeholder="Password"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <Button submit={true}>Sign In</Button>
             </form>
