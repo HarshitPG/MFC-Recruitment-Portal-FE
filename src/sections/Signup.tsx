@@ -1,11 +1,11 @@
 import Input from "../components/Input";
 import Button from "../components/Button";
 import BoundingBox from "../components/BoundingBox";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useState } from "react";
 import { toast } from "react-toastify";
-import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
 
 const Signup: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -14,9 +14,8 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState("");
   const [regno, setRegno] = useState("");
   const [error, setError] = useState(false);
-  useEffect(() => {
-    const storedToken = Cookies.get("jwtToken");
-  }, []);
+  const navigate = useNavigate();
+
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = {
@@ -33,14 +32,15 @@ const Signup: React.FC = () => {
       );
       if (response.data.token) {
         document.cookie = "jwtToken=" + response.data.token;
-        toast.success("Login Successfull", {
+        toast.success("OTP SENT", {
           className: "custom-bg",
           autoClose: 3000,
           theme: "dark",
         });
-        localStorage.setItem("id", response.data.user._id);
-        localStorage.setItem("name", response.data.user.username);
-        localStorage.setItem("email", response.data.user.email);
+        localStorage.setItem("id", response.data.id);
+        localStorage.setItem("name", response.data.username);
+        localStorage.setItem("email", response.data.email);
+        navigate("/verifyotp");
       }
 
       setError(false);
@@ -116,14 +116,6 @@ const Signup: React.FC = () => {
               />
               <Button submit={true}>Sign Up</Button>
             </form>
-            {/* <section className="text-center mt-6 md:mt-12 text-light bg-dark py-2 md:py-4 w-full md:w-[60%] mx-auto relative">
-              <p className="mb-8 md:mb-12 text-xs md:text-base">
-                Don't have an account?
-              </p>
-              <div className="text-black text-sm md:text-lg cursor-pointer w-full bg-prime absolute bottom-0 py-1">
-                SignUp
-              </div>
-            </section> */}
           </div>
         </div>
         <img
@@ -157,9 +149,5 @@ const Signup: React.FC = () => {
     </div>
   );
 };
-
-//export default function Signup(){
-//    return <>Signup</>
-//}
 
 export default Signup;

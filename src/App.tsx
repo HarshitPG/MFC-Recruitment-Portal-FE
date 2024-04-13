@@ -5,6 +5,7 @@ import Signup from "./sections/Signup";
 import BaseWrapper from "./wrappers/BaseWrapper";
 import MainWrapper from "./wrappers/MainWrapper";
 import Landing from "./sections/Landing";
+import VerifyOTP from "./sections/VerifyOTP";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/dashboard" element={<Dashboard />} />{" "}
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/verifyotp" element={<VerifyOTP />} />
           </Routes>
         </Router>
       </MainWrapper>
