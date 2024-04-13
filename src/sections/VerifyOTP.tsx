@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import OTPInput, { ResendOTP } from "otp-input-react";
+// import OTPInput, { ResendOTP } from "otp-input-react";
 import Cookies from "js-cookie";
 
 const VerifyOTP: React.FC = () => {
@@ -103,7 +103,7 @@ const VerifyOTP: React.FC = () => {
               className="flex flex-col gap-3 md:gap-6 w-full md:w-[60%]  pt-[15%] mx-auto"
               onSubmit={handleVerifyOTP}
             >
-              <OTPInput
+              {/* <OTPInput
                 className="flex justify-center"
                 value={otp}
                 onChange={setOTP}
@@ -113,7 +113,7 @@ const VerifyOTP: React.FC = () => {
                 disabled={false}
                 secure
               />
-              <ResendOTP onResendClick={handleResendClick} />
+              <ResendOTP onResendClick={handleResendClick} /> */}
 
               <Button submit={true}>Verify</Button>
             </form>
