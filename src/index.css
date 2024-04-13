@@ -41,3 +41,8 @@ body {
 .--submit-container {
   background-color: #000000 !important;
 }
+@media (max-width: 600px) {
+  .dark-container-nes {
+    padding: 10px !important;
+  }
+}

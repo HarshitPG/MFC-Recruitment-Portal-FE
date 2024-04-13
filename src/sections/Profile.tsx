@@ -13,36 +13,56 @@ const Profile = () => {
         </p>
       </div>
 
-      <div className="nes-container is-rounded w-full md:w-[70%] is-dark dark-nes-container ">
-        <form className="flex flex-col gap-4 w-full">
+      <div className="nes-container is-rounded w-full md:w-[70%] is-dark dark-nes-container overflow-y-scroll">
+        <form className="flex flex-col gap-8 md:gap-4 w-full">
           <section className="flex items-start text-xs md:text-base md:items-center flex-col md:flex-row">
-            <label className="w-full md:w-[40%]">Your Name:</label>
-            <Input label={"name"} placeholder="Your name" type="text" />
+            <label className="w-full md:w-[40%]">Mobile Number:</label>
+            <Input label={"mobile"} placeholder="Your mobile" type="text" />
           </section>
           <section className="flex items-start text-xs md:text-base md:items-center flex-col md:flex-row">
-            <label className="w-full md:w-[40%]">Registration No.:</label>
-            <Input
-              label={"registration"}
-              placeholder="VIT Registration no."
-              type="text"
-            />
+            <label className="w-full md:w-[40%]">Personal Email:</label>
+            <Input label={"email"} placeholder="Personal Email" type="text" />
           </section>
           <section className="flex items-start text-xs md:text-base md:items-center flex-col md:flex-row">
             <p className="w-full md:w-[40%]">Domains:</p>
             <div className="flex flex-col">
               <label>
                 <input type="checkbox" className="nes-checkbox is-dark" />
-                <span className="text-xs md:text-xl">Technical</span>
+                <span className="text-xs md:text-base">Technical</span>
               </label>
               <label>
                 <input type="checkbox" className="nes-checkbox is-dark" />
-                <span className="text-xs md:text-xl">Design</span>
+                <span className="text-xs md:text-base">Design</span>
               </label>
               <label>
                 <input type="checkbox" className="nes-checkbox is-dark" />
-                <span className="text-xs md:text-xl">Management</span>
+                <span className="text-xs md:text-base">Management</span>
               </label>
             </div>
+          </section>
+          <section className="flex items-start text-xs md:text-base flex-col">
+            <label className="w-full">
+              Have you volunteered in any of the MFC event:
+              <br />
+              If yes, enter event name
+            </label>
+            <Input
+              label={"volunteer"}
+              placeholder="Enter event details"
+              type="text"
+            />
+          </section>
+          <section className="flex items-start text-xs md:text-base flex-col">
+            <label className="w-full">
+              Have you participated in any of the MFC event:
+              <br />
+              If yes, enter event name
+            </label>
+            <Input
+              label={"participated"}
+              placeholder="Enter event details"
+              type="text"
+            />
           </section>
           <div className="w-full flex justify-end">
             <button

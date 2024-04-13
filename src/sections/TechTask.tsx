@@ -11,8 +11,8 @@ interface Props {
 }
 const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
   const [filteredTasks, setFilteredTask] = useState<Task[]>([]);
-  const [showModal, setShowModal] = useState(false);
-  const [taskState, setTaskState] = useState("");
+  // const [showModal, setShowModal] = useState(false);
+  // const [taskState, setTaskState] = useState("");
   useEffect(() => {
     // Based on the sub-domain we are filtering the task
     const filteredTask = techTaskData.filter(
@@ -34,42 +34,42 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
           <button
             type="button"
             onClick={() => setSelectedSubDomain("frontend")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Frontend
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("backend")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Backend
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("fullstack")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Fullstack
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("app")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             App Dev
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("ml")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             AI/ML
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("game")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Game Dev
           </button>
@@ -77,16 +77,25 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
       )}
 
       {selectedSubDomain !== "" && (
-        <div className="w-full mt-8 h-full flex flex-col gap-4">
+        <div className="w-full mt-8 h-full flex flex-col gap-8 md:gap-4">
           {filteredTasks.map((task, index) => (
-            <div className="nes-container is-dark with-title" key={index}>
-              <p className="title ">{task.title}</p>
-              <p className="text-xs text-left leading-4">{task.description}</p>
-              <span>Resources:</span>
-              {task.resources.map((resource, index) => (
-                <a href={resource}>Resource {index + 1} &nbsp;</a>
-              ))}
-              <button
+            <div
+              className="nes-container is-dark with-title  dark-container-nes"
+              key={index}
+            >
+              <p className="title">{task.title}</p>
+              <p className="text-xs md:text-sm text-left leading-4">
+                {task.description}
+              </p>
+              <div className="flex justify-between flex-row">
+                <span className="md:text-sm text-xs">Resources:</span>
+                <span className="flex flex-col md:text-sm text-xs md:flex-row">
+                  {task.resources.map((resource, index) => (
+                    <a href={resource}>Resource {index + 1} &nbsp;</a>
+                  ))}
+                </span>
+              </div>
+              {/* <button
                 type="button"
                 className="nes-btn is-error  custom-nes-error"
                 onClick={() => {
@@ -95,68 +104,67 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
                 }}
               >
                 Submit Task
-              </button>
+              </button> */}
             </div>
           ))}
         </div>
       )}
-      {showModal && <Modal task={taskState} setShowModal={setShowModal} />}
+      {/* {showModal && <Modal task={taskState} setShowModal={setShowModal} />} */}
     </div>
   );
 };
 
 export default TechTask;
-function Modal({
-  task,
-  setShowModal,
-}: {
-  task: string;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
-  return (
-    <div
-      className="bg-black p-4 min-w-[40vw] min-h-[30vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 nes-container is-dark is-rounded --submit-container"
-      style={{ position: "absolute" }}
-    >
-      <form method="">
-        <p className="title text-xl">Submit Task</p>
-        <input
-          type="text"
-          id="dark_field"
-          className="nes-input is-dark"
-          placeholder="Github Repository Link"
-          name={`${task}-github`}
-          required
-        />
-        <input
-          type="text"
-          id="dark_field"
-          className="nes-input is-dark"
-          placeholder="Demo Link"
-          name={`${task}-demo`}
-        />
-        <menu className="dialog-menu mt-4">
-          <button
-            className="nes-btn"
-            type="button"
-            onClick={() => setShowModal(false)}
-          >
-            Cancel
-          </button>
-          <button className="nes-btn is-error" type="submit" onClick={() => {}}>
-            Submit
-          </button>
-        </menu>
-      </form>
-    </div>
-  );
-}
+// function Modal({
+//   task,
+//   setShowModal,
+// }: {
+//   task: string;
+//   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+// }) {
+//   return (
+//     <div
+//       className="bg-black p-4 min-w-[40vw] min-h-[30vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 nes-container is-dark is-rounded --submit-container"
+//       style={{ position: "absolute" }}
+//     >
+//       <form method="">
+//         <p className="title text-xl">Submit Task</p>
+//         <input
+//           type="text"
+//           id="dark_field"
+//           className="nes-input is-dark"
+//           placeholder="Github Repository Link"
+//           name={`${task}-github`}
+//           required
+//         />
+//         <input
+//           type="text"
+//           id="dark_field"
+//           className="nes-input is-dark"
+//           placeholder="Demo Link"
+//           name={`${task}-demo`}
+//         />
+//         <menu className="dialog-menu mt-4">
+//           <button
+//             className="nes-btn"
+//             type="button"
+//             onClick={() => setShowModal(false)}
+//           >
+//             Cancel
+//           </button>
+//           <button className="nes-btn is-error" type="submit" onClick={() => {}}>
+//             Submit
+//           </button>
+//         </menu>
+//       </form>
+//     </div>
+//   );
+// }
 const techTaskData = [
   {
     label: "frontend",
     title: "Project Title1",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt libero blanditiis provident minus magnam exercitationem porro, nihil esse inventore ut!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt libero blanditiis provident minus magnam exercitationem porro, nihil esse inventore ut!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt libero blanditiis provident minus magnam exercitationem porro, nihil esse inventore ut!",
+    description: "Design a frontend website",
     resources: ["Link1", "Link2"],
   },
   {

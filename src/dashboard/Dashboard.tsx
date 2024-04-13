@@ -7,7 +7,7 @@ import TaskSubmission from "../sections/TaskSubmission";
 const Dashboard = () => {
   const [tabIndex, setTabIndex] = useState(0);
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full h-full flex justify-center items-center p-4 md:p-12">
       <BoundingBox>
         <Header tabIndex={tabIndex} setTabIndex={setTabIndex} />
         {tabIndex === 0 && <Profile />}

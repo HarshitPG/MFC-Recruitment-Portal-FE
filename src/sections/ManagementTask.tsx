@@ -34,42 +34,42 @@ const ManagementTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
           <button
             type="button"
             onClick={() => setSelectedSubDomain("outreach")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Outreach
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("finance")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Finance
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("general")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             General Ops.
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("publicity")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Publicity
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("anchoring")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Anchoring
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("editorial")}
-            className="nes-btn is-error w-[22%] aspect-[2] custom-nes-error"
+            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Editorial
           </button>
@@ -79,16 +79,16 @@ const ManagementTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
       {selectedSubDomain !== "" && (
         <div className="w-full mt-8 h-full flex flex-col gap-4">
           {filteredTasks.map((task, index) => (
-            <div className="nes-container is-dark with-title" key={index}>
+            <div
+              className="nes-container is-dark with-title dark-container-nes"
+              key={index}
+            >
               <p className="title ">{task.title}</p>
               <p className="text-xs text-left leading-4">{task.description}</p>
-              <span>Resources:</span>
-              {task.resources.map((resource, index) => (
-                <a href={resource}>Resource {index + 1} &nbsp;</a>
-              ))}
+
               <button
                 type="button"
-                className="nes-btn is-error  custom-nes-error"
+                className="nes-btn is-error  custom-nes-error text-xs md:text-base"
                 onClick={() => {
                   setShowModal(true);
                   setTaskState(task.title);
@@ -115,25 +115,29 @@ function Modal({
 }) {
   return (
     <div
-      className="bg-black p-4 min-w-[50vw] min-h-[30vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 nes-container is-dark is-rounded --submit-container"
+      className="bg-black p-4 min-w-[90vw] md:min-w-[50vw] min-h-[30vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 nes-container is-dark is-rounded --submit-container"
       style={{ position: "absolute" }}
     >
       <form method="">
         <p className="title text-xl">Submit Task</p>
         <textarea
           id="textarea_field"
-          className="nes-textarea is-dark min-h-[10rem] text-sm max-h-[20rem]"
+          className="nes-textarea is-dark min-h-[20rem] md:min-h-[10rem] text-xs md:text-sm max-h-[25rem] md:max-h-[20rem]"
           name={`${task}`}
         ></textarea>
         <menu className="dialog-menu mt-4">
           <button
-            className="nes-btn"
+            className="nes-btn text-xs md:text-base"
             type="button"
             onClick={() => setShowModal(false)}
           >
             Cancel
           </button>
-          <button className="nes-btn is-error" type="submit" onClick={() => {}}>
+          <button
+            className="nes-btn is-error text-xs md:text-base"
+            type="submit"
+            onClick={() => {}}
+          >
             Submit
           </button>
         </menu>
