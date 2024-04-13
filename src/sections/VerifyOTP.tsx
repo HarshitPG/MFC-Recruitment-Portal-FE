@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import OtpInput from "react-otp-input";
 // import OTPInput, { ResendOTP } from "otp-input-react";
 import Cookies from "js-cookie";
 
@@ -79,7 +80,7 @@ const VerifyOTP: React.FC = () => {
   };
 
   return (
-    <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark">
+    <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark p-4 md:p-12">
       <BoundingBox>
         <div className="w-full h-full relative z-[100] flex justify-between flex-col md:flex-row">
           <div className="heading text-center md:text-left">
@@ -99,10 +100,24 @@ const VerifyOTP: React.FC = () => {
             </div>
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0">
+            {error && <p className="text-red-500">Some Error Occured!</p>}
             <form
               className="flex flex-col gap-3 md:gap-6 w-full md:w-[60%]  pt-[15%] mx-auto"
               onSubmit={handleVerifyOTP}
             >
+              <OtpInput
+                value={otp}
+                onChange={setOTP}
+                numInputs={4}
+                renderSeparator={<span>-</span>}
+                renderInput={(props) => (
+                  <input
+                    {...props}
+                    className="aspect-square nes-input is-dark text-white"
+                    style={{ color: "#ffffff", width: "80px" }}
+                  />
+                )}
+              />
               {/* <OTPInput
                 className="flex justify-center"
                 value={otp}
@@ -114,7 +129,9 @@ const VerifyOTP: React.FC = () => {
                 secure
               />
               <ResendOTP onResendClick={handleResendClick} /> */}
-
+              <button onClick={handleResendClick} className="nes-btn text-xs">
+                Resend OTP
+              </button>
               <Button submit={true}>Verify</Button>
             </form>
           </div>
