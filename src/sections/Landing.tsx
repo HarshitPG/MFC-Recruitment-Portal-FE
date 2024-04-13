@@ -20,7 +20,7 @@ const Landing = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:5001/auth/login",
+        "https://mfc-recruitment-portal-be.onrender.com/auth/login",
         formData
       );
       if (response.data.token) {
@@ -59,7 +59,7 @@ const Landing = () => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
-        `http://localhost:5001/user/user/${userId}`,
+        `https://mfc-recruitment-portal-be.onrender.com/user/user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ` + `${token}`,
