@@ -1,14 +1,10 @@
-import {
-  Route,
-  BrowserRouter as Router,
-  Routes
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./dashboard/Dashboard";
 import Signup from "./sections/Signup";
 import BaseWrapper from "./wrappers/BaseWrapper";
 import MainWrapper from "./wrappers/MainWrapper";
-
+import Landing from "./sections/Landing";
 function App() {
   return (
     <BaseWrapper>
@@ -19,7 +15,7 @@ function App() {
       <MainWrapper>
         <Router>
           <Routes>
-            <Route path="/" element={<Signup />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/dashboard" element={<Dashboard />} />{" "}
           </Routes>
         </Router>

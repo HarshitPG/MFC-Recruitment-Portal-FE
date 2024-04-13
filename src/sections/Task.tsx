@@ -65,8 +65,18 @@ const Task = () => {
               setSelectedSubDomain={setSelectedSubDomain}
             />
           )}
-          {selectedDomain === 1 && <DesignTask />}
-          {selectedDomain === 2 && <ManagementTask />}
+          {selectedDomain === 1 && (
+            <DesignTask
+              selectedSubDomain={selectedSubDomain}
+              setSelectedSubDomain={setSelectedSubDomain}
+            />
+          )}
+          {selectedDomain === 2 && (
+            <ManagementTask
+              selectedSubDomain={selectedSubDomain}
+              setSelectedSubDomain={setSelectedSubDomain}
+            />
+          )}
         </div>
       </div>
     </div>
