@@ -1,7 +1,7 @@
 import Input from "../components/Input";
 import Button from "../components/Button";
 import BoundingBox from "../components/BoundingBox";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const Landing = () => {
   return (
     <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark">
@@ -35,7 +35,9 @@ const Landing = () => {
                 Don't have an account?
               </p>
               <div className="text-black text-sm md:text-lg cursor-pointer w-full bg-prime absolute bottom-0 py-1">
-                SignUp
+                <NavLink to="/signup">
+                  <span className="text-black  ">Sign Up</span>
+                </NavLink>
               </div>
             </section>
           </div>
