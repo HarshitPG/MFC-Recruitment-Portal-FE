@@ -93,11 +93,21 @@ const Landing = () => {
     <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark  p-4 md:p-12">
       <BoundingBox>
         <div className="w-full h-full relative z-[100] flex justify-between flex-col md:flex-row">
-          <div className="heading text-center md:text-left">
+        <img
+  src="/sky_muchbetter.png"
+  alt=""
+  className="hidden md:block absolute top-[-25%] left-1/2 transform -translate-x-1/2 w-full h-full object-contain z-50"
+  style={{
+    filter: "invert(50%) brightness(50%)",
+    maxWidth: "80vw", // Adjust the maximum width based on viewport width
+    maxHeight: "80vh", // Adjust the maximum height based on viewport height
+  }}
+/>
+          <div className="heading text-center md:text-left z-[100]">
             <h1 className="text-[2rem] md:text-[2.6rem] text-prime">
               MOZILLA FIREFOX
             </h1>
-            <span className="text-light text-base md:text-2xl">
+            <span className="text-light text-base md:text-2xl z-[100]">
               IS RECRUITING
             </span>
             <div className="mt-6 text-xs md:text-base">
@@ -106,7 +116,7 @@ const Landing = () => {
               </Link>
             </div>
           </div>
-          <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0">
+          <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0 z-[100]">
             <form
               className="flex flex-col gap-3 md:gap-6 w-full md:w-[60%] mx-auto"
               onSubmit={handleLogin}
