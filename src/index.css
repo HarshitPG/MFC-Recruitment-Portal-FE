@@ -46,3 +46,203 @@ body {
     padding: 10px !important;
   }
 }
+.mainbox {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: black;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.textforSignup {
+  color: rgb(255, 165, 0);
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: black;
+}
+
+.error {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.textforSignupbutton {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(226, 149, 7);
+  color: #fff;
+  cursor: pointer;
+}
+
+.textforSignupbutton:hover {
+  background-color: #fb7e02;
+}
+.verify-otp-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.otp-input-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.otp-input {
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  text-align: center;
+  margin: 0 5px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.verify-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgb(226, 149, 7);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.verify-btn:hover {
+  background-color: #fb7e02;
+}
+
+.mainverifytag {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: black;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.VerifyOTPtext {
+  color: orange;
+  font-size: 40px;
+}
+
+.sixdigitOTPtext {
+  color: orange;
+  font-size: 15px;
+}
+
+/*.verify-otp-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  
+  h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: orange;
+  }
+
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .error-message {
+    color: red; /* Set the color of the error message to red 
+    font-size: 14px; /* Optional: Adjust font size 
+    margin-top: 8px; /* Optional: Add margin for spacing 
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: orange;
+  }
+  
+  .otp-input
+  {
+    padding: 2px 2px 2px 2px; /* Apply consistent padding 
+    font-size: 16px;
+    margin-bottom: 16px;
+    margin-right:5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    width: 100%; /* Ensure both elements expand to full width 
+    box-sizing: border-box; /* Include padding within width 
+  }
+
+  .verify-btn {
+    padding: 12px; /* Apply consistent padding 
+    font-size: 16px;
+    margin-left: 3.5px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    width: 100%; /* Ensure both elements expand to full width 
+    box-sizing: border-box; /* Include padding within width 
+  }
+  
+  .verify-btn {
+    background-color: rgb(226, 149, 7);
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .verify-btn:hover {
+    background-color: #fb7e02;
+  }
+
+*/

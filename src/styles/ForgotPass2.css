@@ -1,0 +1,63 @@
+.reset-password-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: black;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.reset-password-heading {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: orange;
+}
+
+.reset-password-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: orange;
+}
+
+.form-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.reset-password-button {
+  padding: 12px;
+  font-size: 16px;
+  background-color: rgb(255, 165, 0);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reset-password-button:hover {
+  background-color: #fb7e02;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+}

@@ -6,7 +6,8 @@ import BaseWrapper from "./wrappers/BaseWrapper";
 import MainWrapper from "./wrappers/MainWrapper";
 import Landing from "./sections/Landing";
 import VerifyOTP from "./sections/VerifyOTP";
-
+// import ForgotPasswordStep1 from "./sections/ForgotPasswordStep1";
+// import ResetPassword from "./sections/ResetPassword";
 function App() {
   return (
     <BaseWrapper>
