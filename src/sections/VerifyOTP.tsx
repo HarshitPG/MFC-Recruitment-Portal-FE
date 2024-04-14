@@ -87,34 +87,32 @@ const VerifyOTP: React.FC = () => {
             <h1 className="text-[2rem] md:text-[2.6rem] text-prime">
               MOZILLA FIREFOX
             </h1>
-            <span className="text-light text-base md:text-2xl">
-              IS RECRUITING
-            </span>
+
             <div className="mt-6 text-xs md:text-base">
-              <div className="nes-btn">Have An Account ??</div>
+              <div className="text-white -mb-4">Have An Account ??</div>
             </div>
             <div className="mt-6 text-xs md:text-base">
               <NavLink className="nes-btn" to="/">
-                Login In &rarr;
+                LogIn &rarr;
               </NavLink>
             </div>
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0">
             {error && <p className="text-red-500">Some Error Occured!</p>}
             <form
-              className="flex flex-col gap-3 md:gap-6 w-full md:w-[60%]  pt-[15%] mx-auto"
+              className="flex flex-col gap-3 md:gap-6 w-full md:w-fit pt-[15%] mx-auto"
               onSubmit={handleVerifyOTP}
             >
               <OtpInput
                 value={otp}
                 onChange={setOTP}
-                numInputs={4}
-                renderSeparator={<span>-</span>}
+                numInputs={6}
+                renderSeparator={<span className="hidden md:block">-</span>}
                 renderInput={(props) => (
                   <input
                     {...props}
-                    className="aspect-square nes-input is-dark text-white"
-                    style={{ color: "#ffffff", width: "80px" }}
+                    className="otp aspect-square nes-input is-dark text-white"
+                    style={{ color: "#ffffff" }}
                   />
                 )}
               />

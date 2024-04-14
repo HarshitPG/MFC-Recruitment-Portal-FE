@@ -246,3 +246,12 @@ input[type="password"] {
   }
 
 */
+
+.otp {
+  width: 50px !important;
+}
+@media (max-width: 600px) {
+  .otp {
+    width: calc((100% - 2rem) / 6) !important;
+  }
+}
