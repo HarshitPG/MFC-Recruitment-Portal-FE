@@ -1,13 +1,14 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./dashboard/Dashboard";
-import Landing from "./sections/Landing";
+//import Landing from "./sections/Landing";
+import ForgotPassword from "./sections/ForgotPasswordStep1";
+import Profile from "./sections/Profile";
+import ResetPassword from "./sections/ResetPassword";
 import Signup from "./sections/Signup";
 import VerifyOTP from "./sections/VerifyOTP";
 import BaseWrapper from "./wrappers/BaseWrapper";
 import MainWrapper from "./wrappers/MainWrapper";
-import ResetPassword from "./sections/ResetPassword";
-import ForgotPassword from "./sections/ForgotPasswordStep1";
 // import ForgotPasswordStep1 from "./sections/ForgotPasswordStep1";
 // import ResetPassword from "./sections/ResetPassword";
 function App() {
@@ -20,7 +21,7 @@ function App() {
       <MainWrapper>
         <Router>
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<Profile />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/verifyotp" element={<VerifyOTP />} />

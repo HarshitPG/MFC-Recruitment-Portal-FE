@@ -1,51 +1,64 @@
-import Input from "../components/Input";
-import Button from "../components/Button";
-import BoundingBox from "../components/BoundingBox";
-import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
+import BoundingBox from "../components/BoundingBox";
+import Button from "../components/Button";
+import Input from "../components/Input";
 
 const ForgotPassword = () => {
   const [regno, setRegno] = useState("");
   const [email, setEmail] = useState("");
-  const [error, setError] = useState(false);
-  console.log(error);
+  const [regnoError, setRegnoError] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  const isValidRegno = /^(21|22|23)[a-zA-Z]{3}\d{4}$/;
+  const isValidEmail = /^[A-Za-z0-9._%+-]+@vitstudent\.ac\.in$/;
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = {
-      email,
-      regno,
-    };
+
+    // Reset previous errors
+    setRegnoError("");
+    setEmailError("");
+
+    if (!isValidRegno.test(regno)) {
+      setRegnoError("Invalid Registration Number. Please enter a valid registration number.");
+      return;
+    }
+
+    if (!isValidEmail.test(email)) {
+      setEmailError("Invalid Email Address. Please enter a valid VIT student email address.");
+      return;
+    }
+
+    // Form data is valid, proceed with password reset
     try {
       const response = await axios.post(
         "https://mfc-recruitment-portal-be.onrender.com/auth/requestPasswordReset",
-        formData
+        { email, regno }
       );
+
       if (response) {
-        toast.success("OK", {
+        toast.success("Password reset link sent successfully", {
           className: "custom-bg",
           autoClose: 3000,
           theme: "dark",
         });
-
         console.log("response", response);
       }
-
-      setError(false);
     } catch (error) {
-      console.log(error);
-      toast.error("Invalid Username or Password", {
+      console.error("An unexpected error occurred:", error);
+      toast.error("An unexpected error occurred. Please try again later.", {
         className: "custom-bg-error",
         autoClose: 3000,
         theme: "dark",
       });
-      setError(true);
     }
   };
 
   return (
-    <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark  p-4 md:p-12">
+    <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark p-4 md:p-12">
       <BoundingBox>
         <div className="w-full h-full relative z-[100] flex justify-between flex-col md:flex-row">
           <div className="heading text-center md:text-left">
@@ -73,6 +86,7 @@ const ForgotPassword = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
               <Input
                 label={"regno"}
                 placeholder="Registration Number"
@@ -80,11 +94,12 @@ const ForgotPassword = () => {
                 value={regno}
                 onChange={(e) => setRegno(e.target.value)}
               />
+              {regnoError && <p className="text-red-500 text-sm">{regnoError}</p>}
               <Button submit={true}>Reset Password</Button>
             </form>
             <section className="text-center mt-6 md:mt-12 text-light bg-dark py-2 md:py-4 w-full md:w-[60%] mx-auto relative">
               <div className="text-black text-sm md:text-lg cursor-pointer w-full bg-prime absolute bottom-0 py-1">
-                <NavLink to="/" className="text-black  ">
+                <NavLink to="/" className="text-black">
                   Back To Login page
                 </NavLink>
               </div>
@@ -102,11 +117,7 @@ const ForgotPassword = () => {
             alt=""
             className="w-[85%] mx-auto invert brightness-50 absolute bottom-8"
           />
-          <img
-            src="/Dino.png"
-            alt=""
-            className="invert w-20 absolute bottom-10"
-          />
+          <img src="/Dino.png" alt="" className="invert w-20 absolute bottom-10" />
           <img
             src="/cacti.png"
             alt=""

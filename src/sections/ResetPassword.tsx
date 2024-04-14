@@ -1,10 +1,10 @@
-import Input from "../components/Input";
-import Button from "../components/Button";
-import BoundingBox from "../components/BoundingBox";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import BoundingBox from "../components/BoundingBox";
+import Button from "../components/Button";
+import Input from "../components/Input";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
@@ -138,3 +138,4 @@ const ResetPassword = () => {
 };
 
 export default ResetPassword;
+

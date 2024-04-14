@@ -1,9 +1,9 @@
 import Input from "../components/Input";
 // import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import Cookies from "js-cookie";
 
 const Profile = () => {
   const [mobile, setMobileno] = useState("");
@@ -14,6 +14,8 @@ const Profile = () => {
   const [error, setError] = useState(false);
   // const navigate = useNavigate();
 
+
+  
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     if (checked) {
