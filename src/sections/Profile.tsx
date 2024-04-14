@@ -1,43 +1,57 @@
 import Input from "../components/Input";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const Profile = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [regno, setRegno] = useState("");
+  const [mobile, setMobileno] = useState("");
+  const [emailpersonal, setEmailPersonal] = useState("");
+  const [participatedEvent, setParticipated] = useState("");
+  const [volunteeredEvent, setVolunteered] = useState("");
+  const [domain, setDomain] = useState<string[]>([]);
   const [error, setError] = useState(false);
-  const navigate = useNavigate();
-  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+  // const navigate = useNavigate();
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setDomain((prevDomains) => [...prevDomains, value]);
+    } else {
+      setDomain((prevDomains) =>
+        prevDomains.filter((domain) => domain !== value)
+      );
+    }
+  };
+
+  const handleProfileUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = {
-      username,
-      email,
-      regno,
-      password,
-      confirmpassword,
+      mobile,
+      emailpersonal,
+      domain,
+      participatedEvent,
+      volunteeredEvent,
     };
     try {
-      const response = await axios.post(
-        "https://mfc-recruitment-portal-be.onrender.com/auth/signup",
-        formData
+      const id = localStorage.getItem("id");
+
+      if (!id) {
+        throw new Error("User id not found in localStorage");
+      }
+      const token = Cookies.get("jwtToken");
+      const response = await axios.put(
+        `https://mfc-recruitment-portal-be.onrender.com/user/updateuser/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ` + `${token}`,
+          },
+        }
       );
-      if (response.data.token) {
-        document.cookie = "jwtToken=" + response.data.token;
-        toast.success("OTP SENT", {
-          className: "custom-bg",
-          autoClose: 3000,
-          theme: "dark",
-        });
-        localStorage.setItem("id", response.data.id);
-        localStorage.setItem("name", response.data.username);
-        localStorage.setItem("email", response.data.email);
-        navigate("/verifyotp");
+      if (response.data.message) {
+        toast.success(`${response.data.message}`);
       }
 
       setError(false);
@@ -66,28 +80,61 @@ const Profile = () => {
       </div>
 
       <div className="nes-container is-rounded w-full md:w-[70%] is-dark dark-nes-container overflow-y-scroll">
-        <form className="flex flex-col gap-8 md:gap-4 w-full">
+        <form
+          className="flex flex-col gap-8 md:gap-4 w-full"
+          onSubmit={handleProfileUpdate}
+        >
           <section className="flex items-start text-xs md:text-base md:items-center flex-col md:flex-row">
             <label className="w-full md:w-[40%]">Mobile Number:</label>
-            <Input label={"mobile"} placeholder="Your mobile" type="text" />
+            <Input
+              label={"mobile"}
+              placeholder="Your mobile"
+              type="text"
+              value={mobile}
+              onChange={(e) => setMobileno(e.target.value)}
+            />
           </section>
           <section className="flex items-start text-xs md:text-base md:items-center flex-col md:flex-row">
             <label className="w-full md:w-[40%]">Personal Email:</label>
-            <Input label={"email"} placeholder="Personal Email" type="text" />
+            <Input
+              label={"email"}
+              placeholder="Personal Email"
+              type="text"
+              value={emailpersonal}
+              onChange={(e) => setEmailPersonal(e.target.value)}
+            />
           </section>
           <section className="flex items-start text-xs md:text-base md:items-center flex-col md:flex-row">
             <p className="w-full md:w-[40%]">Domains:</p>
             <div className="flex flex-col">
               <label>
-                <input type="checkbox" className="nes-checkbox is-dark" />
+                <input
+                  type="checkbox"
+                  className="nes-checkbox is-dark"
+                  value="tech"
+                  checked={domain.includes("tech")}
+                  onChange={handleCheckboxChange}
+                />
                 <span className="text-xs md:text-base">Technical</span>
               </label>
               <label>
-                <input type="checkbox" className="nes-checkbox is-dark" />
+                <input
+                  type="checkbox"
+                  className="nes-checkbox is-dark"
+                  value="design"
+                  checked={domain.includes("design")}
+                  onChange={handleCheckboxChange}
+                />
                 <span className="text-xs md:text-base">Design</span>
               </label>
               <label>
-                <input type="checkbox" className="nes-checkbox is-dark" />
+                <input
+                  type="checkbox"
+                  className="nes-checkbox is-dark"
+                  value="management"
+                  checked={domain.includes("management")}
+                  onChange={handleCheckboxChange}
+                />
                 <span className="text-xs md:text-base">Management</span>
               </label>
             </div>
@@ -102,6 +149,8 @@ const Profile = () => {
               label={"volunteer"}
               placeholder="Enter event details"
               type="text"
+              value={volunteeredEvent}
+              onChange={(e) => setVolunteered(e.target.value)}
             />
           </section>
           <section className="flex items-start text-xs md:text-base flex-col">
@@ -114,6 +163,8 @@ const Profile = () => {
               label={"participated"}
               placeholder="Enter event details"
               type="text"
+              value={participatedEvent}
+              onChange={(e) => setParticipated(e.target.value)}
             />
           </section>
           <div className="w-full flex justify-end">
