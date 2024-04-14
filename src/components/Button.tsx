@@ -1,14 +1,17 @@
-import { ReactNode } from "react";
+import { ReactNode, MouseEventHandler } from "react";
 
 interface Props {
   children: ReactNode;
   submit?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  className?: string;
 }
-const Button = ({ children, submit }: Props) => {
+const Button = ({ children, submit, onClick, className }: Props) => {
   return (
     <button
       type={submit ? "submit" : "button"}
-      className="nes-btn is-error custom-nes-error"
+      className={`nes-btn is-error custom-nes-error ${className}`}
+      onClick={onClick}
     >
       {children}
     </button>

@@ -12,6 +12,25 @@ export default {
         light: "#cecece",
       },
     },
+    keyframes: {
+      fadeOut: {
+        "0%": { opacity: "1" },
+        "100%": { opacity: "0" },
+      },
+      fadeIn: {
+        "0%": { opacity: "0" },
+        "100%": { opacity: "1" },
+      },
+      hide: {
+        "0%": { display: "block" },
+        "100%": { display: "none" },
+      },
+    },
+    animation: {
+      fadeOut: "fadeOut 2s linear",
+      fadeIn: "fadeIn 5s ease-in",
+      hide: "hide 2.3s ease-out",
+    },
   },
   plugins: [],
 };
