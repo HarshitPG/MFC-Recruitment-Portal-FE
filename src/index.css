@@ -255,3 +255,7 @@ input[type="password"] {
     width: calc((100% - 2rem) / 6) !important;
   }
 }
+.description {
+  font-size: 0.75rem !important;
+  line-height: 1rem !important;
+}

@@ -72,7 +72,7 @@ const Profile = () => {
         <p className="title dark-nes-container text-sm md:text-base">
           Hello World!
         </p>
-        <p className="text-light text-xs md:text-base">
+        <p className="text-light text-xs md:text-base description">
           Got a sec? We need you to spice up your profile with the right deets.
           Drop your name, contacts, Domains and whatever else floats your boat.
           It helps us help you better! Cheers!
@@ -85,7 +85,7 @@ const Profile = () => {
           onSubmit={handleProfileUpdate}
         >
           <section className="flex items-start text-xs md:text-base md:items-center flex-col md:flex-row">
-            <label className="w-full md:w-[40%]">Mobile Number:</label>
+            <label className="w-full md:w-[40%] text-sm">Mobile Number:</label>
             <Input
               label={"mobile"}
               placeholder="Your mobile"
@@ -95,7 +95,7 @@ const Profile = () => {
             />
           </section>
           <section className="flex items-start text-xs md:text-base md:items-center flex-col md:flex-row">
-            <label className="w-full md:w-[40%]">Personal Email:</label>
+            <label className="w-full md:w-[40%] text-sm">Personal Email:</label>
             <Input
               label={"email"}
               placeholder="Personal Email"
@@ -140,7 +140,7 @@ const Profile = () => {
             </div>
           </section>
           <section className="flex items-start text-xs md:text-base flex-col">
-            <label className="w-full">
+            <label className="w-full text-sm">
               Have you volunteered in any of the MFC event:
               <br />
               If yes, enter event name
@@ -154,7 +154,7 @@ const Profile = () => {
             />
           </section>
           <section className="flex items-start text-xs md:text-base flex-col">
-            <label className="w-full">
+            <label className="w-full text-sm">
               Have you participated in any of the MFC event:
               <br />
               If yes, enter event name
