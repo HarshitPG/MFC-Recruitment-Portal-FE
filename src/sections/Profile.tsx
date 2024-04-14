@@ -1,5 +1,57 @@
 import Input from "../components/Input";
+import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { toast } from "react-toastify";
+
 const Profile = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [regno, setRegno] = useState("");
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = {
+      username,
+      email,
+      regno,
+      password,
+      confirmpassword,
+    };
+    try {
+      const response = await axios.post(
+        "https://mfc-recruitment-portal-be.onrender.com/auth/signup",
+        formData
+      );
+      if (response.data.token) {
+        document.cookie = "jwtToken=" + response.data.token;
+        toast.success("OTP SENT", {
+          className: "custom-bg",
+          autoClose: 3000,
+          theme: "dark",
+        });
+        localStorage.setItem("id", response.data.id);
+        localStorage.setItem("name", response.data.username);
+        localStorage.setItem("email", response.data.email);
+        navigate("/verifyotp");
+      }
+
+      setError(false);
+      console.error(error);
+    } catch (error) {
+      console.log(error);
+      toast.error("Invalid Username or Password", {
+        className: "custom-bg-error",
+        autoClose: 3000,
+        theme: "dark",
+      });
+      setError(true);
+    }
+  };
   return (
     <div className="w-full profile py-6 flex gap-4 flex-col md:flex-row">
       <div className="nes-container is-dark with-title w-full md:w-[30%] dark-nes-container">

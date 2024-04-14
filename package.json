@@ -19,9 +19,11 @@
     "react-dom": "^18.2.0",
     "react-otp-input": "^3.1.1",
     "react-router-dom": "^6.22.3",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@types/zustand": "^4.5.2",
     "@types/js-cookie": "^3.0.6",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",

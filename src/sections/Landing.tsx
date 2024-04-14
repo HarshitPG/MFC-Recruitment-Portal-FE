@@ -6,7 +6,9 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
+import { useTabStore } from "../store";
 const Landing = () => {
+  const { tabIndex, setTabIndex } = useTabStore();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
@@ -35,7 +37,6 @@ const Landing = () => {
         localStorage.setItem("email", response.data.email);
         fetchUserDetails(response.data.id);
         console.log("response.data.id", response.data.id);
-        navigate("/dashboard");
       }
 
       setError(false);
@@ -68,6 +69,21 @@ const Landing = () => {
       );
       console.log(response.data);
       localStorage.setItem("userDetails", JSON.stringify(response.data));
+      const userDetailsString = localStorage.getItem("userDetails");
+      if (userDetailsString) {
+        const userDetails = JSON.parse(userDetailsString);
+        const isProfileDone = userDetails.isProfileDone;
+        console.log("Is Profile Done:", isProfileDone);
+        if (isProfileDone) {
+          setTabIndex(1);
+        } else {
+          setTabIndex(0);
+          console.log("tabIndex", tabIndex);
+        }
+        navigate("/dashboard");
+      } else {
+        console.error("User details not found in localStorage");
+      }
     } catch (error) {
       console.log(error);
     }

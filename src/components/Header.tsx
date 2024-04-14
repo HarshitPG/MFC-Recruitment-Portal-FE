@@ -5,7 +5,7 @@ const Header = ({
   setTabIndex,
 }: {
   tabIndex: number;
-  setTabIndex: React.Dispatch<React.SetStateAction<number>>;
+  setTabIndex: (index: number) => void;
 }) => {
   return (
     <div className="w-full flex justify-between md:justify-around relative h-[3rem] md:h-[5rem]">
