@@ -6,6 +6,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+interface SignupFormValues {
+  name: string;
+  registerNumber: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 const Signup: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -14,10 +21,60 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState("");
   const [regno, setRegno] = useState("");
   const [error, setError] = useState(false);
+  const [formErrors, setFormErrors] = useState<Partial<SignupFormValues>>({});
   const navigate = useNavigate();
+  function validateData() {
+    const errors: Partial<SignupFormValues> = {};
+    let isError = false;
+    if (username.length < 3) {
+      errors.name = "Name is required";
+      isError = true;
+    } else {
+      errors.name = "";
+      isError = false;
+    }
 
+    const registerNumberRegex = /^(21|22|23)[a-zA-Z]{3}\d{4}$/;
+    if (!regno) {
+      errors.registerNumber = "Register number is required";
+      isError = true;
+    } else if (!registerNumberRegex.test(regno)) {
+      errors.registerNumber = "Invalid register number format";
+      isError = true;
+    } else {
+      errors.registerNumber = "";
+      isError = false;
+    }
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@vitstudent\.ac\.in$/;
+    if (!email) {
+      errors.email = "Email is required";
+      isError = true;
+    } else if (!emailRegex.test(email)) {
+      errors.email = "Invalid email address. Must end with @vitstudent.ac.in";
+      isError = true;
+    }
+    if (!password) {
+      errors.password = "Password is required";
+      isError = true;
+    } else if (password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+      isError = true;
+    }
+    if (!confirmpassword) {
+      errors.confirmPassword = "Confirm Password is required";
+      isError = true;
+    } else if (password !== confirmpassword) {
+      errors.confirmPassword = "Passwords must match";
+      isError = true;
+    }
+    // Update the formErrors state with the new errors
+    setFormErrors(errors);
+    return isError;
+  }
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const isErrorValidation = validateData();
+
     const formData = {
       username,
       email,
@@ -25,34 +82,36 @@ const Signup: React.FC = () => {
       password,
       confirmpassword,
     };
-    try {
-      const response = await axios.post(
-        "https://mfc-recruitment-portal-be.onrender.com/auth/signup",
-        formData
-      );
-      if (response.data.token) {
-        document.cookie = "jwtToken=" + response.data.token;
-        toast.success("OTP SENT", {
-          className: "custom-bg",
+    if (!isErrorValidation) {
+      try {
+        const response = await axios.post(
+          "https://mfc-recruitment-portal-be.onrender.com/auth/signup",
+          formData
+        );
+        if (response.data.token) {
+          document.cookie = "jwtToken=" + response.data.token;
+          toast.success("OTP SENT", {
+            className: "custom-bg",
+            autoClose: 3000,
+            theme: "dark",
+          });
+          localStorage.setItem("id", response.data.id);
+          localStorage.setItem("name", response.data.username);
+          localStorage.setItem("email", response.data.email);
+          navigate("/verifyotp");
+        }
+
+        setError(false);
+        console.error(error);
+      } catch (error) {
+        console.log(error);
+        toast.error("Invalid Username or Password", {
+          className: "custom-bg-error",
           autoClose: 3000,
           theme: "dark",
         });
-        localStorage.setItem("id", response.data.id);
-        localStorage.setItem("name", response.data.username);
-        localStorage.setItem("email", response.data.email);
-        navigate("/verifyotp");
+        setError(true);
       }
-
-      setError(false);
-      console.error(error);
-    } catch (error) {
-      console.log(error);
-      toast.error("Invalid Username or Password", {
-        className: "custom-bg-error",
-        autoClose: 3000,
-        theme: "dark",
-      });
-      setError(true);
     }
   };
   return (
@@ -67,13 +126,18 @@ const Signup: React.FC = () => {
               IS RECRUITING
             </span>
             <div className="mt-6 text-xs md:text-base">
-              <div className="nes-btn">Have An Account ??</div>
+              <div className="text-white -mb-4">Have An Account ??</div>
             </div>
             <div className="mt-6 text-xs md:text-base">
               <NavLink className="nes-btn" to="/">
                 Login In &rarr;
               </NavLink>
             </div>
+            <section className="icon-list flex gap-8 mt-8">
+              <i className="nes-icon instagram is-medium"></i>
+              <i className="nes-icon gmail is-medium"></i>
+              <i className="nes-icon linkedin is-medium"></i>
+            </section>
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0">
             <form
@@ -85,45 +149,81 @@ const Signup: React.FC = () => {
                 placeholder="Name"
                 type="text"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+                required={true}
               />
+              {formErrors.name && (
+                <div className="text-xs -mt-4 text-prime">
+                  {formErrors.name}
+                </div>
+              )}
               <Input
                 label={"email"}
                 placeholder="Vit-Email"
                 type="text"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                required={true}
               />
+              {formErrors.email && (
+                <div className="text-xs -mt-4 text-prime">
+                  {formErrors.email}
+                </div>
+              )}
               <Input
                 label={"regno"}
                 placeholder="Registration Number"
                 type="text"
                 value={regno}
-                onChange={(e) => setRegno(e.target.value)}
+                onChange={(e) => {
+                  setRegno(e.target.value);
+                }}
+                required={true}
               />
+              {formErrors.registerNumber && (
+                <div className="text-xs -mt-4 text-prime">
+                  {formErrors.registerNumber}
+                </div>
+              )}
               <Input
                 label={"password"}
                 placeholder="Password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required={true}
               />
+              {formErrors.password && (
+                <div className="text-xs -mt-4 text-prime">
+                  {formErrors.password}
+                </div>
+              )}
               <Input
                 label={"confirm password"}
                 placeholder="Confirm Password"
                 type="password"
                 value={confirmpassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                required={true}
               />
+              {formErrors.confirmPassword && (
+                <div className="text-xs -mt-4 text-prime">
+                  {formErrors.confirmPassword}
+                </div>
+              )}
               <Button submit={true}>Sign Up</Button>
             </form>
           </div>
         </div>
-        <img
+        {/* <img
           src="/background.png"
           alt=""
           className="hidden md:block absolute bottom-0 invert brightness-[50%] left-0 scale-95"
-        />
+        /> */}
         <div className="absolute bottom-0 w-full md:hidden">
           <img
             src="/empty-bg.png"

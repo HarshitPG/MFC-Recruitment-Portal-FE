@@ -4,6 +4,7 @@ interface Props {
   type: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
 }
 const Input: React.FC<Props> = ({
   label,
@@ -11,6 +12,7 @@ const Input: React.FC<Props> = ({
   type,
   value,
   onChange,
+  required = false,
 }: Props) => {
   return (
     <input
@@ -20,6 +22,7 @@ const Input: React.FC<Props> = ({
       name={label}
       value={value}
       onChange={onChange}
+      required={required}
     />
   );
 };
