@@ -3,7 +3,7 @@ import "./App.css";
 import Dashboard from "./dashboard/Dashboard";
 //import Landing from "./sections/Landing";
 import ForgotPassword from "./sections/ForgotPasswordStep1";
-import Profile from "./sections/Profile";
+import Landing from "./sections/Landing";
 import ResetPassword from "./sections/ResetPassword";
 import Signup from "./sections/Signup";
 import VerifyOTP from "./sections/VerifyOTP";
@@ -21,7 +21,7 @@ function App() {
       <MainWrapper>
         <Router>
           <Routes>
-            <Route path="/" element={<Profile />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/verifyotp" element={<VerifyOTP />} />

@@ -126,20 +126,22 @@ const Landing = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <Button submit={true}>Sign In</Button>
+              <NavLink to="/forgotpassword" className="text-center text-orange text-sm md:text-base">
+                  Forgot Password??
+                </NavLink>
             </form>
-            <section className="text-center mt-6 md:mt-12 text-light bg-dark py-2 md:py-4 w-full md:w-[60%] mx-auto relative">
-              <p className="mb-8 md:mb-12 text-xs md:text-base">
-                Don't have an account?
-              </p>
+            
+            <section className="text-center mt-6 md:mt-4 text-light bg-dark py-0.35 md:py-0.5 w-full md:w-[60%] mx-auto relative">
+  <p className="mb-8 md:mb-12 text-xs md:text-base">
+    Don't have an account?
+  </p>
               <div className="text-black text-sm md:text-lg cursor-pointer w-full bg-prime absolute bottom-0 py-1">
                 <div>
                   <NavLink to="/signup" className="text-black  ">
                     Sign Up
                   </NavLink>
                 </div>
-                <NavLink to="/forgotpassword" className="text-black  ">
-                  Forgot Password??
-                </NavLink>
+                
               </div>
             </section>
           </div>
