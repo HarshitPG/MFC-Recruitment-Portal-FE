@@ -132,8 +132,13 @@ const Landing = () => {
                 Don't have an account?
               </p>
               <div className="text-black text-sm md:text-lg cursor-pointer w-full bg-prime absolute bottom-0 py-1">
-                <NavLink to="/signup">
-                  <span className="text-black  ">Sign Up</span>
+                <div>
+                  <NavLink to="/signup" className="text-black  ">
+                    Sign Up
+                  </NavLink>
+                </div>
+                <NavLink to="/forgotpassword" className="text-black  ">
+                  Forgot Password??
                 </NavLink>
               </div>
             </section>
