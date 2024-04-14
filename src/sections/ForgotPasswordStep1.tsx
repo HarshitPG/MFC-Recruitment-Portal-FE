@@ -19,7 +19,7 @@ const ForgotPassword = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:5001/auth/requestPasswordReset",
+        "https://mfc-recruitment-portal-be.onrender.com/auth/requestPasswordReset",
         formData
       );
       if (response) {

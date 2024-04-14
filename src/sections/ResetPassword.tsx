@@ -32,7 +32,7 @@ const ResetPassword = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:5001/auth/updatepassword",
+        "https://mfc-recruitment-portal-be.onrender.com/auth/updatepassword",
         formData
       );
       if (response) {
