@@ -1,11 +1,11 @@
-import Input from "../components/Input";
-import Button from "../components/Button";
-import BoundingBox from "../components/BoundingBox";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
 import Cookies from "js-cookie";
+import { useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import BoundingBox from "../components/BoundingBox";
+import Button from "../components/Button";
+import Input from "../components/Input";
 import { useTabStore } from "../store";
 const Landing = () => {
   const { tabIndex, setTabIndex } = useTabStore();

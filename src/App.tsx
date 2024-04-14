@@ -1,11 +1,11 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./dashboard/Dashboard";
+import Landing from "./sections/Landing";
 import Signup from "./sections/Signup";
+import VerifyOTP from "./sections/VerifyOTP";
 import BaseWrapper from "./wrappers/BaseWrapper";
 import MainWrapper from "./wrappers/MainWrapper";
-import Landing from "./sections/Landing";
-import VerifyOTP from "./sections/VerifyOTP";
 // import ForgotPasswordStep1 from "./sections/ForgotPasswordStep1";
 // import ResetPassword from "./sections/ResetPassword";
 function App() {
