@@ -39,36 +39,41 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
   useEffect(() => {
     let timeout: NodeJS.Timeout | null;
     if (group.current && animationIndex === 7) {
+      const onCompleteHandler = () => {
+        if (group.current) {
+          gsap.to(group.current.rotation, { y: 0, z: 0, x: 0, duration: 0.5 });
+          setTimeout(() => {
+            setAnimationIndex(2);
+          }, 150);
+        }
+
+        actions[names[animationIndex]]?.play();
+        actions[names[animationIndex]]?.fadeOut(0.5);
+
+        const timeout = setTimeout(() => {
+          actions[names[animationIndex]]?.fadeOut(1);
+          setTimeout(() => {
+            actions[names[animationIndex]]?.stop();
+          }, 250);
+        }, 500);
+
+        return () => {
+          clearTimeout(timeout);
+          actions[names[animationIndex]]?.fadeOut(0.5);
+        };
+      };
+
       gsap.to(group.current.rotation, {
         y: Math.PI / 2,
         z: -Math.PI / 2,
         x: Math.PI / 2,
         duration: 0,
       });
+
       gsap.to(group.current.position, {
         x: 15,
         duration: 3.5,
-        onComplete: () => {
-          if (group.current)
-            gsap.to(group.current.rotation, {
-              y: 0,
-              z: 0,
-              x: 0,
-              duration: 0.5,
-            });
-          setTimeout(() => {
-            setAnimationIndex(2);
-          }, 150);
-          actions[names[animationIndex]]?.play();
-          actions[names[animationIndex]]?.fadeOut(0.5);
-
-          timeout = setTimeout(() => {
-            actions[names[animationIndex]]?.fadeOut(1);
-            setTimeout(() => {
-              actions[names[animationIndex]]?.stop();
-            }, 250);
-          }, 500);
-        },
+        onComplete: onCompleteHandler as unknown as gsap.Callback,
       });
     }
     // clearTimeout(timeout);
@@ -81,43 +86,56 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
   useEffect(() => {
     let timeout: NodeJS.Timeout | null;
     if (group.current && animationIndex === 5) {
+      const onCompleteHandler = () => {
+        if (group.current) {
+          gsap.to(group.current.rotation, {
+            y: 0,
+            z: 0,
+            x: 0,
+            duration: 0.5,
+          });
+          setTimeout(() => {
+            setAnimationIndex(4);
+            if (meshRef.current) {
+              gsap.to(meshRef.current.position, {
+                y: 5,
+                duration: 3.5,
+                ease: "power1.out",
+              });
+            }
+          }, 150);
+        }
+
+        actions[names[animationIndex]]?.play();
+        actions[names[animationIndex]]?.fadeOut(0.5);
+
+        const timeout = setTimeout(() => {
+          actions[names[animationIndex]]?.fadeOut(1);
+          setTimeout(() => {
+            actions[names[animationIndex]]?.stop();
+          }, 250);
+        }, 500);
+
+        return () => {
+          clearTimeout(timeout);
+
+          if (actions[names[animationIndex]]) {
+            actions[names[animationIndex]]?.fadeOut(0.5);
+          }
+        };
+      };
+
       gsap.to(group.current.rotation, {
         y: Math.PI / 2,
         z: -Math.PI / 2,
         x: Math.PI / 2,
         duration: 0,
       });
+
       gsap.to(group.current.position, {
         x: 12.5,
         duration: 1,
-        onComplete: () => {
-          if (group.current)
-            gsap.to(group.current.rotation, {
-              y: 0,
-              z: 0,
-              x: 0,
-              duration: 0.5,
-            });
-          setTimeout(() => {
-            setAnimationIndex(4);
-            if (meshRef.current)
-              gsap.to(meshRef.current.position, {
-                y: 5,
-                duration: 3.5,
-                ease: "power1.out",
-              });
-          }, 150);
-
-          actions[names[animationIndex]]?.play();
-          actions[names[animationIndex]]?.fadeOut(0.5);
-
-          timeout = setTimeout(() => {
-            actions[names[animationIndex]]?.fadeOut(1);
-            setTimeout(() => {
-              actions[names[animationIndex]]?.stop();
-            }, 250);
-          }, 500);
-        },
+        onComplete: onCompleteHandler as unknown as gsap.Callback,
       });
     }
     return () => {
@@ -145,6 +163,8 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
       <mesh
         ref={meshRef}
         position={[15, 15, 0]}
+        // transparent
+        // envMapIntensity={2}
         onClick={() => redirectToURL("https://innovationx.mozillavit.in/")}
       >
         <planeGeometry args={[4, 4]} />

@@ -1,3 +1,4 @@
+import React from "react";
 import { ReactNode } from "react";
 // import Navbar from "./Navbar";
 interface Props {
