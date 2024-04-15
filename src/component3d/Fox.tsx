@@ -10,7 +10,7 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
   const redirectToURL = (url: string) => {
     window.open(url, "_blank");
   };
-  const texture = useLoader(TextureLoader, "../../public/Dino.png");
+  const texture = useLoader(TextureLoader, "/Dino.png");
   const group = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Mesh>(null);
   const { nodes, materials, animations } = useGLTF(
