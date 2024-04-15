@@ -13,9 +13,7 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
   const texture = useLoader(TextureLoader, "/Dino.png");
   const group = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Mesh>(null);
-  const { nodes, materials, animations } = useGLTF(
-    "../../public/model/fox1.gltf"
-  );
+  const { nodes, materials, animations } = useGLTF("/model/fox1.gltf");
 
   const { actions, names } = useAnimations(animations || [], group);
 
