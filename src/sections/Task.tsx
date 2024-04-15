@@ -47,7 +47,7 @@ const Task = () => {
         </div>
       </div>
 
-      <div className="nes-container is-dark with-title is-centered dark-nes-container w-full md:w-[70%] relative dark-container-nes">
+      <div className="nes-container is-dark with-title is-centered dark-nes-container w-full md:w-[90%] relative dark-container-nes">
         {selectedSubDomain !== "" && (
           <button
             type="button"

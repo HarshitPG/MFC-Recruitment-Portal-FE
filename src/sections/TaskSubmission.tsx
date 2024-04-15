@@ -28,7 +28,7 @@ const TaskSubmission = () => {
           </button>
         </div>
       </div>
-      <div className="text-white w-full md:w-[70%]">
+      <div className="text-white w-full md:w-[90%]">
         <p className="text-base md:text-lg">Task Submission</p>
         <div className="w-full  nes-container is-rounded is-dark dark-nes-container text-sm">
           {selectedDomain === 0 && (

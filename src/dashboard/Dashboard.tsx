@@ -5,6 +5,7 @@ import Task from "../sections/Task";
 import TaskSubmission from "../sections/TaskSubmission";
 import { useTabStore } from "../store";
 import Navbar from "../components/Navbar";
+import ApplicationStatus from "../sections/ApplicationStatus";
 const Dashboard = () => {
   const { tabIndex, setTabIndex } = useTabStore();
   return (
@@ -15,6 +16,7 @@ const Dashboard = () => {
         {tabIndex === 0 && <Profile />}
         {tabIndex === 1 && <Task />}
         {tabIndex === 2 && <TaskSubmission />}
+        {tabIndex === 3 && <ApplicationStatus />}
       </BoundingBox>
     </div>
   );
