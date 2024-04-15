@@ -2,7 +2,6 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import BoundingBox from "../components/BoundingBox";
 import Button from "../components/Button";
 import Input from "../components/Input";
@@ -11,8 +10,12 @@ import Scene3d from "../components/Scene3d";
 import PlayBtn from "../components/PlayBtn";
 import { useCharacterAnimations } from "../context/CharAnimation";
 import React from "react";
-
+import { toast } from "react-toastify";
+import CustomToast from "../components/CustomToast";
+import { ToastContent } from "../components/CustomToast";
 const Landing = () => {
+  const [openToast, setOpenToast] = useState(false);
+  const [toastContent, setToastContent] = useState<ToastContent>({});
   const { isPlayButton, setIsPlayButton, animationIndex, setAnimationIndex } =
     useCharacterAnimations();
   const { tabIndex, setTabIndex } = useTabStore();
@@ -48,8 +51,10 @@ const Landing = () => {
       );
       if (response.data.token) {
         document.cookie = "jwtToken=" + response.data.token;
+        setOpenToast(true);
+        setToastContent({ message: "OK" });
         toast.success("OK", {
-          className: "custom-bg",
+          // className: "custom-bg",
           autoClose: 3000,
           theme: "dark",
         });
@@ -63,11 +68,16 @@ const Landing = () => {
       setError(false);
     } catch (error) {
       console.log(error);
-      toast.error("Invalid Username or Password", {
-        className: "custom-bg-error",
-        autoClose: 3000,
-        theme: "dark",
+      setOpenToast(true);
+      setToastContent({
+        message: "Invalid Username or Password",
+        type: "error",
       });
+      // toast.error("Invalid Username or Password", {
+      //   className: "custom-bg-error",
+      //   autoClose: 3000,
+      //   theme: "dark",
+      // });
       setError(true);
     }
   };
@@ -112,6 +122,16 @@ const Landing = () => {
 
   return (
     <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark  p-4 md:p-12">
+      {openToast && (
+        <CustomToast
+          setToast={setOpenToast}
+          setToastContent={setToastContent}
+          message={toastContent.message}
+          type={toastContent.type}
+          customStyle={toastContent.customStyle}
+          duration={toastContent.duration}
+        />
+      )}
       <BoundingBox>
         <div className="w-full h-full relative z-[100] flex justify-between flex-col md:flex-row">
           {/* <img

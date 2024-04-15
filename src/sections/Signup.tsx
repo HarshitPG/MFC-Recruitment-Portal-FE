@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import BoundingBox from "../components/BoundingBox";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import CustomToast from "../components/CustomToast";
+import { ToastContent } from "../components/CustomToast";
 interface SignupFormValues {
   name: string;
   registerNumber: string;
@@ -14,6 +16,8 @@ interface SignupFormValues {
 }
 
 const Signup: React.FC = () => {
+  const [openToast, setOpenToast] = useState(false);
+  const [toastContent, setToastContent] = useState<ToastContent>({});
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
@@ -89,11 +93,16 @@ const Signup: React.FC = () => {
         );
         if (response.data.token) {
           document.cookie = "jwtToken=" + response.data.token;
-          toast.success("OTP SENT", {
-            className: "custom-bg",
-            autoClose: 3000,
-            theme: "dark",
+          setOpenToast(true);
+          setToastContent({
+            message: "OTP SENT",
+            // type: "error",
           });
+          // toast.success("OTP SENT", {
+          //   className: "custom-bg",
+          //   autoClose: 3000,
+          //   theme: "dark",
+          // });
           localStorage.setItem("id", response.data.id);
           localStorage.setItem("name", response.data.username);
           localStorage.setItem("email", response.data.email);
@@ -104,17 +113,32 @@ const Signup: React.FC = () => {
         console.error(error);
       } catch (error) {
         console.log(error);
-        toast.error("Invalid Username or Password", {
-          className: "custom-bg-error",
-          autoClose: 3000,
-          theme: "dark",
+        setOpenToast(true);
+        setToastContent({
+          message: "Invalid Username or Password",
+          type: "error",
         });
+        // toast.error("Invalid Username or Password", {
+        //   className: "custom-bg-error",
+        //   autoClose: 3000,
+        //   theme: "dark",
+        // });
         setError(true);
       }
     }
   };
   return (
     <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark  p-4 md:p-12">
+      {openToast && (
+        <CustomToast
+          setToast={setOpenToast}
+          setToastContent={setToastContent}
+          message={toastContent.message}
+          type={toastContent.type}
+          customStyle={toastContent.customStyle}
+          duration={toastContent.duration}
+        />
+      )}
       <BoundingBox>
         <div className="w-full h-full relative z-[100] flex justify-between flex-col md:flex-row">
           <div className="heading text-center md:text-left">
@@ -133,9 +157,15 @@ const Signup: React.FC = () => {
               </NavLink>
             </div>
             <section className="icon-list flex gap-8 mt-8">
-              <a href="https://www.instagram.com/mfc_vit"><i className="nes-icon instagram is-medium">/</i></a>
-              <a href="mailto:mozillafirefox@vit.ac.in"><i className="nes-icon gmail is-medium"></i></a>
-              <a href="https://www.linkedin.com/company/mfcvit?originalSubdomain=in"><i className="nes-icon linkedin is-medium"></i></a>
+              <a href="https://www.instagram.com/mfc_vit">
+                <i className="nes-icon instagram is-medium">/</i>
+              </a>
+              <a href="mailto:mozillafirefox@vit.ac.in">
+                <i className="nes-icon gmail is-medium"></i>
+              </a>
+              <a href="https://www.linkedin.com/company/mfcvit?originalSubdomain=in">
+                <i className="nes-icon linkedin is-medium"></i>
+              </a>
             </section>
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0">

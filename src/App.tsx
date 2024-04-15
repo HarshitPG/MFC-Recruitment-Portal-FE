@@ -11,6 +11,7 @@ import BaseWrapper from "./wrappers/BaseWrapper";
 import MainWrapper from "./wrappers/MainWrapper";
 import About from "./sections/About";
 import FAQs from "./sections/FAQs";
+// import { ToastContainer } from "react-toastify";
 // import ForgotPasswordStep1 from "./sections/ForgotPasswordStep1";
 // import ResetPassword from "./sections/ResetPassword";
 function App() {

@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import BoundingBox from "../components/BoundingBox";
 import Button from "../components/Button";
 import Input from "../components/Input";
-
+import CustomToast from "../components/CustomToast";
+import { ToastContent } from "../components/CustomToast";
 const ForgotPassword = () => {
+  const [openToast, setOpenToast] = useState(false);
+  const [toastContent, setToastContent] = useState<ToastContent>({});
   const [regno, setRegno] = useState("");
   const [email, setEmail] = useState("");
   const [regnoError, setRegnoError] = useState("");
@@ -23,12 +26,16 @@ const ForgotPassword = () => {
     setEmailError("");
 
     if (!isValidRegno.test(regno)) {
-      setRegnoError("Invalid Registration Number. Please enter a valid registration number.");
+      setRegnoError(
+        "Invalid Registration Number. Please enter a valid registration number."
+      );
       return;
     }
 
     if (!isValidEmail.test(email)) {
-      setEmailError("Invalid Email Address. Please enter a valid VIT student email address.");
+      setEmailError(
+        "Invalid Email Address. Please enter a valid VIT student email address."
+      );
       return;
     }
 
@@ -40,25 +47,44 @@ const ForgotPassword = () => {
       );
 
       if (response) {
-        toast.success("Password reset link sent successfully", {
-          className: "custom-bg",
-          autoClose: 3000,
-          theme: "dark",
+        setOpenToast(true);
+        setToastContent({
+          message: "Password reset link sent successfully",
         });
+        // toast.success("Password reset link sent successfully", {
+        //   className: "custom-bg",
+        //   autoClose: 3000,
+        //   theme: "dark",
+        // });
         console.log("response", response);
       }
     } catch (error) {
       console.error("An unexpected error occurred:", error);
-      toast.error("An unexpected error occurred. Please try again later.", {
-        className: "custom-bg-error",
-        autoClose: 3000,
-        theme: "dark",
+      setOpenToast(true);
+      setToastContent({
+        message: "An unexpected error occurred. Please try again later.",
+        type: "error",
       });
+      // toast.error("An unexpected error occurred. Please try again later.", {
+      //   className: "custom-bg-error",
+      //   autoClose: 3000,
+      //   theme: "dark",
+      // });
     }
   };
 
   return (
     <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark p-4 md:p-12">
+      {openToast && (
+        <CustomToast
+          setToast={setOpenToast}
+          setToastContent={setToastContent}
+          message={toastContent.message}
+          type={toastContent.type}
+          customStyle={toastContent.customStyle}
+          duration={toastContent.duration}
+        />
+      )}
       <BoundingBox>
         <div className="w-full h-full relative z-[100] flex justify-between flex-col md:flex-row">
           <div className="heading text-center md:text-left">
@@ -86,7 +112,9 @@ const ForgotPassword = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
+              {emailError && (
+                <p className="text-red-500 text-sm">{emailError}</p>
+              )}
               <Input
                 label={"regno"}
                 placeholder="Registration Number"
@@ -94,7 +122,9 @@ const ForgotPassword = () => {
                 value={regno}
                 onChange={(e) => setRegno(e.target.value)}
               />
-              {regnoError && <p className="text-red-500 text-sm">{regnoError}</p>}
+              {regnoError && (
+                <p className="text-red-500 text-sm">{regnoError}</p>
+              )}
               <Button submit={true}>Reset Password</Button>
             </form>
             <section className="text-center mt-6 md:mt-12 text-light bg-dark py-2 md:py-4 w-full md:w-[60%] mx-auto relative">
@@ -117,7 +147,11 @@ const ForgotPassword = () => {
             alt=""
             className="w-[85%] mx-auto invert brightness-50 absolute bottom-8"
           />
-          <img src="/Dino.png" alt="" className="invert w-20 absolute bottom-10" />
+          <img
+            src="/Dino.png"
+            alt=""
+            className="invert w-20 absolute bottom-10"
+          />
           <img
             src="/cacti.png"
             alt=""

@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import BoundingBox from "../components/BoundingBox";
 import Button from "../components/Button";
 import Input from "../components/Input";
-
+import CustomToast from "../components/CustomToast";
+import { ToastContent } from "../components/CustomToast";
 const ResetPassword = () => {
+  const [openToast, setOpenToast] = useState(false);
+  const [toastContent, setToastContent] = useState<ToastContent>({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
@@ -36,11 +39,16 @@ const ResetPassword = () => {
         formData
       );
       if (response) {
-        toast.error("OK", {
-          className: "custom-bg",
-          autoClose: 3000,
-          theme: "dark",
+        setOpenToast(true);
+        setToastContent({
+          message: "OK",
+          // type: "error",
         });
+        // toast.error("OK", {
+        //   className: "custom-bg",
+        //   autoClose: 3000,
+        //   theme: "dark",
+        // });
         navigate("/");
 
         console.log("response", response);
@@ -49,17 +57,32 @@ const ResetPassword = () => {
       setError(false);
     } catch (error) {
       console.log(error);
-      toast.error("Invalid Username or Password", {
-        className: "custom-bg-error",
-        autoClose: 3000,
-        theme: "dark",
+      setOpenToast(true);
+      setToastContent({
+        message: "Invalid Username or Password",
+        type: "error",
       });
+      // toast.error("Invalid Username or Password", {
+      //   className: "custom-bg-error",
+      //   autoClose: 3000,
+      //   theme: "dark",
+      // });
       setError(true);
     }
   };
 
   return (
     <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark  p-4 md:p-12">
+      {openToast && (
+        <CustomToast
+          setToast={setOpenToast}
+          setToastContent={setToastContent}
+          message={toastContent.message}
+          type={toastContent.type}
+          customStyle={toastContent.customStyle}
+          duration={toastContent.duration}
+        />
+      )}
       <BoundingBox>
         <div className="w-full h-full relative z-[100] flex justify-between flex-col md:flex-row">
           <div className="heading text-center md:text-left">
@@ -138,4 +161,3 @@ const ResetPassword = () => {
 };
 
 export default ResetPassword;
-

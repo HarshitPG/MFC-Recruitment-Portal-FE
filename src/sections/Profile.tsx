@@ -3,9 +3,12 @@ import Input from "../components/Input";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { toast } from "react-toastify";
-
+// import { toast } from "react-toastify";
+import CustomToast from "../components/CustomToast";
+import { ToastContent } from "../components/CustomToast";
 const Profile = () => {
+  const [openToast, setOpenToast] = useState(false);
+  const [toastContent, setToastContent] = useState<ToastContent>({});
   const [mobile, setMobileno] = useState("");
   const [emailpersonal, setEmailPersonal] = useState("");
   const [participatedEvent, setParticipated] = useState("");
@@ -51,23 +54,41 @@ const Profile = () => {
         }
       );
       if (response.data.message) {
-        toast.success(`${response.data.message}`);
+        setOpenToast(true);
+        setToastContent({
+          message: `${response.data.message}`,
+        });
       }
 
       setError(false);
       console.error(error);
     } catch (error) {
       console.log(error);
-      toast.error("Invalid Username or Password", {
-        className: "custom-bg-error",
-        autoClose: 3000,
-        theme: "dark",
+      setOpenToast(true);
+      setToastContent({
+        message: "Invalid Username or Password",
+        type: "error",
       });
+      // toast.error("Invalid Username or Password", {
+      //   className: "custom-bg-error",
+      //   autoClose: 3000,
+      //   theme: "dark",
+      // });
       setError(true);
     }
   };
   return (
     <div className="w-full profile py-6 flex gap-4 flex-col md:flex-row">
+      {openToast && (
+        <CustomToast
+          setToast={setOpenToast}
+          setToastContent={setToastContent}
+          message={toastContent.message}
+          type={toastContent.type}
+          customStyle={toastContent.customStyle}
+          duration={toastContent.duration}
+        />
+      )}
       <div className="nes-container is-dark with-title w-full md:w-[30%] dark-nes-container">
         <p className="title dark-nes-container text-sm md:text-base">
           Hello World!

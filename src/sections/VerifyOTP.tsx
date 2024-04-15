@@ -2,13 +2,17 @@ import Button from "../components/Button";
 import BoundingBox from "../components/BoundingBox";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { useState } from "react";
 import OtpInput from "react-otp-input";
 // import OTPInput, { ResendOTP } from "otp-input-react";
 import Cookies from "js-cookie";
+import CustomToast from "../components/CustomToast";
+import { ToastContent } from "../components/CustomToast";
 
 const VerifyOTP: React.FC = () => {
+  const [openToast, setOpenToast] = useState(false);
+  const [toastContent, setToastContent] = useState<ToastContent>({});
   const [otp, setOTP] = useState("");
   const [error, setError] = useState(false);
 
@@ -31,17 +35,27 @@ const VerifyOTP: React.FC = () => {
         }
       );
       if (response.data.message) {
-        toast.success(`${response.data.message}`);
+        setOpenToast(true);
+        setToastContent({
+          message: `${response.data.message}`,
+          type: "error",
+        });
+        // toast.success(`${response.data.message}`);
       }
 
       setError(false);
     } catch (error) {
       console.log(error);
-      toast.error("Invalid Username or Password", {
-        className: "custom-bg-error",
-        autoClose: 3000,
-        theme: "dark",
+      setOpenToast(true);
+      setToastContent({
+        message: "Invalid Username or Password",
+        type: "error",
       });
+      // toast.error("Invalid Username or Password", {
+      //   className: "custom-bg-error",
+      //   autoClose: 3000,
+      //   theme: "dark",
+      // });
       setError(true);
     }
   };
@@ -66,21 +80,41 @@ const VerifyOTP: React.FC = () => {
           }
         );
         if (response.data.message) {
-          toast.success(`${response.data.message}`);
+          setOpenToast(true);
+          setToastContent({
+            message: `${response.data.message}`,
+            // type: "error",
+          });
+          // toast.success(`${response.data.message}`);
         }
       }
     } catch (error) {
       console.error("Error while resending OTP:", error);
-      toast.error("Failed to resend OTP", {
-        className: "custom-bg-error",
-        autoClose: 3000,
-        theme: "dark",
+      setOpenToast(true);
+      setToastContent({
+        message: "Failed to resend OTP",
+        type: "error",
       });
+      // toast.error("Failed to resend OTP", {
+      //   className: "custom-bg-error",
+      //   autoClose: 3000,
+      //   theme: "dark",
+      // });
     }
   };
 
   return (
     <div className="w-full flex-grow h-[100vh] md:h-full relative flex justify-center items-center text-dark p-4 md:p-12">
+      {openToast && (
+        <CustomToast
+          setToast={setOpenToast}
+          setToastContent={setToastContent}
+          message={toastContent.message}
+          type={toastContent.type}
+          customStyle={toastContent.customStyle}
+          duration={toastContent.duration}
+        />
+      )}
       <BoundingBox>
         <div className="w-full h-full relative z-[100] flex justify-between flex-col md:flex-row">
           <div className="heading text-center md:text-left">
