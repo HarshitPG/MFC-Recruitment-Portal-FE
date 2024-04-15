@@ -134,7 +134,7 @@ const Landing = () => {
               className={
                 isPlayButton
                   ? "animate-fadeOut opacity-0"
-                  : " text-prime text-base md:text-3xl mt-10 opacity-100"
+                  : " text-prime text-base md:text-2xl mt-10 opacity-100"
               }
             >
               Wanna play with Mr.Fox Jr??

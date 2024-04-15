@@ -14,8 +14,6 @@ const Profile = () => {
   const [error, setError] = useState(false);
   // const navigate = useNavigate();
 
-
-  
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     if (checked) {

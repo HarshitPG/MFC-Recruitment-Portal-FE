@@ -9,6 +9,7 @@ import Signup from "./sections/Signup";
 import VerifyOTP from "./sections/VerifyOTP";
 import BaseWrapper from "./wrappers/BaseWrapper";
 import MainWrapper from "./wrappers/MainWrapper";
+import About from "./sections/About";
 // import ForgotPasswordStep1 from "./sections/ForgotPasswordStep1";
 // import ResetPassword from "./sections/ResetPassword";
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/verifyotp" element={<VerifyOTP />} />
             <Route path="/resetpassword" element={<ResetPassword />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </Router>
       </MainWrapper>
