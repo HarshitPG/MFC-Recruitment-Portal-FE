@@ -41,11 +41,11 @@ const ApplicationStatus = () => {
       <div className="text-white w-full md:w-[90%]">
         <div className="nes-container with-title is-centered is-dark">
           <p className="title">Status</p>
-          <p className="text-prime">
+          <p className="text-prime text-sm ">
             Your application is currently beign reviewd!
           </p>
         </div>
-        <p className="text-base md:text-lg">Your Submissions</p>
+        <p className="text-base md:text-lg mt-4">Your Submissions</p>
         <div className="w-full  nes-container is-rounded is-dark dark-nes-container text-sm"></div>
       </div>
     </div>

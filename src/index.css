@@ -273,3 +273,6 @@ input[type="password"] {
   background-color: #fc7a00 !important;
   border-color: #fb7e02 !important;
 }
+.text-label {
+  text-align: left !important;
+}
