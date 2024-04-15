@@ -130,7 +130,7 @@ const Landing = () => {
             <span className="text-light text-base md:text-2xl z-[100]">
               IS RECRUITING
             </span>
-            <div
+            {/* <div
               className={
                 isPlayButton
                   ? "animate-fadeOut opacity-0"
@@ -151,7 +151,7 @@ const Landing = () => {
               )}
 
               <PlayBtn />
-            </div>
+            </div> */}
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0 z-[100]">
             <form
