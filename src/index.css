@@ -34,6 +34,9 @@ body {
   background-color: #fc7a00;
   /* outline: 1px solid sl; */
 }
+.faq::-webkit-scrollbar {
+  width: 0.5em;
+}
 .btn-back {
   position: absolute !important;
 }
@@ -253,6 +256,9 @@ input[type="password"] {
 @media (max-width: 600px) {
   .otp {
     width: calc((100% - 2rem) / 6) !important;
+  }
+  .nes-bcrikko {
+    display: none !important;
   }
 }
 .description {
