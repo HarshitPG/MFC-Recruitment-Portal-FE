@@ -132,7 +132,7 @@ const VerifyOTP: React.FC = () => {
             </div>
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0">
-            {error && <p className="text-red-500">Some Error Occured!</p>}
+            {/* {error && <p className="text-red-500">Some Error Occured!</p>} */}
             <form
               className="flex flex-col gap-3 md:gap-6 w-full md:w-fit pt-[15%] mx-auto"
               onSubmit={handleVerifyOTP}
