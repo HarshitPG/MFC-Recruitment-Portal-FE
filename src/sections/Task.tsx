@@ -2,48 +2,74 @@ import { useState, useEffect } from "react";
 import TechTask from "./TechTask";
 import DesignTask from "./DesignTask";
 import ManagementTask from "./ManagementTask";
+import { useTabStore } from "../store";
 
 const Task = () => {
-  const [selectedDomain, setSelectedDomain] = useState(0);
+  const { tabIndex, setTabIndex } = useTabStore();
+  const [selectedDomain, setSelectedDomain] = useState();
   const [selectedSubDomain, setSelectedSubDomain] = useState("");
+  const [domains, setDomains] = useState([]);
   useEffect(() => {
     setSelectedSubDomain("");
   }, [selectedDomain]);
+
+  useEffect(() => {
+    const userDetailsString = localStorage.getItem("userDetails");
+    if (userDetailsString) {
+      const userDetails = JSON.parse(userDetailsString);
+      const userDomains = userDetails.domain;
+      console.log("userDomains:", userDomains);
+      setDomains(userDomains);
+      const isProfileDone = userDetails.isProfileDone;
+      if (isProfileDone) {
+        setTabIndex(1);
+      } else {
+        setTabIndex(0);
+        console.log("tabIndex", tabIndex);
+      }
+    }
+  }, []);
   return (
     <div className="w-full profile py-6 flex gap-4 flex-col md:flex-row">
       <div className="nes-container with-title is-centered md:w-[30%] w-full invert">
         <p className="title">Domains</p>
         <div className="flex flex-col justify-between h-full gap-4 md:gap-8">
-          <button
-            type="button"
-            onClick={() => setSelectedDomain(0)}
-            className={`
+          {domains.includes("tech") && (
+            <button
+              type="button"
+              onClick={() => setSelectedDomain(0)}
+              className={`
               nes-btn w-full h-[30%] text-sm md:text-base
               ${selectedDomain === 0 && "is-primary"}
             `}
-          >
-            Technical
-          </button>
-          <button
-            onClick={() => setSelectedDomain(1)}
-            type="button"
-            className={`
+            >
+              Technical
+            </button>
+          )}
+          {domains.includes("design") && (
+            <button
+              onClick={() => setSelectedDomain(1)}
+              type="button"
+              className={`
               nes-btn w-full h-[30%] text-sm md:text-base
               ${selectedDomain === 1 && "is-primary"}
             `}
-          >
-            Design
-          </button>
-          <button
-            onClick={() => setSelectedDomain(2)}
-            type="button"
-            className={`
+            >
+              Design
+            </button>
+          )}
+          {domains.includes("management") && (
+            <button
+              onClick={() => setSelectedDomain(2)}
+              type="button"
+              className={`
               nes-btn w-full h-[30%] text-sm md:text-base
               ${selectedDomain === 2 && "is-primary"}
             `}
-          >
-            Management
-          </button>
+            >
+              Management
+            </button>
+          )}
         </div>
       </div>
 
@@ -59,19 +85,19 @@ const Task = () => {
         )}
         <p className="title dark-nes-container">Tasks</p>
         <div className="w-full h-full flex items-center relative">
-          {selectedDomain === 0 && (
+          {domains.includes("tech") && selectedDomain === 0 && (
             <TechTask
               selectedSubDomain={selectedSubDomain}
               setSelectedSubDomain={setSelectedSubDomain}
             />
           )}
-          {selectedDomain === 1 && (
+          {domains.includes("design") && selectedDomain === 1 && (
             <DesignTask
               selectedSubDomain={selectedSubDomain}
               setSelectedSubDomain={setSelectedSubDomain}
             />
           )}
-          {selectedDomain === 2 && (
+          {domains.includes("management") && selectedDomain === 2 && (
             <ManagementTask
               selectedSubDomain={selectedSubDomain}
               setSelectedSubDomain={setSelectedSubDomain}

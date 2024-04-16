@@ -1,18 +1,105 @@
 import React, { useState } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useTabStore } from "../store";
 
 const TechTaskSubmission = () => {
-  const [domain, setDomain] = useState<string[]>([]);
+  const { tabIndex, setTabIndex } = useTabStore();
+  const [subdomain, setSubDomain] = useState<string[]>([]);
+  const [formData, setFormData] = useState({
+    question1: "",
+    question2: "",
+    question3: "",
+    question4: "",
+    question5: "",
+  });
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     if (checked) {
-      setDomain((prevDomains) => [...prevDomains, value]);
+      setSubDomain((prevDomains) => [...prevDomains, value]);
     } else {
-      setDomain((prevDomains) =>
+      setSubDomain((prevDomains) =>
         prevDomains.filter((domain) => domain !== value)
       );
     }
   };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+    question: string
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: [prevData[name] ? prevData[name][0] : question, value],
+    }));
+  };
+
+  const handleSubmitTechTask = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const id = localStorage.getItem("id");
+    if (!id) {
+      console.error("User id not found in localStorage");
+      return;
+    }
+
+    console.log("id1", id);
+    const token = Cookies.get("jwtToken");
+
+    const updatedFormData = {
+      ...formData,
+      subdomain: subdomain.join(", "),
+    };
+
+    try {
+      const response = await axios.post(
+        `https://mfc-recruitment-portal-be.vercel.app/upload/tech/${id}`,
+        updatedFormData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("response", response);
+      if (response.data) {
+        fetchUserDetails();
+      }
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const fetchUserDetails = async () => {
+    try {
+      const id = localStorage.getItem("id");
+
+      if (!id) {
+        throw new Error("User id not found in localStorage");
+      }
+      const token = Cookies.get("jwtToken");
+      const response = await axios.get(
+        `https://mfc-recruitment-portal-be.vercel.app/user/user/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ` + `${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+
+      localStorage.setItem("userDetails", JSON.stringify(response.data));
+
+      console.log(response.data);
+
+      console.log("techIsDone", response.data.techIsDone);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <section className="mb-4 text-xs md:text-sm">
@@ -26,7 +113,7 @@ const TechTaskSubmission = () => {
           [Project Title 2] - [Github Link 2] - [Demo Link 2]
         </span>
       </section>
-      <form>
+      <form onSubmit={handleSubmitTechTask}>
         <h2>Choose Sub-Domain</h2>
         <div className="flex">
           <div className="flex flex-row gap-4 flex-wrap justify-center">
@@ -35,7 +122,7 @@ const TechTaskSubmission = () => {
                 type="checkbox"
                 className="nes-checkbox is-dark"
                 value="frontend"
-                checked={domain.includes("frontend")}
+                checked={subdomain.includes("frontend")}
                 onChange={handleCheckboxChange}
               />
               <span className="text-xs md:text-xs">Frontend</span>
@@ -45,7 +132,7 @@ const TechTaskSubmission = () => {
                 type="checkbox"
                 className="nes-checkbox is-dark"
                 value="backend"
-                checked={domain.includes("backend")}
+                checked={subdomain.includes("backend")}
                 onChange={handleCheckboxChange}
               />
               <span className="text-xs md:text-xs">Backend</span>
@@ -55,7 +142,7 @@ const TechTaskSubmission = () => {
                 type="checkbox"
                 className="nes-checkbox is-dark"
                 value="fullstack"
-                checked={domain.includes("fullstack")}
+                checked={subdomain.includes("fullstack")}
                 onChange={handleCheckboxChange}
               />
               <span className="text-xs md:text-xs">Fullstack</span>
@@ -65,7 +152,7 @@ const TechTaskSubmission = () => {
                 type="checkbox"
                 className="nes-checkbox is-dark"
                 value="app"
-                checked={domain.includes("app")}
+                checked={subdomain.includes("app")}
                 onChange={handleCheckboxChange}
               />
               <span className="text-xs md:text-xs">App Dev</span>
@@ -75,7 +162,7 @@ const TechTaskSubmission = () => {
                 type="checkbox"
                 className="nes-checkbox is-dark"
                 value="ml"
-                checked={domain.includes("ml")}
+                checked={subdomain.includes("ml")}
                 onChange={handleCheckboxChange}
               />
               <span className="text-xs md:text-xs">AI/ML</span>
@@ -85,7 +172,7 @@ const TechTaskSubmission = () => {
                 type="checkbox"
                 className="nes-checkbox is-dark"
                 value="gamedev"
-                checked={domain.includes("gamedev")}
+                checked={subdomain.includes("gamedev")}
                 onChange={handleCheckboxChange}
               />
               <span className="text-xs md:text-xs">Game Dev</span>
@@ -95,15 +182,16 @@ const TechTaskSubmission = () => {
         <textarea
           id="textarea_field"
           className="nes-textarea is-dark min-h-[15rem]"
-          required
-          name={`tech-domain_task`}
+          // required
+          name="question1"
+          onChange={handleInputChange}
           placeholder="Write here..."
         ></textarea>
 
         <section className="my-2  text-xs md:text-sm">
           <span className="text-prime">Answer some general questions:</span>
           <br />
-          {quizQuestions.map((quiz) => (
+          {quizQuestions.map((quiz, index) => (
             <div
               style={{
                 backgroundColor: "rgba(0,0,0,0)",
@@ -121,9 +209,10 @@ const TechTaskSubmission = () => {
               <textarea
                 id="textarea_field"
                 className="nes-textarea is-dark min-h-[5rem]"
-                required
-                name={quiz.label}
+                // required
+                name={`question${index + 2}`}
                 placeholder="Write here..."
+                onChange={(e) => handleInputChange(e, quiz.question)}
               ></textarea>
             </div>
           ))}
