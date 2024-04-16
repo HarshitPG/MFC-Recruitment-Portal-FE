@@ -42,7 +42,7 @@ const ApplicationStatus = () => {
         <div className="nes-container with-title is-centered is-dark">
           <p className="title">Status</p>
           <p className="text-prime text-sm ">
-            Your application is currently beign reviewd!
+            Your application is currently being reviewed!
           </p>
         </div>
         <p className="text-base md:text-lg mt-4">Your Submissions</p>
