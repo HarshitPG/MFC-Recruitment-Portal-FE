@@ -146,24 +146,24 @@ export default TechTaskSubmission;
 const quizQuestions = [
   {
     domain: "tech",
-    label: "que1",
+    label: "tech_que1",
     question: "What is npm, and how does a developer use it?",
   },
   {
     domain: "tech",
-    label: "que2",
+    label: "tech_que2",
     question:
       "What is the difference between a compiled language and an interpreted language?",
   },
   {
     domain: "tech",
-    label: "que3",
+    label: "tech_que3",
     question:
       "Research XOR Linked Lists and explain how they work in your own words.",
   },
   {
     domain: "tech",
-    label: "que4",
+    label: "tech_que4",
     question:
       "Suppose you want to hide some data in a multimedia file. What would be your approach?",
   },
