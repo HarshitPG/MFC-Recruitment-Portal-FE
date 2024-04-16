@@ -71,14 +71,18 @@ const DesignTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
             >
               <p className="title ">{task.title}</p>
               <p className="text-xs text-left leading-4">{task.description}</p>
-              <div className="flex justify-between flex-col md:flex-row">
-                <span className="md:text-sm text-xs">Resources:</span>
-                <span className="flex flex-col md:text-sm text-xs md:flex-row">
-                  {task.resources.map((resource, index) => (
-                    <a href={resource}>Resource {index + 1} &nbsp;</a>
-                  ))}
-                </span>
-              </div>
+              {task.resources.length > 0 && (
+                <div className="flex justify-between flex-col md:flex-row">
+                  <span className="md:text-sm text-xs">Resources:</span>
+                  <span className="flex flex-col md:text-sm text-xs md:flex-row">
+                    {task.resources.map((resource, index) => (
+                      <a href={resource} target="_blank">
+                        Resource {index + 1} &nbsp;
+                      </a>
+                    ))}
+                  </span>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -136,24 +140,26 @@ export default DesignTask;
 // }
 const designTaskData = [
   {
-    label: "poster",
-    title: "Project Title1",
+    label: "video",
+    title: "Video Editing",
     description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt libero blanditiis provident minus magnam exercitationem porro, nihil esse inventore ut!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt libero blanditiis provident minus magnam exercitationem porro, nihil esse inventore ut!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt libero blanditiis provident minus magnam exercitationem porro, nihil esse inventore ut!",
-    resources: ["Link1", "Link2"],
-  },
-  {
-    label: "poster",
-    title: "Project Title2",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt libero blanditiis provident minus magnam exercitationem porro, nihil esse inventore ut!",
-    resources: ["Link1", "Link2"],
+      "Create a 60-second reel highlighting MFC (Mozilla Firefox Club) events, drawing inspiration from past successes like Gravitas, Riviera, or any other relevant events. Utilize background music, templates, and scripting as needed to craft a compelling narrative. Be sure to capture the essence and excitement of these events while showcasing the diverse range of activities and experiences they offer. Instruction : Download any reel from our official Insta handle, and add motion text, background music, stock videos to recreate it.",
+    resources: [
+      "https://www.instagram.com/mfc_vit?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+    ],
   },
   {
     label: "ui",
-    title: "Project Title",
+    title: "UI/UX",
     description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt libero blanditiis provident minus magnam exercitationem porro, nihil esse inventore ut!",
-    resources: ["Link1", "Link2"],
+      "Your mission is to overhaul the MFC website by designing and prototyping UI/UX modifications for an enhanced user experience. Referencing the current website (link provided below), identify areas for improvement and implement changes to streamline navigation, improve visual appeal, and optimize functionality. Consider factors like responsiveness, accessibility, and branding consistency throughout the redesign. Additionally, provide detailed documentation outlining your design rationale, wireframes, and interactive prototypes to guide the development process effectively.",
+    resources: ["https://www.mozillavit.in/"],
+  },
+  {
+    label: "poster",
+    title: "Poster",
+    description:
+      "Your task is to recreate either a past event poster or a personalized poster that reflects your identity and interests. For the past event poster, choose any event from our archive, such as Gravitas or Riviera, and reimagine its promotional material with fresh creativity and design. Alternatively, craft a personalized poster that showcases who you are, including your passions, skills, and aspirations. Ensure that your poster design aligns with the organization's branding guidelines while incorporating innovative elements to captivate the audience's attention. Provide a brief rationale for your design choices and any inspiration sources utilized. Be prepared to present and discuss your poster during the evaluation process.",
+    resources: [],
   },
 ];

@@ -122,6 +122,31 @@ const DesignTaskSubmission = () => {
               ></textarea> */}
             </div>
           ))}
+          {quizSubQuestions.map((quiz) => (
+            <div
+              style={{
+                backgroundColor: "rgba(0,0,0,0)",
+                padding: "1rem",
+              }}
+              className="nes-field is-inline flex flex-col"
+            >
+              <label
+                style={{ color: "#fff" }}
+                className="w-full text-label text-xs "
+              >
+                {quiz.question}
+              </label>
+              <br />
+
+              <textarea
+                id="textarea_field"
+                className="nes-textarea is-dark min-h-[5rem]"
+                required
+                name={quiz.label}
+                placeholder="Write here..."
+              ></textarea>
+            </div>
+          ))}
         </section>
         <p className="text-prime text-xs md:text-sm mt-4 md:mt-0">
           Note: Once submitted you cannot revert back
@@ -138,7 +163,32 @@ const DesignTaskSubmission = () => {
 };
 
 export default DesignTaskSubmission;
-
+const quizSubQuestions = [
+  {
+    domain: "design",
+    label: "design_que9",
+    question:
+      "Describe a project you've worked on where prototyping played a crucial role. What tools did you use, and how did you iterate on your prototypes to achieve the final design?",
+  },
+  {
+    domain: "design",
+    label: "design_que10",
+    question:
+      "Think of a user interface you find particularly intuitive or user-friendly. What specific design elements contribute to its effectiveness, and how would you apply similar principles to enhance the UI of a mobile app geared towards productivity?",
+  },
+  {
+    domain: "design",
+    label: "design_que11",
+    question:
+      "Imagine you're tasked with creating a poster for a fundraising event for a local charity. How would you approach the design to effectively communicate the cause and inspire people to participate? Feel free to describe your preferred design tools and any past experiences relevant to poster making.",
+  },
+  {
+    domain: "design",
+    label: "design_que12",
+    question:
+      "Reflect on a video editing project you've completed in the past. What challenges did you face during the editing process, and how did you overcome them to deliver a polished final product? Additionally, how do you ensure that your editing choices align with the intended message or theme of the video?",
+  },
+];
 const quizQuestions = [
   {
     domain: "design",

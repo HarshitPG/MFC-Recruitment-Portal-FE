@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const ManagementTaskSubmission = () => {
   const [domain, setDomain] = useState<string[]>([]);
-
+  const [coreType, setCoreType] = useState("junior");
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -96,7 +96,8 @@ const ManagementTaskSubmission = () => {
           {quizQuestions.map(
             (quiz) =>
               quiz.subdomain &&
-              domain.includes(quiz.subdomain) && (
+              domain.includes(quiz.subdomain) &&
+              quiz.for === coreType && (
                 <div
                   style={{
                     backgroundColor: "rgba(0,0,0,0)",
@@ -142,6 +143,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "generalops",
     label: "que1",
+    for: "junior",
     question:
       "Imagine a speaker session for our club. Now give us a basic idea of the event flow of that speaker session",
   },
@@ -149,6 +151,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "generalops",
     label: "que2",
+    for: "junior",
     question:
       "As an event coordinator, you're assigned to lead a team project, but you're facing challenges with team members not meeting deadlines. How would you address this issue?",
   },
@@ -156,6 +159,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "generalops",
     label: "que3",
+    for: "junior",
     question:
       "Scenario A: During a club meeting, a member presents a project that uses a controversial approach or technology. Scenario B: You're planning a club event, but there's a sudden conflict with another major event on campus, potentially impacting attendance. How would you facilitate a respectful discussion in both situations, ensuring all viewpoints are heard and a productive outcome is reached? What alternative plans would you consider in the second scenario to ensure the success of your event?",
   },
@@ -163,6 +167,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "generalops",
     label: "que4",
+    for: "junior",
     question:
       "Describe a time when you had to resolve a conflict between team members. How did you handle it?",
   },
@@ -170,6 +175,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "generalops",
     label: "que5",
+    for: "junior",
     question:
       "If you had to implement a new process or system within the club, how would you approach it?",
   },
@@ -177,6 +183,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "outreach",
     label: "que1",
+    for: "junior",
     question:
       "Your club has planned a hackathon, but a key sponsor pulls out at the last minute. How would you adapt your event strategy and secure alternative funding to ensure the event's success?",
   },
@@ -184,6 +191,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "outreach",
     label: "que2",
+    for: "junior",
     question:
       "Imagine you need to plan an outreach event for a specific community. How would you go about it?",
   },
@@ -191,6 +199,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "outreach",
     label: "que3",
+    for: "junior",
     question:
       "How would you approach building partnerships with external organizations or individuals?",
   },
@@ -198,6 +207,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "outreach",
     label: "que4",
+    for: "junior",
     question:
       "If you had to create a social media campaign for the club, what would be your strategy?",
   },
@@ -205,6 +215,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "outreach",
     label: "que5",
+    for: "junior",
     question:
       "What strategies would you use to effectively communicate the club's mission and values to external stakeholders?",
   },
@@ -212,6 +223,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "publicity",
     label: "que1",
+    for: "junior",
     question:
       "Describe your approach to creating a cohesive brand identity for the club.",
   },
@@ -219,12 +231,14 @@ const quizQuestions = [
     domain: "management",
     subdomain: "publicity",
     label: "que2",
+    for: "junior",
     question: "How would you measure the success of a publicity campaign?",
   },
   {
     domain: "management",
     subdomain: "publicity",
     label: "que3",
+    for: "junior",
     question:
       "What strategies would you use to generate buzz or excitement around a club initiative?",
   },
@@ -232,6 +246,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "publicity",
     label: "que4",
+    for: "junior",
     question:
       "If the club faced a public relations crisis, how would you handle it?",
   },
@@ -239,6 +254,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "publicity",
     label: "que5",
+    for: "junior",
     question:
       "If the club faced negative publicity or criticism online, how would you respond and manage the situation?",
   },
@@ -246,6 +262,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "editorial",
     label: "que1",
+    for: "junior",
     question:
       "Imagine you're editing a piece of content and discover a factual error. How would you approach fixing it",
   },
@@ -253,6 +270,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "editorial",
     label: "que2",
+    for: "junior",
     question:
       "Do you have any ideas for a tech-driven editorial project the club could work on?",
   },
@@ -260,6 +278,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "editorial",
     label: "que3",
+    for: "junior",
     question:
       "An article captures attention with a provocative headline, but the content feels exaggerated and lacks depth. How would you address this with the author?",
   },
@@ -267,6 +286,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "editorial",
     label: "que4",
+    for: "junior",
     question:
       "Suggest a good title for an upcoming tech event or hackathon along with a catchy tagline.",
   },
@@ -274,6 +294,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "editorial",
     label: "que5",
+    for: "junior",
     question:
       "What are your three favourite dialogues from the entertainment industry?",
   },
@@ -281,6 +302,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "finance",
     label: "que1",
+    for: "junior",
     question:
       "Can you describe a situation in which you had to manage a limited budget effectively? How did you prioritize expenses?",
   },
@@ -288,6 +310,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "finance",
     label: "que2",
+    for: "junior",
     question:
       "How do you plan to ensure that the club's expenses align with its financial goals and objectives?",
   },
@@ -295,6 +318,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "finance",
     label: "que3",
+    for: "junior",
     question:
       "What strategies would you employ to identify potential cost-saving opportunities for the club without compromising quality?",
   },
@@ -302,6 +326,7 @@ const quizQuestions = [
     domain: "management",
     subdomain: "finance",
     label: "que4",
+    for: "junior",
     question:
       "How would you handle unexpected expenses or budget overruns within the club? Can you provide an example from your past experience?",
   },
@@ -309,7 +334,221 @@ const quizQuestions = [
     domain: "management",
     subdomain: "finance",
     label: "que5",
+    for: "junior",
     question:
       "In what ways do you believe technology can be leveraged to streamline expense tracking and financial management for the club?",
+  },
+  {
+    domain: "management",
+    subdomain: "generalops",
+    label: "gen_que1sr",
+    for: "senior",
+    question:
+      "Our club has received feedback from members indicating dissatisfaction with the current communication channels. How would you propose and implement improvements?",
+  },
+  {
+    domain: "management",
+    subdomain: "generalops",
+    label: "gen_que2sr",
+    for: "senior",
+    question:
+      "If you're unsure how to handle a particular aspect of your role in the management team, what steps would you take to seek advice and guidance from more experienced members or mentors within the club?",
+  },
+  {
+    domain: "management",
+    subdomain: "generalops",
+    label: "gen_que3sr",
+    for: "senior",
+    question:
+      "Imagine you receive negative feedback from club members about the structure of your club meetings. How would you gather additional feedback and implement changes to improve the overall experience for members?",
+  },
+  {
+    domain: "management",
+    subdomain: "generalops",
+    label: "gen_que4sr",
+    for: "senior",
+    question:
+      " Scenario A: During a club meeting, a member presents a project that uses a controversial approach or technology.Scenario B: You're planning a club event, but there's a sudden conflict with another major event on campus, potentially impacting attendance. How would you facilitate a respectful discussion in both situations, ensuring all viewpoints are heard and a productive outcome is reached? What alternative plans would you consider in the second scenario to ensure the success of your event?",
+  },
+  {
+    domain: "management",
+    subdomain: "generalops",
+    label: "gen_que5sr",
+    for: "senior",
+    question:
+      "How would you handle a situation where a team member consistently underperforms or fails to meet expectations?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "outreach",
+    label: "outreach_que1sr",
+    for: "senior",
+    question:
+      "Your club has planned a hackathon, but a key sponsor pulls out at the last minute. How would you adapt your event strategy and secure alternative funding to ensure the event's success?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "outreach",
+    label: "outreach_que2sr",
+    for: "senior",
+    question:
+      "How would you handle a situation where the club received negative feedback or criticism from the public?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "outreach",
+    label: "outreach_que3sr",
+    for: "senior",
+    question:
+      "Imagine you need to plan a community service or volunteering event. What steps would you take?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "outreach",
+    label: "outreach_que4sr",
+    for: "senior",
+    question:
+      "How would you approach identifying and reaching out to potential sponsors for the club?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "outreach",
+    label: "outreach_que5sr",
+    for: "senior",
+    question:
+      "How would you handle a situation where the club's outreach efforts were met with resistance or opposition from a particular community or group?",
+  },
+  {
+    domain: "management",
+    subdomain: "publicity",
+    label: "pub_que1sr",
+    for: "senior",
+    question:
+      "Let's say you're tasked with promoting an upcoming technical talk hosted by your club, but you're not familiar with effective marketing strategies. How would you approach spreading the word and engaging potential attendees?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "publicity",
+    label: "pub_que2sr",
+    for: "senior",
+    question:
+      "What strategies would you use to generate buzz or excitement around a club initiative?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "publicity",
+    label: "pub_que3sr",
+    for: "senior",
+    question:
+      "If the club faced negative publicity or criticism online, how would you respond and manage the situation?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "publicity",
+    label: "pub_que4sr",
+    for: "senior",
+    question:
+      "How would you assess the current effectiveness of our club's publicity and promotional efforts? What metrics or indicators would you use to measure success?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "publicity",
+    label: "pub_que5sr",
+    for: "senior",
+    question:
+      "What measures would you take to ensure consistency in our club's branding and messaging across different promotional channels and materials?",
+  },
+  {
+    domain: "management",
+    subdomain: "editorial",
+    label: "editorial_que1sr",
+    for: "senior",
+    question:
+      "How would you approach incorporating multimedia elements (e.g., videos, infographics) into your content?",
+  },
+  {
+    domain: "management",
+    subdomain: "editorial",
+    label: "editorial_que2sr",
+    for: "senior",
+    question:
+      "What techniques would you use to ensure the accuracy and objectivity of your editorial content?",
+  },
+  {
+    domain: "management",
+    subdomain: "editorial",
+    label: "editorial_que3sr",
+    for: "senior",
+    question:
+      "How would you go about researching and fact-checking information for a piece of editorial content?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "editorial",
+    label: "editorial_que4sr",
+    for: "senior",
+    question:
+      "What strategies would you use to ensure that your editorial content is inclusive and representative of diverse perspectives?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "editorial",
+    label: "editorial_que5sr",
+    for: "senior",
+    question:
+      "If you had to collaborate with external contributors or guest authors, how would you manage the process?",
+  },
+  {
+    domain: "management",
+    subdomain: "finance",
+    label: "finance_que1sr",
+    for: "senior",
+    question:
+      "Can you outline your approach to negotiating contracts or agreements with vendors to secure favorable terms for the club?",
+  },
+  {
+    domain: "management",
+    subdomain: "finance",
+    label: "finance_que2sr",
+    for: "senior",
+    question:
+      "How do you plan to monitor and evaluate the club's financial performance on a regular basis? What key metrics would you focus on?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "finance",
+    label: "finance_que3sr",
+    for: "senior",
+    question:
+      "Suppose there's a significant decrease in the club's revenue due to unforeseen circumstances. How would you adjust the budget to maintain financial stability?",
+  },
+
+  {
+    domain: "management",
+    subdomain: "finance",
+    label: "finance_que4sr",
+    for: "senior",
+    question:
+      "Can you describe a time when you successfully implemented a cost-control measure in a previous role or project? What was the outcome?",
+  },
+  {
+    domain: "management",
+    subdomain: "finance",
+    label: "finance_que5sr",
+    for: "senior",
+    question:
+      "How would you communicate financial information and updates to other club members or stakeholders to ensure transparency and accountability?",
   },
 ];

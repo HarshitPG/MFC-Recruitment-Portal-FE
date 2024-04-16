@@ -164,7 +164,8 @@ const techTaskData = [
   {
     label: "frontend",
     title: "Project Title1",
-    description: "Design a frontend website",
+    for: "senior",
+    description: ["desc1", "desc2"],
     resources: ["Link1", "Link2"],
   },
   {

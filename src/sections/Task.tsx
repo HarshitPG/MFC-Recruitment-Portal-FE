@@ -6,9 +6,9 @@ import { useTabStore } from "../store";
 
 const Task = () => {
   const { tabIndex, setTabIndex } = useTabStore();
-  const [selectedDomain, setSelectedDomain] = useState();
+  const [selectedDomain, setSelectedDomain] = useState(0);
   const [selectedSubDomain, setSelectedSubDomain] = useState("");
-  const [domains, setDomains] = useState([]);
+  const [domains, setDomains] = useState<string[]>([]);
   useEffect(() => {
     setSelectedSubDomain("");
   }, [selectedDomain]);
