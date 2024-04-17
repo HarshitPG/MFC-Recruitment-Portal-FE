@@ -61,11 +61,12 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
           </button>
           <button
             type="button"
-            onClick={() => setSelectedSubDomain("ml")}
+            onClick={() => setSelectedSubDomain("ai/ml")}
             className="nes-btn is-error w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             AI/ML
           </button>
+
           <button
             type="button"
             onClick={() => setSelectedSubDomain("game")}
@@ -74,13 +75,6 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
             Game Dev
           </button>
 
-          <button
-            type="button"
-            onClick={() => setSelectedSubDomain("ai")}
-            className="nes-btn is-error w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
-          >
-            AI
-          </button>
 
           <button
             type="button"
