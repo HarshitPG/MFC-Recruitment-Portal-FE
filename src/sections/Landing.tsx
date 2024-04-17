@@ -46,7 +46,7 @@ const Landing = () => {
     };
     try {
       const response = await axios.post(
-        "https://mfc-recruitment-portal-be.onrender.com/auth/login",
+        "https://mfc-recruitment-portal-be.vercel.app/auth/login",
         formData
       );
       if (response.data.token) {
@@ -91,7 +91,7 @@ const Landing = () => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
-        `https://mfc-recruitment-portal-be.onrender.com/user/user/${userId}`,
+        `https://mfc-recruitment-portal-be.vercel.app/user/user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ` + `${token}`,

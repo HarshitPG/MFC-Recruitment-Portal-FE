@@ -1,18 +1,129 @@
 import React, { useState } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useTabStore } from "../store";
 
 const ManagementTaskSubmission = () => {
   const [domain, setDomain] = useState<string[]>([]);
   const [coreType, setCoreType] = useState("junior");
+  const { tabIndex, setTabIndex } = useTabStore();
+  const [subdomain, setSubDomain] = useState<string[]>([]);
+  const [formData, setFormData] = useState({
+    question1: "",
+    question2: "",
+    question3: "",
+    question4: "",
+    question5: "",
+    question6: "",
+    question7: "",
+    question8: "",
+    question9: "",
+    question10: "",
+    question11: "",
+    question12: "",
+    question13: "",
+    question14: "",
+    question15: "",
+    question16: "",
+    question17: "",
+    question18: "",
+    question19: "",
+    question20: "",
+    question21: "",
+    question22: "",
+    question23: "",
+    question24: "",
+    question25: "",
+  });
+
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     if (checked) {
-      setDomain((prevDomains) => [...prevDomains, value]);
+      setSubDomain((prevDomains) => [...prevDomains, value]);
     } else {
-      setDomain((prevDomains) =>
+      setSubDomain((prevDomains) =>
         prevDomains.filter((domain) => domain !== value)
       );
     }
   };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+    question: string
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: [prevData[name] ? prevData[name][0] : question, value],
+    }));
+  };
+
+  const handleSubmitDesignTask = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+
+    const id = localStorage.getItem("id");
+    if (!id) {
+      console.error("User id not found in localStorage");
+      return;
+    }
+
+    console.log("id1", id);
+    const token = Cookies.get("jwtToken");
+
+    const updatedFormData = {
+      ...formData,
+      subdomain: subdomain.join(", "),
+    };
+
+    try {
+      const response = await axios.post(
+        `https://mfc-recruitment-portal-be.vercel.app/upload/management/${id}`,
+        updatedFormData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("response", response);
+      if (response.data) {
+        fetchUserDetails();
+      }
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const fetchUserDetails = async () => {
+    try {
+      const id = localStorage.getItem("id");
+
+      if (!id) {
+        throw new Error("User id not found in localStorage");
+      }
+      const token = Cookies.get("jwtToken");
+      const response = await axios.get(
+        `https://mfc-recruitment-portal-be.vercel.app/user/user/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ` + `${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+
+      localStorage.setItem("userDetails", JSON.stringify(response.data));
+
+      console.log(response.data);
+
+      console.log("techIsDone", response.data.techIsDone);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <section className="mb-4 text-xs md:text-sm">
@@ -24,7 +135,7 @@ const ManagementTaskSubmission = () => {
           [SubDomain] - [Link 2]
         </span>
       </section>
-      <form>
+      <form onSubmit={handleSubmitDesignTask}>
         <h2>Choose Sub-Domain</h2>
         <div className="flex">
           (
@@ -33,8 +144,18 @@ const ManagementTaskSubmission = () => {
               <input
                 type="checkbox"
                 className="nes-checkbox is-dark"
+                value="generaloperations"
+                checked={subdomain.includes("generaloperations")}
+                onChange={handleCheckboxChange}
+              />
+              <span className="text-xs md:text-xs">General Operations</span>
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                className="nes-checkbox is-dark"
                 value="outreach"
-                checked={domain.includes("outreach")}
+                checked={subdomain.includes("outreach")}
                 onChange={handleCheckboxChange}
               />
               <span className="text-xs md:text-xs">Outreach</span>
@@ -43,8 +164,18 @@ const ManagementTaskSubmission = () => {
               <input
                 type="checkbox"
                 className="nes-checkbox is-dark"
+                value="publicity"
+                checked={subdomain.includes("publicity")}
+                onChange={handleCheckboxChange}
+              />
+              <span className="text-xs md:text-xs">Publicity</span>
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                className="nes-checkbox is-dark"
                 value="finance"
-                checked={domain.includes("finance")}
+                checked={subdomain.includes("finance")}
                 onChange={handleCheckboxChange}
               />
               <span className="text-xs md:text-xs">Finance</span>
@@ -53,28 +184,8 @@ const ManagementTaskSubmission = () => {
               <input
                 type="checkbox"
                 className="nes-checkbox is-dark"
-                value="generalops"
-                checked={domain.includes("generalops")}
-                onChange={handleCheckboxChange}
-              />
-              <span className="text-xs md:text-xs">General Ops.</span>
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                className="nes-checkbox is-dark"
-                value="anchoring"
-                checked={domain.includes("anchoring")}
-                onChange={handleCheckboxChange}
-              />
-              <span className="text-xs md:text-xs">Anchoring</span>
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                className="nes-checkbox is-dark"
                 value="editorial"
-                checked={domain.includes("editorial")}
+                checked={subdomain.includes("editorial")}
                 onChange={handleCheckboxChange}
               />
               <span className="text-xs md:text-xs">Editorial</span>
@@ -86,7 +197,8 @@ const ManagementTaskSubmission = () => {
           id="textarea_field"
           className="nes-textarea is-dark min-h-[15rem]"
           required
-          name={`management-domain_task`}
+          name="question1"
+          onChange={handleInputChange}
           placeholder="Write here..."
         ></textarea>
 
@@ -94,9 +206,9 @@ const ManagementTaskSubmission = () => {
           <span className="text-prime">Answer some general questions:</span>
           <br />
           {quizQuestions.map(
-            (quiz) =>
+            (quiz, index) =>
               quiz.subdomain &&
-              domain.includes(quiz.subdomain) &&
+              subdomain.includes(quiz.subdomain) &&
               quiz.for === coreType && (
                 <div
                   style={{
@@ -115,9 +227,10 @@ const ManagementTaskSubmission = () => {
                   <textarea
                     id="textarea_field"
                     className="nes-textarea is-dark min-h-[5rem]"
-                    required
-                    name={quiz.label}
+                    // required
+                    name={`question${index + 2}`}
                     placeholder="Write here..."
+                    onChange={(e) => handleInputChange(e, quiz.question)}
                   ></textarea>
                 </div>
               )
@@ -141,7 +254,7 @@ export default ManagementTaskSubmission;
 const quizQuestions = [
   {
     domain: "management",
-    subdomain: "generalops",
+    subdomain: "generaloperations",
     label: "que1",
     for: "junior",
     question:
@@ -149,7 +262,7 @@ const quizQuestions = [
   },
   {
     domain: "management",
-    subdomain: "generalops",
+    subdomain: "generaloperations",
     label: "que2",
     for: "junior",
     question:
@@ -157,7 +270,7 @@ const quizQuestions = [
   },
   {
     domain: "management",
-    subdomain: "generalops",
+    subdomain: "generaloperations",
     label: "que3",
     for: "junior",
     question:
@@ -165,7 +278,7 @@ const quizQuestions = [
   },
   {
     domain: "management",
-    subdomain: "generalops",
+    subdomain: "generaloperations",
     label: "que4",
     for: "junior",
     question:
@@ -173,7 +286,7 @@ const quizQuestions = [
   },
   {
     domain: "management",
-    subdomain: "generalops",
+    subdomain: "generaloperations",
     label: "que5",
     for: "junior",
     question:
@@ -340,7 +453,7 @@ const quizQuestions = [
   },
   {
     domain: "management",
-    subdomain: "generalops",
+    subdomain: "generaloperations",
     label: "gen_que1sr",
     for: "senior",
     question:
@@ -348,7 +461,7 @@ const quizQuestions = [
   },
   {
     domain: "management",
-    subdomain: "generalops",
+    subdomain: "generaloperations",
     label: "gen_que2sr",
     for: "senior",
     question:
@@ -356,7 +469,7 @@ const quizQuestions = [
   },
   {
     domain: "management",
-    subdomain: "generalops",
+    subdomain: "generaloperations",
     label: "gen_que3sr",
     for: "senior",
     question:
@@ -364,7 +477,7 @@ const quizQuestions = [
   },
   {
     domain: "management",
-    subdomain: "generalops",
+    subdomain: "generaloperations",
     label: "gen_que4sr",
     for: "senior",
     question:
@@ -372,7 +485,7 @@ const quizQuestions = [
   },
   {
     domain: "management",
-    subdomain: "generalops",
+    subdomain: "generaloperations",
     label: "gen_que5sr",
     for: "senior",
     question:

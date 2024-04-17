@@ -45,7 +45,7 @@ const Profile = () => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.put(
-        `https://mfc-recruitment-portal-be.onrender.com/user/updateuser/${id}`,
+        `https://mfc-recruitment-portal-be.vercel.app/user/updateuser/${id}`,
         formData,
         {
           headers: {

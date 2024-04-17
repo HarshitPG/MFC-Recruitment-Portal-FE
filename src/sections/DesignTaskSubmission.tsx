@@ -1,16 +1,113 @@
 import React, { useState } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useTabStore } from "../store";
 
 const DesignTaskSubmission = () => {
-  const [domain, setDomain] = useState<string[]>([]);
+  const { tabIndex, setTabIndex } = useTabStore();
+  const [subdomain, setSubDomain] = useState<string[]>([]);
+  const [formData, setFormData] = useState({
+    question1: "",
+    question2: "",
+    question3: "",
+    question4: "",
+    question5: "",
+  });
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     if (checked) {
-      setDomain((prevDomains) => [...prevDomains, value]);
+      setSubDomain((prevDomains) => [...prevDomains, value]);
     } else {
-      setDomain((prevDomains) =>
+      setSubDomain((prevDomains) =>
         prevDomains.filter((domain) => domain !== value)
       );
+    }
+  };
+
+  const handleInputChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
+    question: string
+  ) => {
+    const { name, value, type, checked } = e.target;
+    if (type === "radio") {
+      if (checked) {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: [prevData[name] ? prevData[name][0] : question, value],
+        }));
+        console.log(name, value, type, checked);
+      }
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: [prevData[name] ? prevData[name][0] : question, value],
+      }));
+    }
+  };
+  const handleSubmitTechTask = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const id = localStorage.getItem("id");
+    if (!id) {
+      console.error("User id not found in localStorage");
+      return;
+    }
+
+    console.log("id1", id);
+    const token = Cookies.get("jwtToken");
+
+    const updatedFormData = {
+      ...formData,
+      subdomain: subdomain.join(", "),
+    };
+
+    try {
+      const response = await axios.post(
+        `https://mfc-recruitment-portal-be.vercel.app/upload/design/${id}`,
+        updatedFormData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("response", response);
+      if (response.data) {
+        fetchUserDetails();
+      }
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const fetchUserDetails = async () => {
+    try {
+      const id = localStorage.getItem("id");
+
+      if (!id) {
+        throw new Error("User id not found in localStorage");
+      }
+      const token = Cookies.get("jwtToken");
+      const response = await axios.get(
+        `https://mfc-recruitment-portal-be.vercel.app/user/user/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ` + `${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+
+      localStorage.setItem("userDetails", JSON.stringify(response.data));
+
+      console.log(response.data);
+
+      console.log("techIsDone", response.data.techIsDone);
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -26,7 +123,7 @@ const DesignTaskSubmission = () => {
           [Project Title 2] - [Figma / Gdrive / Other Link]
         </span>
       </section>
-      <form>
+      <form onSubmit={handleSubmitTechTask}>
         <h2>Choose Sub-Domain</h2>
         <div className="flex">
           <div className="flex flex-row gap-4 flex-wrap justify-center">
@@ -34,28 +131,28 @@ const DesignTaskSubmission = () => {
               <input
                 type="checkbox"
                 className="nes-checkbox is-dark"
-                value="poster"
-                checked={domain.includes("poster")}
+                value="graphicdesign"
+                checked={subdomain.includes("graphicdesign")}
                 onChange={handleCheckboxChange}
               />
-              <span className="text-xs md:text-xs">Poster</span>
+              <span className="text-xs md:text-xs">Graphic Design</span>
             </label>
             <label>
               <input
                 type="checkbox"
                 className="nes-checkbox is-dark"
-                value="ui"
-                checked={domain.includes("ui")}
+                value="ui/ux"
+                checked={subdomain.includes("ui/ux")}
                 onChange={handleCheckboxChange}
               />
-              <span className="text-xs md:text-xs">UI</span>
+              <span className="text-xs md:text-xs">UI/UX</span>
             </label>
             <label>
               <input
                 type="checkbox"
                 className="nes-checkbox is-dark"
                 value="3d"
-                checked={domain.includes("3d")}
+                checked={subdomain.includes("3d")}
                 onChange={handleCheckboxChange}
               />
               <span className="text-xs md:text-xs">3D</span>
@@ -64,11 +161,13 @@ const DesignTaskSubmission = () => {
               <input
                 type="checkbox"
                 className="nes-checkbox is-dark"
-                value="video"
-                checked={domain.includes("video")}
+                value="videoediting/photography"
+                checked={subdomain.includes("videoediting/photography")}
                 onChange={handleCheckboxChange}
               />
-              <span className="text-xs md:text-xs">Video</span>
+              <span className="text-xs md:text-xs">
+                Videoediting/Photography
+              </span>
             </label>
           </div>
         </div>
@@ -76,14 +175,15 @@ const DesignTaskSubmission = () => {
           id="textarea_field"
           className="nes-textarea is-dark min-h-[15rem]"
           required
-          name={`design-domain_task`}
+          name="question1"
+          onChange={handleInputChange}
           placeholder="Write here..."
         ></textarea>
 
         <section className="my-2  text-xs md:text-sm">
           <span className="text-prime">Answer some general questions:</span>
           <br />
-          {quizQuestions.map((quiz) => (
+          {quizQuestions.map((quiz, index) => (
             <div
               style={{
                 backgroundColor: "rgba(0,0,0,0)",
@@ -107,7 +207,9 @@ const DesignTaskSubmission = () => {
                     <input
                       type="radio"
                       className="nes-radio is-dark"
-                      name={quiz.label}
+                      name={`question${index + 2}`}
+                      value={option}
+                      onChange={(e) => handleInputChange(e, quiz.question)}
                     />
                     <span>{option}</span>
                   </label>
@@ -122,7 +224,7 @@ const DesignTaskSubmission = () => {
               ></textarea> */}
             </div>
           ))}
-          {quizSubQuestions.map((quiz) => (
+          {quizSubQuestions.map((quiz, index) => (
             <div
               style={{
                 backgroundColor: "rgba(0,0,0,0)",
@@ -141,9 +243,10 @@ const DesignTaskSubmission = () => {
               <textarea
                 id="textarea_field"
                 className="nes-textarea is-dark min-h-[5rem]"
-                required
-                name={quiz.label}
+                // required
+                name={`question${index + 9}`}
                 placeholder="Write here..."
+                onChange={(e) => handleInputChange(e, quiz.question)}
               ></textarea>
             </div>
           ))}

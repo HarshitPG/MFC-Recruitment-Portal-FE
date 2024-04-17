@@ -35,7 +35,7 @@ const ResetPassword = () => {
     };
     try {
       const response = await axios.post(
-        "https://mfc-recruitment-portal-be.onrender.com/auth/updatepassword",
+        "https://mfc-recruitment-portal-be.vercel.app/auth/updatepassword",
         formData
       );
       if (response) {

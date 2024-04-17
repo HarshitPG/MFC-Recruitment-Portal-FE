@@ -88,7 +88,7 @@ const Signup: React.FC = () => {
     if (!isErrorValidation) {
       try {
         const response = await axios.post(
-          "https://mfc-recruitment-portal-be.onrender.com/auth/signup",
+          "https://mfc-recruitment-portal-be.vercel.app/auth/signup",
           formData
         );
         if (response.data.token) {
