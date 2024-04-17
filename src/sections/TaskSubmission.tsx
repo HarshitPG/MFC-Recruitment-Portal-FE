@@ -3,7 +3,7 @@ import TechTaskSubmission from "./TechTaskSubmission.";
 import DesignTaskSubmission from "./DesignTaskSubmission";
 import ManagementTaskSubmission from "./ManagementTaskSubmission";
 const TaskSubmission = () => {
-  const [selectedDomain, setSelectedDomain] = useState(0);
+  const [selectedDomain, setSelectedDomain] = useState();
   const [domains, setDomains] = useState<string[]>([]);
   // const domainArr = ["tech", "design", "management"];
   // const [domain, setDomain] = useState<string[]>([]);

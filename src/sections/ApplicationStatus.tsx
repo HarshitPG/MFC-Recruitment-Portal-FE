@@ -1,6 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import TechApplicationStatus from "./TechApplicationStatus";
+import DesignApplicationStatus from "./DesignApplicationStatus";
+import ManagementApplicationStatus from "./ManagementApplicationStatus";
 const ApplicationStatus = () => {
-  const [selectedDomain, setSelectedDomain] = useState(0);
+  const [selectedDomain, setSelectedDomain] = useState();
+  const [domains, setDomains] = useState<string[]>([]);
+  useEffect(() => {
+    const userDetailsString = localStorage.getItem("userDetails");
+    if (userDetailsString) {
+      const userDetails = JSON.parse(userDetailsString);
+      const userDomains = userDetails.domain;
+      console.log("userDomains2:", userDomains);
+      setDomains(userDomains);
+    }
+  }, []);
+
   return (
     <div className="w-full profile py-6 flex gap-4 flex-col md:flex-row">
       <div className="nes-container with-title is-centered w-full md:w-[30%] invert">
@@ -41,9 +55,15 @@ const ApplicationStatus = () => {
       <div className="text-white w-full md:w-[90%]">
         <div className="nes-container with-title is-centered is-dark">
           <p className="title">Status</p>
-          <p className="text-prime text-sm ">
-            Your application is currently being reviewed!
-          </p>
+          {domains.includes("tech") && selectedDomain === 0 && (
+            <TechApplicationStatus />
+          )}
+          {domains.includes("design") && selectedDomain === 1 && (
+            <DesignApplicationStatus />
+          )}
+          {domains.includes("management") && selectedDomain === 2 && (
+            <ManagementApplicationStatus />
+          )}
         </div>
         <p className="text-base md:text-lg mt-4">Your Submissions</p>
         <div className="w-full  nes-container is-rounded is-dark dark-nes-container text-sm"></div>
