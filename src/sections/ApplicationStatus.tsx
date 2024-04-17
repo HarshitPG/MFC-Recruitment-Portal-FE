@@ -3,7 +3,7 @@ import TechApplicationStatus from "./TechApplicationStatus";
 import DesignApplicationStatus from "./DesignApplicationStatus";
 import ManagementApplicationStatus from "./ManagementApplicationStatus";
 const ApplicationStatus = () => {
-  const [selectedDomain, setSelectedDomain] = useState();
+  const [selectedDomain, setSelectedDomain] = useState(-1);
   const [domains, setDomains] = useState<string[]>([]);
   useEffect(() => {
     const userDetailsString = localStorage.getItem("userDetails");
