@@ -17,7 +17,7 @@ const DesignApplicationStatus = () => {
       const token = Cookies.get("jwtToken");
       try {
         const response = await axios.get(
-          `https://mfc-recruitment-portal-be.vercel.app/statusdesign/${id}`,
+          `https://mfc-recruitment-portal-be.vercel.app/applicatiostatus/statusdesign/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
