@@ -59,6 +59,9 @@ body {
   .nes-balloon {
     padding: 5px !important;
   }
+  .nes-field {
+    padding: 0px !important;
+  }
 }
 .mainbox {
   max-width: 400px;

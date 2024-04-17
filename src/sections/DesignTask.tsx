@@ -45,13 +45,13 @@ const DesignTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
           >
             UI
           </button>
-          <button
+          {/* <button
             type="button"
             onClick={() => setSelectedSubDomain("3d")}
             className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             3D
-          </button>
+          </button> */}
           <button
             type="button"
             onClick={() => setSelectedSubDomain("video")}

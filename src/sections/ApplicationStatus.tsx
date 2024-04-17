@@ -55,6 +55,9 @@ const ApplicationStatus = () => {
       <div className="text-white w-full md:w-[90%]">
         <div className="nes-container with-title is-centered is-dark">
           <p className="title">Status</p>
+          {selectedDomain === -1 && (
+            <div className="text-xs">Select Domain to see Submissions</div>
+          )}
           {domains.includes("tech") && selectedDomain === 0 && (
             <TechApplicationStatus />
           )}

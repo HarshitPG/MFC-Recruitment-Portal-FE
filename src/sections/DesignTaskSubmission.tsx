@@ -126,7 +126,7 @@ const DesignTaskSubmission = () => {
       <form onSubmit={handleSubmitTechTask}>
         <h2>Choose Sub-Domain</h2>
         <div className="flex">
-          <div className="flex flex-row gap-4 flex-wrap justify-center">
+          <div className="flex md:flex-row flex-col md:gap-4 flex-wrap justify-center">
             <label>
               <input
                 type="checkbox"
@@ -165,7 +165,7 @@ const DesignTaskSubmission = () => {
                 checked={subdomain.includes("videoediting/photography")}
                 onChange={handleCheckboxChange}
               />
-              <span className="text-xs md:text-xs">
+              <span className="text-[0.6rem] md:text-xs">
                 Videoediting/Photography
               </span>
             </label>
@@ -189,7 +189,7 @@ const DesignTaskSubmission = () => {
                 backgroundColor: "rgba(0,0,0,0)",
                 padding: "1rem",
               }}
-              className="nes-field is-inline flex flex-col"
+              className="nes-field is-inline flex flex-col mb-6"
             >
               <label
                 style={{ color: "#fff" }}
@@ -203,7 +203,7 @@ const DesignTaskSubmission = () => {
                 className="w-full flex flex-wrap justify-between"
               >
                 {quiz.options.map((option) => (
-                  <label className="w-[45%] text-xs mb-4">
+                  <label className="w-full md:w-[45%] text-xs mb-4">
                     <input
                       type="radio"
                       className="nes-radio is-dark"
@@ -230,7 +230,7 @@ const DesignTaskSubmission = () => {
                 backgroundColor: "rgba(0,0,0,0)",
                 padding: "1rem",
               }}
-              className="nes-field is-inline flex flex-col"
+              className="nes-field is-inline flex flex-col mb-6"
             >
               <label
                 style={{ color: "#fff" }}

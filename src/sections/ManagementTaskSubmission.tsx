@@ -138,8 +138,7 @@ const ManagementTaskSubmission = () => {
       <form onSubmit={handleSubmitDesignTask}>
         <h2>Choose Sub-Domain</h2>
         <div className="flex">
-          (
-          <div className="flex flex-row gap-4 flex-wrap justify-center">
+          <div className="flex flex-col md:flex-row md:gap-4 flex-wrap justify-center mb-4 md:mb-0">
             <label>
               <input
                 type="checkbox"
@@ -191,7 +190,6 @@ const ManagementTaskSubmission = () => {
               <span className="text-xs md:text-xs">Editorial</span>
             </label>
           </div>
-          )
         </div>
         <textarea
           id="textarea_field"
@@ -205,6 +203,7 @@ const ManagementTaskSubmission = () => {
         <section className="my-2  text-xs md:text-sm">
           <span className="text-prime">Answer some general questions:</span>
           <br />
+          <br />
           {quizQuestions.map(
             (quiz, index) =>
               quiz.subdomain &&
@@ -215,7 +214,7 @@ const ManagementTaskSubmission = () => {
                     backgroundColor: "rgba(0,0,0,0)",
                     padding: "1rem",
                   }}
-                  className="nes-field is-inline flex flex-col"
+                  className="nes-field is-inline flex flex-col mb-6"
                 >
                   <label
                     style={{ color: "#fff" }}

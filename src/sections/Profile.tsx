@@ -27,6 +27,11 @@ const Profile = () => {
       );
     }
   };
+  interface UserDetails {
+    isProfileDone: boolean;
+    // other properties...
+    domain: string[];
+  }
 
   const handleProfileUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,8 +63,15 @@ const Profile = () => {
         setToastContent({
           message: `${response.data.message}`,
         });
+        // let userDetails = localStorage.getItem("userDetails");
+        const userDetailsStr = localStorage.getItem("userDetails");
+        if (userDetailsStr) {
+          const userDetails: UserDetails = JSON.parse(userDetailsStr);
+          userDetails.isProfileDone = true;
+          userDetails.domain = formData.domain;
+          localStorage.setItem("userDetails", JSON.stringify(userDetails));
+        }
       }
-
       setError(false);
       console.error(error);
     } catch (error) {
@@ -77,6 +89,19 @@ const Profile = () => {
       setError(true);
     }
   };
+  const userDetailsStr = localStorage.getItem("userDetails");
+  if (userDetailsStr) {
+    const userDetails: UserDetails = JSON.parse(userDetailsStr);
+    userDetails.isProfileDone = true;
+    return (
+      <div className="min-h-[75vh] w-[90%] md:w-[70%] text-center text-white mx-auto text-sm md:text-xl flex items-center justify-center">
+        You've already completed your profile!
+        <br />
+        <br />
+        If you want to update your domains, go to the profile section
+      </div>
+    );
+  }
   return (
     <div className="w-full profile py-6 flex gap-4 flex-col md:flex-row">
       {openToast && (
@@ -89,6 +114,7 @@ const Profile = () => {
           duration={toastContent.duration}
         />
       )}
+
       <div className="nes-container is-dark with-title w-full md:w-[30%] dark-nes-container">
         <p className="title dark-nes-container text-sm md:text-base">
           Hello World!
