@@ -8,8 +8,8 @@ const FAQs = () => {
       <BoundingBox>
         <div className="faq w-full h-full overflow-y-scroll">
           <h1
-            className="text-[2rem] md:text-[3rem] text-prime"
-            style={{ textShadow: "5px 5px 0px red" }}
+            className="text-[1.5rem] md:text-[3rem] text-prime"
+            style={{ textShadow: "3px 3px 0px red" }}
           >
             FAQs
           </h1>

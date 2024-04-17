@@ -133,7 +133,7 @@ const Landing = () => {
         />
       )}
       <BoundingBox>
-        <div className="w-full h-full relative z-[100] flex justify-between flex-col md:flex-row">
+        <div className="w-full h-full  relative z-[100] flex justify-between flex-col md:flex-row">
           {/* <img
   src="/sky_muchbetter.png"
   alt=""
@@ -151,27 +151,27 @@ const Landing = () => {
             <span className="text-light text-base md:text-2xl z-[100]">
               IS RECRUITING
             </span>
-            <div
-              className={
-                isPlayButton
-                  ? "animate-fadeOut opacity-0"
-                  : " text-prime text-base md:text-2xl mt-10 opacity-100"
-              }
-            >
-              Wanna play with Mr.Fox Jr??
-            </div>
-            <div className="mt-6 text-xs md:text-base">
-              {showComponents && isPlayButton && (
-                <>
-                  <div className="h-[50vh] w-[100%]">
-                    <Scene3d />
-                  </div>
-
-                  <PlayBtn />
-                </>
-              )}
-
-              <PlayBtn />
+            <div className="hidden md:block">
+              <div
+                className={
+                  isPlayButton
+                    ? "animate-fadeOut opacity-0"
+                    : " text-prime text-base md:text-2xl mt-10 opacity-100"
+                }
+              >
+                Wanna play with Mr.Fox Jr??
+              </div>
+              <div className="mt-6 text-xs md:text-base">
+                {showComponents && isPlayButton && (
+                  <>
+                    <div className="h-[50vh] w-[100%]">
+                      <Scene3d />
+                    </div>
+                    <PlayBtn />
+                  </>
+                )}
+                <PlayBtn />
+              </div>
             </div>
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0 z-[100]">
@@ -202,11 +202,11 @@ const Landing = () => {
               </NavLink>
             </form>
 
-            <section className="text-center mt-6 md:mt-4 text-light bg-dark py-0.35 md:py-0.5 w-full md:w-[60%] mx-auto relative">
-              <p className="mb-8 md:mb-12 text-xs md:text-base">
+            <section className="text-center mt-6 md:mt-4 text-light bg-dark py-0.4 md:py-0.5 w-full md:w-[60%] mx-auto relative flex flex-col">
+              <p className="text-xs md:text-base mt-2">
                 Don't have an account?
               </p>
-              <div className="text-black text-sm md:text-lg cursor-pointer w-full bg-prime absolute bottom-0 py-1">
+              <div className="text-black text-sm md:text-lg cursor-pointer w-full bg-prime py-1">
                 <div>
                   <NavLink to="/signup" className="text-black  ">
                     Sign Up
@@ -216,8 +216,32 @@ const Landing = () => {
             </section>
           </div>
         </div>
+        <div className="hidden md:hidden h-[40vh] w-full absolute bottom-0 left-0 flex flex-col gap-4 ">
+          <div
+            className={
+              isPlayButton
+                ? "animate-fadeOut opacity-0"
+                : " text-prime text-base md:text-2xl md:mt-10 opacity-100 text-center"
+            }
+          >
+            Wanna play with Mr.Fox Jr??
+          </div>
+          <div className="mt-6 text-xs md:text-base w-full">
+            {showComponents && isPlayButton && (
+              <>
+                <div className=" w-[100%]">
+                  <Scene3d />
+                </div>
+                <PlayBtn />
+              </>
+            )}
+            <PlayBtn />
+          </div>
+        </div>
         <div
-          className={isPlayButton ? "animate-fadeOut opacity-0" : "opacity-100"}
+          className={`hidden md:block ${
+            isPlayButton ? "animate-fadeOut opacity-0" : "opacity-100"
+          }`}
         >
           <img
             src="/background.png"

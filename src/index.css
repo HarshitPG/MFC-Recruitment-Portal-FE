@@ -48,6 +48,17 @@ body {
   .dark-container-nes {
     padding: 10px !important;
   }
+  .nes-input {
+    padding: 5px !important;
+    font-size: 0.8rem !important;
+  }
+  .nes-btn {
+    padding: 5px !important;
+    font-size: 0.8rem !important;
+  }
+  .nes-balloon {
+    padding: 5px !important;
+  }
 }
 .mainbox {
   max-width: 400px;

@@ -130,7 +130,7 @@ const ForgotPassword = () => {
             <section className="text-center mt-6 md:mt-12 text-light bg-dark py-2 md:py-4 w-full md:w-[60%] mx-auto relative">
               <div className="text-black text-sm md:text-lg cursor-pointer w-full bg-prime absolute bottom-0 py-1">
                 <NavLink to="/" className="text-black">
-                  Back To Login page
+                  &larr; Back
                 </NavLink>
               </div>
             </section>
@@ -141,7 +141,7 @@ const ForgotPassword = () => {
           alt=""
           className="hidden md:block absolute bottom-0 invert brightness-[50%] left-0 scale-95"
         />
-        <div className="absolute bottom-0 w-full md:hidden">
+        <div className="fixed bottom-0 w-full md:hidden">
           <img
             src="/empty-bg.png"
             alt=""

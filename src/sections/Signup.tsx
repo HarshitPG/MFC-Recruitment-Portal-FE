@@ -156,15 +156,15 @@ const Signup: React.FC = () => {
                 Login In &rarr;
               </NavLink>
             </div>
-            <section className="icon-list flex gap-8 mt-8">
+            <section className="icon-list flex gap-8 mt-8 w-full justify-center md:justify-start">
               <a href="https://www.instagram.com/mfc_vit">
-                <i className="nes-icon instagram is-medium">/</i>
+                <i className="nes-icon instagram  md:is-medium">/</i>
               </a>
               <a href="mailto:mozillafirefox@vit.ac.in">
-                <i className="nes-icon gmail is-medium"></i>
+                <i className="nes-icon gmail md:is-medium"></i>
               </a>
               <a href="https://www.linkedin.com/company/mfcvit?originalSubdomain=in">
-                <i className="nes-icon linkedin is-medium"></i>
+                <i className="nes-icon linkedin md:is-medium"></i>
               </a>
             </section>
           </div>
@@ -253,7 +253,7 @@ const Signup: React.FC = () => {
           alt=""
           className="hidden md:block absolute bottom-0 invert brightness-[50%] left-0 scale-95"
         /> */}
-        <div className="absolute bottom-0 w-full md:hidden">
+        <div className="fixed bottom-0 w-full md:hidden opacity-75">
           <img
             src="/empty-bg.png"
             alt=""

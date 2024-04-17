@@ -21,7 +21,7 @@ const PlayBtn: React.FC = () => {
       <div
         className={`playBtn ${
           isPlayButton ? "animate-hide delay-2500 hidden" : " block"
-        }`}
+        } `}
         onClick={handlePlayBtnClick}
       >
         <svg

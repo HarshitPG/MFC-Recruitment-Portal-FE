@@ -22,6 +22,10 @@ function App() {
         rel="stylesheet"
       />
       <MainWrapper>
+
+
+
+
         <Router>
           <Routes>
             <Route path="/" element={<Landing />} />
@@ -34,6 +38,10 @@ function App() {
             <Route path="/faq" element={<FAQs />} />
           </Routes>
         </Router>
+      
+      
+      
+      
       </MainWrapper>
     </BaseWrapper>
   );
