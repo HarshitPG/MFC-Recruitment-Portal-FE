@@ -24,9 +24,9 @@ const Navbar = () => {
       </a>
       <a href="/about" className="relative z-[150] scale-75 lg:scale-100">
         <img
-          className="nes-avatar is-medium w-full invert"
+          className="nes-avatar is-medium w-full"
           alt="About"
-          src="/info-button.png"
+          src="/mfc-logo.png"
           style={{ imageRendering: "pixelated" }}
           onMouseEnter={() => setMenuHelper(1)}
           onMouseLeave={() => setMenuHelper(-1)}
