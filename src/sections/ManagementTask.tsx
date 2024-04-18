@@ -145,7 +145,7 @@ const managementTaskData = [
     title: "General Ops.",
     for: "junior",
     description:
-      "Imagine you are coordinator of a event,how you will plan the event. Write the respective work flow of the event and paste the google drive link of the document.",
+      "Imagine you are the coordinator of an event, how you will plan the event? Write the respective work flow of the event and paste the Google Drive link of the document.",
     resources: [],
   },
   {
@@ -153,7 +153,7 @@ const managementTaskData = [
     title: "Outreach",
     for: "junior",
     description:
-      "Draft a mail to respective speaker (let say Mr. Akshat Jha) for the speaker session that you are planning for your event.Paste the respective google drive link of the  document.",
+      "Draft a mail to the respective speaker (let's say Mr. Akshat Jha) for the speaker session that you are planning for your event. Paste the respective google drive link of the document.",
     resources: [],
   },
   {
@@ -161,7 +161,7 @@ const managementTaskData = [
     title: "Editorial",
     for: "junior",
     description:
-      "Frame a message to be sent to MFC official groups for a event – InnovationX which is basically a hackathon.Also, frame the description for the respective event.Paste the respective google drive link of the document.",
+      "Frame a message to be sent to MFC official groups for a event – InnovationX which is basically a hackathon. Also, frame the description for the respective event. Paste the respective Google Drive link of the document.",
     resources: [],
   },
   {
@@ -177,7 +177,7 @@ const managementTaskData = [
     title: "Finance",
     for: "junior",
     description:
-      "prepare a presentation outlining your overall financial strategy and approach for managing expenses within the club. Paste the respective Google drive link of the document.",
+      "Prepare a presentation outlining your overall financial strategy and approach for managing expenses within the club. Paste the respective Google Drive link of the document.",
     resources: [],
   },
   // {

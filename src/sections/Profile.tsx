@@ -48,6 +48,12 @@ const Profile = () => {
       return;
     }
 
+    if (mobile.length !== 10) {
+      setError("Mobile number should be 10 digits long.");
+      return;
+    }
+    
+
     setError("");
 
     const formData = {
