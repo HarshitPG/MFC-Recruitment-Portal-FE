@@ -2,7 +2,7 @@ import Input from "../components/Input";
 // import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 // import { toast } from "react-toastify";
 import CustomToast, { ToastContent } from "../components/CustomToast";
 import { useTabStore } from "../store";
@@ -141,7 +141,7 @@ const Profile = () => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const userDetailsstore = localStorage.getItem("userDetails");
     if (userDetailsstore) {
       const userDetails = JSON.parse(userDetailsstore);
