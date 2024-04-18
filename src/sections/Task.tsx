@@ -39,7 +39,7 @@ const Task = () => {
               type="button"
               onClick={() => setSelectedDomain(0)}
               className={`
-              nes-btn w-full h-[30%] text-sm md:text-base
+              nes-btn w-full lg:h-[30%] text-sm md:text-base
               ${selectedDomain === 0 && "is-primary"}
             `}
             >
