@@ -34,14 +34,14 @@ const DesignTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
           <button
             type="button"
             onClick={() => setSelectedSubDomain("poster")}
-            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
+            className="nes-btn is-error nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Poster
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("ui")}
-            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
+            className="nes-btn is-error nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             UI
           </button>
@@ -55,7 +55,7 @@ const DesignTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
           <button
             type="button"
             onClick={() => setSelectedSubDomain("video")}
-            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
+            className="nes-btn is-error nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Video
           </button>

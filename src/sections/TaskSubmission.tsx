@@ -30,10 +30,10 @@ const TaskSubmission = () => {
   }, []);
 
   return (
-    <div className="w-full profile py-6 flex gap-4 flex-col md:flex-row">
-      <div className="nes-container with-title is-centered w-full md:w-[30%] invert">
+    <div className="w-full profile py-6 flex gap-4 flex-col lg:flex-row">
+      <div className="nes-container with-title is-centered w-full lg:w-[30%] invert">
         <p className="title">Domains</p>
-        <div className="flex flex-col justify-between h-full gap-4 md:gap-8">
+        <div className="flex flex-col justify-between h-full gap-4 lg:gap-8">
           {domains.includes("tech") && (
             <button
               type="button"
@@ -72,7 +72,7 @@ const TaskSubmission = () => {
           )}
         </div>
       </div>
-      <div className="text-white w-full md:w-[90%]  overflow-y-scroll overflow-x-hidden">
+      <div className="text-white w-full lg:w-[90%]  overflow-y-scroll overflow-x-hidden">
         <p className="text-base md:text-lg">Task Submission</p>
         <div className="w-full  nes-container is-rounded is-dark dark-nes-container text-sm ">
           {selectedDomain === -1 && (

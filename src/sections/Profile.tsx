@@ -15,7 +15,7 @@ const Profile = () => {
   const [participatedEvent, setParticipated] = useState("");
   const [volunteeredEvent, setVolunteered] = useState("");
   const [domain, setDomain] = useState<string[]>([]);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("false");
   const [isProfile, setIsProfile] = useState();
   const [isNextPage, setIsNextpage] = useState(false);
   // const navigate = useNavigate();
@@ -171,7 +171,7 @@ const Profile = () => {
   // }
 
   return (
-    <div className="w-full profile py-6 flex gap-4 flex-col md:flex-row">
+    <div className="w-full profile py-6 flex gap-4 flex-col lg:flex-row">
       {openToast && (
         <CustomToast
           setToast={setOpenToast}
@@ -184,7 +184,7 @@ const Profile = () => {
       )}
 
       {isProfile ? (
-        <div className="min-h-[75vh] w-[90%] md:w-[70%] text-center text-white mx-auto text-sm md:text-xl flex items-center justify-center">
+        <div className="min-h-[75vh] w-[90%] lg:w-[70%] text-center text-white mx-auto text-sm md:text-xl flex items-center justify-center">
           You've already completed your profile!
           <br />
           <br />
@@ -193,7 +193,7 @@ const Profile = () => {
       ) : (
         <>
           {" "}
-          <div className="nes-container is-dark with-title w-full md:w-[30%] dark-nes-container">
+          <div className="nes-container is-dark with-title w-full lg:w-[30%] dark-nes-container">
             <p className="title dark-nes-container text-sm md:text-base">
               Hello World!
             </p>
@@ -203,13 +203,13 @@ const Profile = () => {
               your boat. It helps us help you better! Cheers!
             </p>
           </div>
-          <div className="nes-container is-rounded w-full md:w-[70%] is-dark dark-nes-container overflow-y-scroll">
+          <div className="nes-container is-rounded w-full lg:w-[70%] is-dark dark-nes-container overflow-y-scroll">
             <form
               className="flex flex-col gap-8 md:gap-4 w-full"
               onSubmit={handleProfileUpdate}
             >
-              <section className="flex items-start text-xs md:text-base md:items-center flex-col md:flex-row">
-                <label className="w-full md:w-[40%] text-sm">
+              <section className="flex items-start text-xs md:text-base lg:items-center flex-col lg:flex-row">
+                <label className="w-full lg:w-[40%] text-sm">
                   Mobile Number:
                 </label>
                 <Input
@@ -220,8 +220,8 @@ const Profile = () => {
                   onChange={(e) => setMobileno(e.target.value)}
                 />
               </section>
-              <section className="flex items-start text-xs md:text-base md:items-center flex-col md:flex-row">
-                <label className="w-full md:w-[40%] text-sm">
+              <section className="flex items-start text-xs lg:text-base lg:items-center flex-col lg:flex-row">
+                <label className="w-full lg:w-[40%] text-sm">
                   Personal Email:
                 </label>
                 <Input
@@ -232,8 +232,8 @@ const Profile = () => {
                   onChange={(e) => setEmailPersonal(e.target.value)}
                 />
               </section>
-              <section className="flex items-start text-xs md:text-base md:items-center flex-col md:flex-row">
-                <p className="w-full md:w-[40%]">Domains:</p>
+              <section className="flex items-start text-xs md:text-base lg:items-center flex-col lg:flex-row">
+                <p className="w-full lg:w-[40%]">Domains:</p>
                 <div className="flex flex-col">
                   <label>
                     <input
@@ -243,7 +243,9 @@ const Profile = () => {
                       checked={domain.includes("tech")}
                       onChange={handleCheckboxChange}
                     />
-                    <span className="text-xs md:text-base">Technical</span>
+                    <span className="text-xs md:text-sm lg:text-base">
+                      Technical
+                    </span>
                   </label>
                   <label>
                     <input
@@ -253,7 +255,9 @@ const Profile = () => {
                       checked={domain.includes("design")}
                       onChange={handleCheckboxChange}
                     />
-                    <span className="text-xs md:text-base">Design</span>
+                    <span className="text-xs md:text-sm lg:text-base">
+                      Design
+                    </span>
                   </label>
                   <label>
                     <input
@@ -263,7 +267,9 @@ const Profile = () => {
                       checked={domain.includes("management")}
                       onChange={handleCheckboxChange}
                     />
-                    <span className="text-xs md:text-base">Management</span>
+                    <span className="text-xs md:text-sm lg:text-base">
+                      Management
+                    </span>
                   </label>
                 </div>
               </section>

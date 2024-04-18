@@ -34,35 +34,35 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
           <button
             type="button"
             onClick={() => setSelectedSubDomain("frontend")}
-            className="nes-btn is-error w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
+            className="nes-btn nes-btn-task is-error w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Frontend
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("backend")}
-            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
+            className="nes-btn is-error nes-btn-task  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Backend
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("fullstack")}
-            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
+            className="nes-btn is-error nes-btn-task  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Fullstack
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("app")}
-            className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
+            className="nes-btn is-error  nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             App Dev
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("ai/ml")}
-            className="nes-btn is-error w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
+            className="nes-btn is-error nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             AI/ML
           </button>
@@ -70,16 +70,15 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
           <button
             type="button"
             onClick={() => setSelectedSubDomain("game")}
-            className="nes-btn is-error w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
+            className="nes-btn is-error nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             Game Dev
           </button>
 
-
           <button
             type="button"
             onClick={() => setSelectedSubDomain("cp")}
-            className="nes-btn is-error w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
+            className="nes-btn is-error nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             CP
           </button>

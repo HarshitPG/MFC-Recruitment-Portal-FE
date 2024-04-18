@@ -161,7 +161,11 @@ const VerifyOTP: React.FC = () => {
                 secure
               />
               <ResendOTP onResendClick={handleResendClick} /> */}
-              <button onClick={handleResendClick} className="nes-btn text-xs">
+              <button
+                onClick={handleResendClick}
+                className="nes-btn text-xs"
+                type="button"
+              >
                 Resend OTP
               </button>
               <Button submit={true}>Verify</Button>

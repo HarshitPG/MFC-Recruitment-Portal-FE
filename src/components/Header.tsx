@@ -13,7 +13,7 @@ const Header = ({
         onClick={() => setTabIndex(0)}
       >
         <span className="text-xl">1</span>
-        <p className="text-xs hidden md:block">
+        <p className="text-xs hidden lg:block">
           Complete
           <br />
           Profile
@@ -24,14 +24,14 @@ const Header = ({
         onClick={() => setTabIndex(1)}
       >
         <span className="text-xl">2</span>
-        <p className="text-xs hidden md:block">Tasks</p>
+        <p className="text-xs hidden lg:block">Tasks</p>
       </button>
       <button
         className={`nes-btn btn-header ${tabIndex === 2 && "is-success"}`}
         onClick={() => setTabIndex(2)}
       >
         <span className="text-xl">3</span>
-        <p className="text-xs hidden md:block">
+        <p className="text-xs hidden lg:block">
           Task
           <br />
           Submission
@@ -42,7 +42,7 @@ const Header = ({
         onClick={() => setTabIndex(3)}
       >
         <span className="text-xl">4</span>
-        <p className="text-xs hidden md:block">
+        <p className="text-xs hidden lg:block">
           Application
           <br />
           Status

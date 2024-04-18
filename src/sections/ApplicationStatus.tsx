@@ -16,10 +16,10 @@ const ApplicationStatus = () => {
   }, []);
 
   return (
-    <div className="w-full profile py-6 flex gap-4 flex-col md:flex-row">
-      <div className="nes-container with-title is-centered w-full md:w-[30%] invert">
+    <div className="w-full profile py-6 flex gap-4 flex-col lg:flex-row">
+      <div className="nes-container with-title is-centered w-full lg:w-[30%] invert">
         <p className="title">Domains</p>
-        <div className="flex flex-col justify-between h-full gap-4 md:gap-8">
+        <div className="flex flex-col justify-between h-full gap-4 lg:gap-8">
           {domains.includes("tech") && (
             <button
               type="button"
@@ -58,7 +58,7 @@ const ApplicationStatus = () => {
           )}
         </div>
       </div>
-      <div className="text-white w-full md:w-[90%]">
+      <div className="text-white w-full lg:w-[90%]">
         <div className="nes-container with-title is-centered is-dark">
           <p className="title">Status</p>
           {selectedDomain === -1 && (

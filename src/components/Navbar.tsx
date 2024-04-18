@@ -7,7 +7,7 @@ const Navbar = () => {
     <div className="nav h-full  w-full md:max-w-[100px] flex flex-row md:flex-col justify-around md:border-8 border-dashed items-center border-prime md:border-r-0  p-4 md:p-0 border-b-0 border-4">
       <a href="/dashboard" className="relative z-[150]">
         <img
-          className="nes-avatar is-medium w-full invert scale-75 md:scale-100"
+          className="nes-avatar is-medium w-full invert scale-75 lg:scale-100"
           alt="Dashboard"
           src="/dashboard.png"
           style={{ imageRendering: "pixelated" }}
@@ -22,7 +22,7 @@ const Navbar = () => {
           </div>
         )}
       </a>
-      <a href="/about" className="relative z-[150] scale-75 md:scale-100">
+      <a href="/about" className="relative z-[150] scale-75 lg:scale-100">
         <img
           className="nes-avatar is-medium w-full invert"
           alt="About"
@@ -39,7 +39,7 @@ const Navbar = () => {
           </div>
         )}
       </a>
-      <a className="relative z-[150] scale-75 md:scale-100" href="/faq">
+      <a className="relative z-[150] scale-75 lg:scale-100" href="/faq">
         <img
           className="nes-avatar is-medium w-full invert"
           alt="Dashboard"
@@ -56,7 +56,7 @@ const Navbar = () => {
           </div>
         )}
       </a>
-      <a className="relative z-[150] scale-75 md:scale-100" href="/faq">
+      <a className="relative z-[150] scale-75 lg:scale-100" href="/faq">
         <img
           className="nes-avatar is-medium w-full invert"
           alt="Profile"
@@ -74,7 +74,7 @@ const Navbar = () => {
         )}
       </a>
       <a
-        className="relative z-[150] scale-75 md:scale-100"
+        className="relative z-[150] scale-75 lg:scale-100"
         href="/"
         onClick={() => {
           Cookies.remove("jwtToken");
