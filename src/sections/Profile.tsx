@@ -4,8 +4,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
 // import { toast } from "react-toastify";
-import CustomToast from "../components/CustomToast";
-import { ToastContent } from "../components/CustomToast";
+import CustomToast, { ToastContent } from "../components/CustomToast";
 const Profile = () => {
   const [openToast, setOpenToast] = useState(false);
   const [toastContent, setToastContent] = useState<ToastContent>({});
@@ -14,7 +13,7 @@ const Profile = () => {
   const [participatedEvent, setParticipated] = useState("");
   const [volunteeredEvent, setVolunteered] = useState("");
   const [domain, setDomain] = useState<string[]>([]);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string>("");
   // const navigate = useNavigate();
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,14 +26,28 @@ const Profile = () => {
       );
     }
   };
-  interface UserDetails {
-    isProfileDone: boolean;
-    // other properties...
-    domain: string[];
-  }
 
   const handleProfileUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (domain.length === 0) {
+      setError("Please select at least one domain.");
+      return;
+    }
+  
+    
+    if (volunteeredEvent.length > 100) {
+      setError("Volunteering event details should be within 100 characters.");
+      return;
+    }
+    if (participatedEvent.length > 100) {
+      setError("Participation event details should be within 100 characters.");
+      return;
+    }
+  
+    setError("");
+
+
     const formData = {
       mobile,
       emailpersonal,
@@ -63,16 +76,9 @@ const Profile = () => {
         setToastContent({
           message: `${response.data.message}`,
         });
-        // let userDetails = localStorage.getItem("userDetails");
-        const userDetailsStr = localStorage.getItem("userDetails");
-        if (userDetailsStr) {
-          const userDetails: UserDetails = JSON.parse(userDetailsStr);
-          userDetails.isProfileDone = true;
-          userDetails.domain = formData.domain;
-          localStorage.setItem("userDetails", JSON.stringify(userDetails));
-        }
       }
-      setError(false);
+
+      setError("false");
       console.error(error);
     } catch (error) {
       console.log(error);
@@ -86,22 +92,9 @@ const Profile = () => {
       //   autoClose: 3000,
       //   theme: "dark",
       // });
-      setError(true);
+      setError("true");
     }
   };
-  const userDetailsStr = localStorage.getItem("userDetails");
-  if (userDetailsStr) {
-    const userDetails: UserDetails = JSON.parse(userDetailsStr);
-    userDetails.isProfileDone = true;
-    return (
-      <div className="min-h-[75vh] w-[90%] md:w-[70%] text-center text-white mx-auto text-sm md:text-xl flex items-center justify-center">
-        You've already completed your profile!
-        <br />
-        <br />
-        If you want to update your domains, go to the profile section
-      </div>
-    );
-  }
   return (
     <div className="w-full profile py-6 flex gap-4 flex-col md:flex-row">
       {openToast && (
@@ -114,7 +107,6 @@ const Profile = () => {
           duration={toastContent.duration}
         />
       )}
-
       <div className="nes-container is-dark with-title w-full md:w-[30%] dark-nes-container">
         <p className="title dark-nes-container text-sm md:text-base">
           Hello World!
