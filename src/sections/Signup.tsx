@@ -49,6 +49,7 @@ const Signup: React.FC = () => {
       isError = false;
     }
     const emailRegex = /^[a-zA-Z0-9._%+-]+@vitstudent\.ac\.in$/;
+    // const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     if (!email) {
       errors.email = "Email is required";
       isError = true;

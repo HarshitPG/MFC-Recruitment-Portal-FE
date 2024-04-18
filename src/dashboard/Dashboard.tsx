@@ -9,6 +9,7 @@ import ApplicationStatus from "../sections/ApplicationStatus";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+
 const Dashboard = () => {
   const { tabIndex, setTabIndex } = useTabStore();
   const navigator = useNavigate();
@@ -17,6 +18,7 @@ const Dashboard = () => {
   }, [tabIndex]);
   useEffect(() => {
     const token = Cookies.get("jwtToken");
+    console.log("token", token);
     if (!token) {
       navigator("/");
     }
