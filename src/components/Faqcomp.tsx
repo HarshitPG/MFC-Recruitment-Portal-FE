@@ -5,7 +5,7 @@ export default function Faqcomp({ que, ans }: { que: string; ans: string }) {
         <section className="message-list">
           <section className="message -left">
             <i className="nes-bcrikko scale-50 "></i>
-            <div className="nes-balloon from-left is-dark relative md:-top-10">
+            <div className="nes-balloon from-left is-dark relative lg:-top-10">
               <p className="text-black text-[0.6rem] md:text-xs tracking-tight">
                 {que}
               </p>

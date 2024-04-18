@@ -68,6 +68,9 @@ body {
   .nes-btn-task {
     width: 47% !important;
   }
+  .nes-bcrikko {
+    display: none !important;
+  }
 }
 @media (max-width: 600px) {
   .dark-container-nes {

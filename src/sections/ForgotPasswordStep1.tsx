@@ -86,9 +86,9 @@ const ForgotPassword = () => {
         />
       )}
       <BoundingBox>
-        <div className="w-full h-full relative z-[100] flex justify-between flex-col md:flex-row">
+        <div className="w-full h-full relative z-[100] flex justify-between flex-col lg:flex-row">
           <div className="heading text-center md:text-left">
-            <h1 className="text-[2rem] md:text-[2.6rem] text-prime">
+            <h1 className="text-[2rem] md:text-[2.4rem] text-prime">
               MOZILLA FIREFOX
             </h1>
             <span className="text-light text-base md:text-2xl">
@@ -102,7 +102,7 @@ const ForgotPassword = () => {
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0">
             <form
-              className="flex flex-col gap-3 md:gap-6 w-full md:w-[60%] mx-auto"
+              className="flex flex-col gap-3 md:gap-6 w-full lg:w-[60%] mx-auto"
               onSubmit={handleLogin}
             >
               <Input
@@ -127,7 +127,7 @@ const ForgotPassword = () => {
               )}
               <Button submit={true}>Reset Password</Button>
             </form>
-            <section className="text-center mt-6 md:mt-12 text-light bg-dark py-2 md:py-4 w-full md:w-[60%] mx-auto relative">
+            <section className="text-center mt-6 md:mt-12 text-light bg-dark py-2 md:py-4 w-full lg:w-[60%] mx-auto relative">
               <div className="text-black text-sm md:text-lg cursor-pointer w-full bg-prime absolute bottom-0 py-1">
                 <NavLink to="/" className="text-black">
                   &larr; Back

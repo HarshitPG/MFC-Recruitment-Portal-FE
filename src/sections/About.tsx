@@ -40,7 +40,7 @@ const About = () => {
           <img
             src="/background.png"
             alt=""
-            className="hidden md:block absolute -bottom-12 invert brightness-[50%] left-1/2 -translate-x-1/2 scale-x-75 scale-y-90"
+            className="hidden lg:block absolute -bottom-12 invert brightness-[50%] left-1/2 -translate-x-1/2 scale-x-75 scale-y-90"
           />
         </div>
       </BoundingBox>

@@ -84,7 +84,7 @@ const ResetPassword = () => {
         />
       )}
       <BoundingBox>
-        <div className="w-full h-full relative z-[100] flex justify-between flex-col md:flex-row">
+        <div className="w-full h-full relative z-[100] flex justify-between flex-col lg:flex-row">
           <div className="heading text-center md:text-left">
             <h1 className="text-[2rem] md:text-[2.6rem] text-prime">
               MOZILLA FIREFOX
@@ -100,7 +100,7 @@ const ResetPassword = () => {
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0">
             <form
-              className="flex flex-col gap-3 md:gap-6 w-full md:w-[60%] mx-auto"
+              className="flex flex-col gap-3 md:gap-6 w-full lg:w-[60%] mx-auto"
               onSubmit={handleLogin}
             >
               <Input
@@ -119,7 +119,7 @@ const ResetPassword = () => {
               />
               <Button submit={true}>Reset Password</Button>
             </form>
-            <section className="text-center mt-6 md:mt-12 text-light bg-dark py-2 md:py-4 w-full md:w-[60%] mx-auto relative">
+            <section className="text-center mt-6 md:mt-12 text-light bg-dark py-2 md:py-4 w-full lg:w-[60%] mx-auto relative">
               <div className="text-black text-sm md:text-lg cursor-pointer w-full bg-prime absolute bottom-0 py-1">
                 <NavLink to="/" className="text-black  ">
                   Back To Login page
@@ -131,9 +131,9 @@ const ResetPassword = () => {
         <img
           src="/background.png"
           alt=""
-          className="hidden md:block absolute bottom-0 invert brightness-[50%] left-0 scale-95"
+          className="hidden lg:block absolute bottom-0 invert brightness-[50%] left-0 scale-95"
         />
-        <div className="absolute bottom-0 w-full md:hidden">
+        <div className="absolute bottom-0 w-full lg:hidden">
           <img
             src="/empty-bg.png"
             alt=""
@@ -142,17 +142,17 @@ const ResetPassword = () => {
           <img
             src="/Dino.png"
             alt=""
-            className="invert w-20 absolute bottom-10"
+            className="invert w-20 absolute bottom-10 md:bottom-16"
           />
           <img
             src="/cacti.png"
             alt=""
-            className="invert w-20 bottom-10 absolute right-20"
+            className="invert w-20 bottom-10 absolute right-20 md:right-32 md:bottom-16"
           />
           <img
             src="/cacti.png"
             alt=""
-            className="invert w-10 bottom-10 absolute right-16"
+            className="invert w-10 bottom-10 absolute right-16 md:right-60 md:bottom-20"
           />
         </div>
       </BoundingBox>
