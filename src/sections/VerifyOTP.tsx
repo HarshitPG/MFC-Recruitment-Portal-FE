@@ -1,6 +1,6 @@
 import Button from "../components/Button";
 import BoundingBox from "../components/BoundingBox";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import axios from "axios";
 // import { toast } from "react-toastify";
 import { useState } from "react";
@@ -9,8 +9,10 @@ import OtpInput from "react-otp-input";
 import Cookies from "js-cookie";
 import CustomToast from "../components/CustomToast";
 import { ToastContent } from "../components/CustomToast";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const VerifyOTP: React.FC = () => {
+  const navigate = useNavigate();
   const [openToast, setOpenToast] = useState(false);
   const [toastContent, setToastContent] = useState<ToastContent>({});
   const [otp, setOTP] = useState("");
@@ -34,13 +36,16 @@ const VerifyOTP: React.FC = () => {
           },
         }
       );
-      if (response.data.message) {
+      if (response.data.message === "verified") {
         setOpenToast(true);
         setToastContent({
           message: `${response.data.message}`,
-          type: "error",
+          // type: "error",
         });
         // toast.success(`${response.data.message}`);
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
       }
 
       setError(false);
