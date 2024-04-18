@@ -113,15 +113,19 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
               <p className="text-xs md:text-sm text-left leading-4">
                 {task.description}
               </p>
-              <div className="flex justify-between flex-col md:flex-row">
-                <span className="md:text-sm text-xs">Resources:</span>
-                <span className="flex flex-col md:text-sm text-xs md:flex-row">
-                  {task.resources &&
-                    task.resources.map((resource, index) => (
-                      <a href={resource}>Resource {index + 1} &nbsp;</a>
-                    ))}
-                </span>
-              </div>
+              {task.resources && task.resources.length > 0 && (
+                <div className="flex justify-between flex-col md:flex-row">
+                  <span className="md:text-sm text-xs">Resources:</span>
+                  <span className="flex flex-col md:text-sm text-xs md:flex-row">
+                    {task.resources &&
+                      task.resources.map((resource, index) => (
+                        <a href={resource} target="_blank">
+                          Resource {index + 1} &nbsp;
+                        </a>
+                      ))}
+                  </span>
+                </div>
+              )}
               {/* <button
                 type="button"
                 className="nes-btn is-error  custom-nes-error"
@@ -316,13 +320,7 @@ const techTaskData = [
       "Build a secure blogging app with user registration and login (authentication). Users can manage their blog posts: view all, create new, edit, and delete them.  Bonus features include a search function and a like system to enhance user interaction.",
     for: "junior",
   },
-  {
-    label: "backend",
-    title: "Task: Devlop a Simple Blog API",
-    description:
-      "Build a secure blogging app with user registration and login (authentication). Users can manage their blog posts: view all, create new, edit, and delete them.  Bonus features include a search function and a like system to enhance user interaction.",
-    for: "junior",
-  },
+
   {
     label: "backend",
     title: "Task: Devlop a Ecommerce API",
@@ -330,14 +328,7 @@ const techTaskData = [
       "Develop a secure Ecommerce platform with user registration, login (including user verification or Google OAuth is bonus ), authentication and product management. Users can view all products, create new listings with image uploads, edit and delete products. Implement a search function with pagination, price sorting, category filtering, and a like product features.",
     for: "senior",
   },
-  {
-    label: "frontend",
-    title: "Task: Kanban Board Clone",
-    description:
-      "Your task is to create a Kanban board clone that is fully functional, responsive, and features an intuitive user interface. A Kanban board is a project management tool that visually represents work at various stages of a process using cards and columns. Each column represents a stage of the workflow, and cards within each column represent tasks or items to be completed. The primary objective of a Kanban board is to provide visibility into the progress of work and help teams manage their tasks efficiently.",
-    for: "senior",
-    resources: ["https://webix.com/demos/kanban/"],
-  },
+
   {
     label: "frontend",
     title: "Task: Kanban Board Clone",
@@ -353,5 +344,20 @@ const techTaskData = [
       "Your task is to create a blog website UI similar to the design provided in the Dribbble shot linked below. You have the freedom to use any framework or technology you prefer, whether it's plain HTML/CSS, React, Vue.js, or any other framework. Your goal is to replicate the design as closely as possible, including layout, colors, typography, and any interactive elements.Including some animations and responsiveness in the website is bonus.",
     for: "junior",
     resources: ["https://dribbble.com/shots/18841111-Blog-Website-Design"],
+  },
+  {
+    label: "fullstack",
+    title: "Fullstack Blog Application Task",
+    description:
+      "You are tasked with building a full-stack blog application that allows users to create, read, update, and delete blog posts. The application should have a beautiful user interface inspired by the design provided in this Dribbble shot. The backend should handle user authentication and authorization, ensuring that only authenticated users can create, edit, or delete their own blog posts.",
+    for: "junior",
+    resources: ["https://dribbble.com/shots/18841111-Blog-Website-Design"],
+  },
+  {
+    label: "fullstack",
+    title: "Fullstack Blog Application Task",
+    description:
+      "You are tasked with building a full-stack social media platform where users can create profiles, connect with friends, share posts, comment on posts, like posts, and send messages. The application should have a clean and intuitive user interface and should prioritize user experience and scalability.",
+    for: "senior",
   },
 ];
