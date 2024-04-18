@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useTabStore } from "../store";
@@ -35,7 +35,18 @@ const ManagementTaskSubmission = () => {
     question24: "",
     question25: "",
   });
-
+  interface localData {
+    isSC: boolean;
+  }
+  useEffect(() => {
+    const localData = localStorage.getItem("userDetails");
+    const data: localData = localData && JSON.parse(localData);
+    if (data.isSC) {
+      setCoreType("senior");
+    } else {
+      setCoreType("junior");
+    }
+  }, []);
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     if (checked) {
