@@ -56,7 +56,7 @@ const Navbar = () => {
           </div>
         )}
       </a>
-      <a className="relative z-[150] scale-75 lg:scale-100" href="/faq">
+      <a className="relative z-[150] scale-75 lg:scale-100" href="/profile">
         <img
           className="nes-avatar is-medium w-full invert"
           alt="Profile"

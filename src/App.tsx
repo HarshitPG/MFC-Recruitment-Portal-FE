@@ -11,6 +11,7 @@ import BaseWrapper from "./wrappers/BaseWrapper";
 import MainWrapper from "./wrappers/MainWrapper";
 import About from "./sections/About";
 import FAQs from "./sections/FAQs";
+import ChangeProfile from "./sections/ChangeProfile";
 // import { ToastContainer } from "react-toastify";
 // import ForgotPasswordStep1 from "./sections/ForgotPasswordStep1";
 // import ResetPassword from "./sections/ResetPassword";
@@ -22,10 +23,6 @@ function App() {
         rel="stylesheet"
       />
       <MainWrapper>
-
-
-
-
         <Router>
           <Routes>
             <Route path="/" element={<Landing />} />
@@ -36,12 +33,9 @@ function App() {
             <Route path="/forgotpassword" element={<ForgotPassword />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQs />} />
+            <Route path="/profile" element={<ChangeProfile />} />
           </Routes>
         </Router>
-      
-      
-      
-      
       </MainWrapper>
     </BaseWrapper>
   );
