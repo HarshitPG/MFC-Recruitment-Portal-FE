@@ -92,13 +92,15 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
             Game Dev
           </button>
 
-          <button
-            type="button"
-            onClick={() => setSelectedSubDomain("cp")}
-            className="nes-btn is-error nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
-          >
-            CP
-          </button>
+          {!isSC && (
+            <button
+              type="button"
+              onClick={() => setSelectedSubDomain("cp")}
+              className="nes-btn is-error nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
+            >
+              CP
+            </button>
+          )}
         </div>
       )}
 

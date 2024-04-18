@@ -94,5 +94,7 @@ const TaskSubmission = () => {
     </div>
   );
 };
-
+// TODO: While submitting an empty form, show an error message
+// TODO: Only one attempt should be available to the students for submission
+// TODO: The management answers are going empty
 export default TaskSubmission;

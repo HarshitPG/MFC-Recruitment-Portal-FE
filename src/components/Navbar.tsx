@@ -78,6 +78,7 @@ const Navbar = () => {
         href="/"
         onClick={() => {
           Cookies.remove("jwtToken");
+          localStorage.clear();
         }}
       >
         <img

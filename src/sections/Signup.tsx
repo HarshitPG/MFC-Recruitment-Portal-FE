@@ -112,6 +112,7 @@ const Signup: React.FC = () => {
 
         setError(false);
         console.error(error);
+        // TODO: Set the appropriate error message here
       } catch (error) {
         console.log(error);
         setOpenToast(true);

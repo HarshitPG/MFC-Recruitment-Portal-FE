@@ -247,6 +247,7 @@ const DesignTaskSubmission = () => {
                 name={`question${index + 9}`}
                 placeholder="Write here..."
                 onChange={(e) => handleInputChange(e, quiz.question)}
+                required
               ></textarea>
             </div>
           ))}

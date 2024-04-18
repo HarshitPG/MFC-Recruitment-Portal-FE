@@ -185,6 +185,7 @@ const TechTaskSubmission = () => {
           // required
           name="question1"
           onChange={handleInputChange}
+          required
           placeholder="Write here..."
         ></textarea>
 
@@ -213,6 +214,7 @@ const TechTaskSubmission = () => {
                 name={`question${index + 2}`}
                 placeholder="Write here..."
                 onChange={(e) => handleInputChange(e, quiz.question)}
+                required
               ></textarea>
             </div>
           ))}

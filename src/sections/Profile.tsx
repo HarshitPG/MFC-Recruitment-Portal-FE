@@ -49,10 +49,10 @@ const Profile = () => {
     }
 
     if (mobile.length !== 10) {
+      // TODO: Only numbers should be included here
       setError("Mobile number should be 10 digits long.");
       return;
     }
-    
 
     setError("");
 
@@ -175,7 +175,15 @@ const Profile = () => {
   //     </div>
   //   );
   // }
-
+  useEffect(() => {
+    if (error.length != 0 || error !== "false") {
+      setOpenToast(true);
+      setToastContent({
+        message: error,
+        type: "error",
+      });
+    }
+  }, [error]);
   return (
     <div className="w-full profile py-6 flex gap-4 flex-col lg:flex-row">
       {openToast && (
@@ -223,6 +231,7 @@ const Profile = () => {
                   placeholder="Your mobile"
                   type="text"
                   value={mobile}
+                  required
                   onChange={(e) => setMobileno(e.target.value)}
                 />
               </section>
@@ -234,6 +243,7 @@ const Profile = () => {
                   label={"email"}
                   placeholder="Personal Email"
                   type="text"
+                  required
                   value={emailpersonal}
                   onChange={(e) => setEmailPersonal(e.target.value)}
                 />

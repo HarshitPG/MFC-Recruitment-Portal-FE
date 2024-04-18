@@ -86,7 +86,7 @@ const ChangeProfile = () => {
         }
       );
       console.log(response.data);
-
+      // TODO: After updating, show some message and redirect to dashboard
       localStorage.setItem("userDetails", JSON.stringify(response.data));
 
       console.log("ProfileIsDone", response.data.isProfileDone);
