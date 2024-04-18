@@ -4,9 +4,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 // import { toast } from "react-toastify";
 import BoundingBox from "../components/BoundingBox";
 import Button from "../components/Button";
+import CustomToast, { ToastContent } from "../components/CustomToast";
 import Input from "../components/Input";
-import CustomToast from "../components/CustomToast";
-import { ToastContent } from "../components/CustomToast";
 interface SignupFormValues {
   name: string;
   registerNumber: string;

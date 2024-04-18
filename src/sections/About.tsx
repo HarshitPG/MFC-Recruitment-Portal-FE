@@ -28,7 +28,7 @@ const About = () => {
           </div>
           <section className="icon-list flex gap-10 md:gap-8 mt-8 w-full justify-center scale-75 md:scale-100">
             <a href="https://www.instagram.com/mfc_vit">
-              <i className="nes-icon instagram is-medium">/</i>
+              <i className="nes-icon instagram is-medium"></i>
             </a>
             <a href="mailto:mozillafirefox@vit.ac.in">
               <i className="nes-icon gmail is-medium"></i>
