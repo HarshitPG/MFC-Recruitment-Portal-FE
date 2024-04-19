@@ -4,8 +4,9 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Navbar from "../components/Navbar";
 import secureLocalStorage from "react-secure-storage";
-
+import { useNavigate } from "react-router-dom";
 const ChangeProfile = () => {
+  const navigator = useNavigate();
   const [domain, setDomain] = useState<string[]>([]);
   const [isProfile, setIsProfile] = useState(false);
   const [openToast, setOpenToast] = useState(false);
@@ -55,6 +56,13 @@ const ChangeProfile = () => {
 
         console.log("ProfileIsDone", response.data.isProfileDone);
         setIsProfile(response.data.isProfileDone);
+        if (response.data.isProfileDone) {
+          setOpenToast(true);
+          setToastContent({
+            message: "Profile Updated Successfully",
+          });
+          navigator("/dashboard");
+        }
       }
       if (response.data.message) {
         setOpenToast(true);
@@ -126,21 +134,21 @@ const ChangeProfile = () => {
   }, []);
 
   return (
-    <div className="w-full h-full bg-black p-12 flex flex-grow">
+    <div className="w-full min-h-screen h-full bg-black p-12 flex flex-grow flex-col md:flex-row">
       <Navbar />
       <div
-        className="border-8 border-dashed border-prime h-full flex-grow p-4 text-white flex flex-col gap-4 items-center justify-center"
+        className="border-8 border-dashed border-prime h-full flex-grow p-4 text-white flex flex-col gap-4 items-center md:justify-center"
         style={{ background: "rgba(0,0,0,0)" }}
       >
         {isProfile ? (
-          <div className="nes-container is-rounded is-dark">
-            <h1 className="text-xl md:text-2xl lg:text-3xl">
+          <div className="nes-container is-rounded is-dark w-full md:w-fit">
+            <h1 className="text-sm text-center md:text-left md:text-xl lg:text-3xl">
               Update Your Profile
             </h1>
             <hr className="h-1 bg-white" />
             <form onSubmit={handleUserDomain}>
               <section className="flex items-start text-xs md:text-base lg:items-center flex-col lg:flex-row mt-8">
-                <p className="w-full text-xl">Update domain:</p>
+                <p className="w-full text-sn md:text-xl">Update domain:</p>
                 <div className="flex flex-col w-full">
                   <label>
                     <input
