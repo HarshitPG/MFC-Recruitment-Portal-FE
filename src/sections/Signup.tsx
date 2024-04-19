@@ -38,7 +38,7 @@ const Signup: React.FC = () => {
       isError = false;
     }
 
-    const registerNumberRegex = /^(21|22|23)[a-zA-Z]{3}\d{4}$/;
+    const registerNumberRegex = /^(21|22|23)[A-Z]{3}\d{4}$/;
     if (!regno) {
       errors.registerNumber = "Register number is required";
       isError = true;
@@ -78,10 +78,6 @@ const Signup: React.FC = () => {
   }
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const trimmedEmail = email.trim();
-    const trimmedPassword = password.trim();
-    const trimmedConfirmPassword = confirmpassword.trim();
 
     const isErrorValidation = validateData();
 
@@ -202,7 +198,7 @@ const Signup: React.FC = () => {
                 type="text"
                 value={email}
                 onChange={(e) => {
-                  setEmail(e.target.value.trim());
+                  setEmail(e.target.value.trim().toLowerCase());
                 }}
                 required={true}
               />

@@ -194,7 +194,7 @@ const Landing = () => {
                 placeholder="Password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value.trim())}
+                onChange={(e) => setPassword(e.target.value.trim().toLowerCase())}
               />
               <Button submit={true}>Sign In</Button>
               <NavLink
