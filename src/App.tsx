@@ -1,27 +1,66 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+} from "react-router-dom";
+import "./App.css";
+import Dashboard from "./dashboard/Dashboard";
+//import Landing from "./sections/Landing";
+import ForgotPassword from "./sections/ForgotPasswordStep1";
+import Landing from "./sections/Landing";
+import ResetPassword from "./sections/ResetPassword";
+import Signup from "./sections/Signup";
+import VerifyOTP from "./sections/VerifyOTP";
 import BaseWrapper from "./wrappers/BaseWrapper";
 import MainWrapper from "./wrappers/MainWrapper";
-import Landing from "./sections/Landing";
-import Signup from "./sections/Signup";
-import Dashboard from "./dashboard/Dashboard";
-import VerifyOTP from "./sections/VerifyOTP";
-import ResetPassword from "./sections/ResetPassword";
-import ForgotPassword from "./sections/ForgotPasswordStep1";
 import About from "./sections/About";
 import FAQs from "./sections/FAQs";
 import ChangeProfile from "./sections/ChangeProfile";
 
-const routes = [
-  { path: "/", component: Landing },
-  { path: "/signup", component: Signup },
-  { path: "/dashboard", component: Dashboard },
-  { path: "/verifyotp", component: VerifyOTP },
-  { path: "/resetpassword", component: ResetPassword },
-  { path: "/forgotpassword", component: ForgotPassword },
-  { path: "/about", component: About },
-  { path: "/faq", component: FAQs },
-  { path: "/profile", component: ChangeProfile },
-];
+// import { ToastContainer } from "react-toastify";
+// import ForgotPasswordStep1 from "./sections/ForgotPasswordStep1";
+// import ResetPassword from "./sections/ResetPassword";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Landing />,
+  },
+  {
+    path: "/signUp",
+    element: <Signup />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+  },
+  {
+    path: "/verifyotp",
+    element: <VerifyOTP />,
+  },
+  {
+    path: "/resetpassword",
+    element: <ResetPassword />,
+  },
+  {
+    path: "/forgotpassword",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/faq",
+    element: <FAQs />,
+  },
+  {
+    path: "/profile",
+    element: <ChangeProfile />,
+  },
+]);
 
 function App() {
   return (
@@ -31,17 +70,7 @@ function App() {
         rel="stylesheet"
       />
       <MainWrapper>
-        <Router>
-          <Routes>
-            {routes.map((route, index) => (
-              <Route
-                key={index}
-                path={route.path}
-                element={<route.component />}
-              />
-            ))}
-          </Routes>
-        </Router>
+        <RouterProvider router={router} />
       </MainWrapper>
     </BaseWrapper>
   );
