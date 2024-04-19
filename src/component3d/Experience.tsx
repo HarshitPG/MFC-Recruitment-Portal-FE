@@ -12,13 +12,13 @@ const Experience = () => {
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
       />
-      <group position={[-15, -1, 0]}>
+      <group position={[-15, -2.5, 0]}>
         <Fox />
       </group>
 
       <mesh
         rotation={[-0.5 * Math.PI, 0, 0]}
-        position={[0, -1, 0]}
+        position={[0, -2.5, 0]}
         receiveShadow
       >
         <planeGeometry args={[10, 10, 1, 1]} />

@@ -11,7 +11,7 @@ const Interface = () => {
     if (isPlayButton) {
       timeout = setTimeout(() => {
         setShowComponents(true);
-      }, 7000);
+      }, 6000);
     }
     return () => {
       clearTimeout(timeout);

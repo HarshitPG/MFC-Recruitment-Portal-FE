@@ -6,7 +6,7 @@ import Interface from "../component3d/Interface";
 const Scene3d: React.FC = () => {
   return (
     <>
-      <Canvas camera={{ position: [1, 0.5, 22.5], fov: 30 }} shadows>
+      <Canvas camera={{ position: [1, 0.5, 17.5], fov: 30 }} shadows>
         <Experience />
       </Canvas>
       <Interface />

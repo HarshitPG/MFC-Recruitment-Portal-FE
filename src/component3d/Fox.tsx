@@ -16,9 +16,30 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials, animations } = useGLTF("/model/fox1.gltf");
 
   const { actions, names } = useAnimations(animations || [], group);
+  console.log("actions", actions);
 
   const { setAnimations, animationIndex, setAnimationIndex } =
     useCharacterAnimations();
+
+  // useEffect(() => {
+  //   let timeout: NodeJS.Timeout | null;
+
+  //   if (animationIndex === 1) {
+  //     actions[names[animationIndex]]?.reset().fadeIn(0.5).play();
+  //     timeout = setTimeout(() => {
+  //       actions[names[animationIndex]]?.fadeOut(0.5);
+  //       setTimeout(() => {
+  //         setAnimationIndex(4);
+  //       }, 3000);
+  //     }, 500);
+  //   }
+
+  //   // Cleanup function
+  //   return () => {
+  //     if (timeout) clearTimeout(timeout);
+  //     actions[names[animationIndex]]?.fadeOut(0.5);
+  //   };
+  // }, [animationIndex, actions, names, setAnimationIndex]);
 
   useEffect(() => {
     setAnimations(names);
@@ -70,7 +91,7 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
 
       gsap.to(group.current.position, {
         x: 15,
-        duration: 3.5,
+        duration: 3,
         onComplete: onCompleteHandler as unknown as gsap.Callback,
       });
     }
@@ -94,6 +115,7 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
           });
           setTimeout(() => {
             setAnimationIndex(4);
+
             if (meshRef.current) {
               gsap.to(meshRef.current.position, {
                 y: 5,
@@ -148,6 +170,34 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
       setTimeout(() => {
         setAnimationIndex(4);
       }, 3000);
+    } else {
+      actions[names[animationIndex]]?.reset().fadeIn(0.5).play();
+    }
+    return () => {
+      actions[names[animationIndex]]?.fadeOut(0.5);
+    };
+  }, [animationIndex, actions, names, setAnimationIndex]);
+
+  useEffect(() => {
+    if (animationIndex === 1) {
+      actions[names[animationIndex]]?.reset().fadeIn(0.5).play();
+      setTimeout(() => {
+        setAnimationIndex(4);
+      }, 3000);
+    } else {
+      actions[names[animationIndex]]?.reset().fadeIn(0.5).play();
+    }
+    return () => {
+      actions[names[animationIndex]]?.fadeOut(0.5);
+    };
+  }, [animationIndex, actions, names, setAnimationIndex]);
+
+  useEffect(() => {
+    if (animationIndex === 0) {
+      actions[names[animationIndex]]?.reset().fadeIn(0.5).play();
+      setTimeout(() => {
+        setAnimationIndex(4);
+      }, 10000);
     } else {
       actions[names[animationIndex]]?.reset().fadeIn(0.5).play();
     }

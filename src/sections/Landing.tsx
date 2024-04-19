@@ -160,10 +160,10 @@ const Landing = () => {
               >
                 Wanna play with Mr.Fox Jr??
               </div>
-              <div className="mt-6 text-xs md:text-base">
+              <div className="mt-0 text-xs md:text-base">
                 {showComponents && isPlayButton && (
                   <>
-                    <div className="h-[40vh] w-[100%]">
+                    <div className="h-[65vh] pb-[15vh] w-[100%]">
                       <Scene3d />
                     </div>
                     <PlayBtn />

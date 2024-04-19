@@ -12,7 +12,7 @@ const PlayBtn: React.FC = () => {
       playElement.classList.toggle("goDown");
       setTimeout(() => {
         setAnimationIndex(7);
-      }, 4000);
+      }, 100);
     }
   };
 
