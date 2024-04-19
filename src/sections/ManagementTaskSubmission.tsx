@@ -142,7 +142,28 @@ const ManagementTaskSubmission = () => {
       console.log(error);
     }
   };
-
+  const [managementIsDone, setManagementIsDone] = useState(false);
+  useEffect(() => {
+    const userDetailsString = secureLocalStorage.getItem("userDetails");
+    if (typeof userDetailsString === "string") {
+      const userDetails = JSON.parse(userDetailsString) as {
+        managementIsDone: boolean[];
+      };
+      console.log(userDetails);
+      const isTechDone = userDetails.managementIsDone;
+      setManagementIsDone(isTechDone[0]);
+      // console.log("userDomains2:", userDomains);
+    }
+  }, []);
+  if (managementIsDone) {
+    return (
+      <div className="p-4">
+        You've successfully submitted the Managaement Task. You can now track
+        the status of your application in the designated "Application Status"
+        tab.
+      </div>
+    );
+  }
   return (
     <>
       <section className="mb-4 text-xs md:text-sm">

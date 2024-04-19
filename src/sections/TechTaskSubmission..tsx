@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import secureLocalStorage from "react-secure-storage";
+
 // import { useTabStore } from "../store";
 
 const TechTaskSubmission = () => {
@@ -106,6 +107,27 @@ const TechTaskSubmission = () => {
     }
   };
 
+  const [isTechDone, setIsTechDone] = useState(false);
+  useEffect(() => {
+    const userDetailsString = secureLocalStorage.getItem("userDetails");
+    if (typeof userDetailsString === "string") {
+      const userDetails = JSON.parse(userDetailsString) as {
+        techIsDone: boolean[];
+      };
+      console.log(userDetails);
+      const isTechDone = userDetails.techIsDone;
+      setIsTechDone(isTechDone[0]);
+      // console.log("userDomains2:", userDomains);
+    }
+  }, []);
+  if (isTechDone) {
+    return (
+      <div className="p-4">
+        You've successfully submitted the Tech Task. You can now track the
+        status of your application in the designated "Application Status" tab.
+      </div>
+    );
+  }
   return (
     <>
       <section className="mb-4 text-xs md:text-sm">
