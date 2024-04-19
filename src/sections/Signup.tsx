@@ -112,6 +112,7 @@ const Signup: React.FC = () => {
           navigate("/verifyotp");
         }
         if (response.data.error) {
+          setOpenToast(true);
           setToastContent({
             message: `${response.data.error}`,
             type: "error",
