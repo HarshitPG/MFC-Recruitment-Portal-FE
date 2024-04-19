@@ -9,6 +9,9 @@
 body {
   background: linear-gradient(to top, #202020, #000000);
 }
+* {
+  word-spacing: 5px;
+}
 .custom-nes-error {
   background-color: #fc7a00 !important;
 }
@@ -32,7 +35,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background-color: #fc7a00;
-  /* outline: 1px solid sl; */
+  outline: 3px solid white;
 }
 .faq::-webkit-scrollbar {
   width: 0.5em;
@@ -317,4 +320,7 @@ input[type="password"] {
 }
 .text-label {
   text-align: left !important;
+}
+.desc-task {
+  word-spacing: 7px;
 }

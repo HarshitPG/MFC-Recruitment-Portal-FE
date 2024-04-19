@@ -115,7 +115,7 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
               key={index}
             >
               <p className="title">{task.title}</p>
-              <p className="text-xs md:text-sm text-left leading-4">
+              <p className="text-xs md:text-sm text-left leading-4 desc-task">
                 {task.description}
               </p>
               {task.resources && task.resources.length > 0 && (

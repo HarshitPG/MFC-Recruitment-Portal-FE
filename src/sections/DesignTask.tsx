@@ -71,7 +71,9 @@ const DesignTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
               key={index}
             >
               <p className="title ">{task.title}</p>
-              <p className="text-xs text-left leading-4">{task.description}</p>
+              <p className="text-xs text-left leading-4 desc-task">
+                {task.description}
+              </p>
               {task.resources.length > 0 && (
                 <div className="flex justify-between flex-col md:flex-row">
                   <span className="md:text-sm text-xs">Resources:</span>

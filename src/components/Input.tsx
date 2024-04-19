@@ -17,7 +17,7 @@ const Input: React.FC<Props> = ({
 }: Props) => {
   const [inputType, setInputType] = useState(type);
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <input
         className="nes-input is-dark text-white outline-none "
         type={inputType}

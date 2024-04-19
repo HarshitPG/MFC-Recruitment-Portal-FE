@@ -78,7 +78,9 @@ const ManagementTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
               key={index}
             >
               <p className="title ">{task.title}</p>
-              <p className="text-xs text-left leading-4">{task.description}</p>
+              <p className="text-xs text-left leading-4 desc-task">
+                {task.description}
+              </p>
 
               {/* <button
                 type="button"
