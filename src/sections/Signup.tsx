@@ -111,6 +111,12 @@ const Signup: React.FC = () => {
           secureLocalStorage.setItem("email", response.data.email);
           navigate("/verifyotp");
         }
+        if (response.data.error) {
+          setToastContent({
+            message: `${response.data.error}`,
+            type: "error",
+          });
+        }
 
         setError(false);
         console.error(error);
@@ -119,7 +125,7 @@ const Signup: React.FC = () => {
         console.log(error);
         setOpenToast(true);
         setToastContent({
-          message: "Invalid Username or Password",
+          message: "Error while signup",
           type: "error",
         });
         // toast.error("Invalid Username or Password", {

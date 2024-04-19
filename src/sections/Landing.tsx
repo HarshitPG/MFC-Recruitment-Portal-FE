@@ -67,6 +67,12 @@ const Landing = () => {
         fetchUserDetails(response.data.id);
         console.log("response.data.id", response.data.id);
       }
+      if (response.data.error) {
+        setToastContent({
+          message: `${response.data.error}`,
+          type: "error",
+        });
+      }
 
       setError(false);
     } catch (error) {
