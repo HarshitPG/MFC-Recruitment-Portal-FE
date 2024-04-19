@@ -1,21 +1,28 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import "./App.css";
-import Dashboard from "./dashboard/Dashboard";
-//import Landing from "./sections/Landing";
-import ForgotPassword from "./sections/ForgotPasswordStep1";
-import Landing from "./sections/Landing";
-import ResetPassword from "./sections/ResetPassword";
-import Signup from "./sections/Signup";
-import VerifyOTP from "./sections/VerifyOTP";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import BaseWrapper from "./wrappers/BaseWrapper";
 import MainWrapper from "./wrappers/MainWrapper";
+import Landing from "./sections/Landing";
+import Signup from "./sections/Signup";
+import Dashboard from "./dashboard/Dashboard";
+import VerifyOTP from "./sections/VerifyOTP";
+import ResetPassword from "./sections/ResetPassword";
+import ForgotPassword from "./sections/ForgotPasswordStep1";
 import About from "./sections/About";
 import FAQs from "./sections/FAQs";
 import ChangeProfile from "./sections/ChangeProfile";
 
-// import { ToastContainer } from "react-toastify";
-// import ForgotPasswordStep1 from "./sections/ForgotPasswordStep1";
-// import ResetPassword from "./sections/ResetPassword";
+const routes = [
+  { path: "/", component: Landing },
+  { path: "/signup", component: Signup },
+  { path: "/dashboard", component: Dashboard },
+  { path: "/verifyotp", component: VerifyOTP },
+  { path: "/resetpassword", component: ResetPassword },
+  { path: "/forgotpassword", component: ForgotPassword },
+  { path: "/about", component: About },
+  { path: "/faq", component: FAQs },
+  { path: "/profile", component: ChangeProfile },
+];
+
 function App() {
   return (
     <BaseWrapper>
@@ -26,15 +33,13 @@ function App() {
       <MainWrapper>
         <Router>
           <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/verifyotp" element={<VerifyOTP />} />
-            <Route path="/resetpassword" element={<ResetPassword />} />
-            <Route path="/forgotpassword" element={<ForgotPassword />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/faq" element={<FAQs />} />
-            <Route path="/profile" element={<ChangeProfile />} />
+            {routes.map((route, index) => (
+              <Route
+                key={index}
+                path={route.path}
+                element={<route.component />}
+              />
+            ))}
           </Routes>
         </Router>
       </MainWrapper>
