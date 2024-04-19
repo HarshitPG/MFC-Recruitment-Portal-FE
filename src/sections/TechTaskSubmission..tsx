@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import secureLocalStorage from "react-secure-storage";
 // import { useTabStore } from "../store";
 
 const TechTaskSubmission = () => {
@@ -44,9 +45,9 @@ const TechTaskSubmission = () => {
   const handleSubmitTechTask = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const id = localStorage.getItem("id");
+    const id = secureLocalStorage.getItem("id");
     if (!id) {
-      console.error("User id not found in localStorage");
+      console.error("User id not found in secureLocalStorage");
       return;
     }
 
@@ -79,10 +80,10 @@ const TechTaskSubmission = () => {
   };
   const fetchUserDetails = async () => {
     try {
-      const id = localStorage.getItem("id");
+      const id = secureLocalStorage.getItem("id");
 
       if (!id) {
-        throw new Error("User id not found in localStorage");
+        throw new Error("User id not found in secureLocalStorage");
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
@@ -95,7 +96,7 @@ const TechTaskSubmission = () => {
       );
       console.log(response.data);
 
-      localStorage.setItem("userDetails", JSON.stringify(response.data));
+      secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
 
       console.log(response.data);
 

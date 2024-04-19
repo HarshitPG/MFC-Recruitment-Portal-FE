@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from "react";
+import secureLocalStorage from "react-secure-storage";
 interface Task {
   label: string;
   description: string;
@@ -27,12 +28,14 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
   }, [selectedSubDomain, isSC]);
 
   // useEffect(() => {
-  //   const isSenior = localStorage.getItem("isSC");
+  //   const isSenior = secureLocalStorage.getItem("isSC");
   //   setIsSC();
   // }, [isSC]);
 
   useLayoutEffect(() => {
-    const userDetailsstore = localStorage.getItem("userDetails");
+    const userDetailsstore = secureLocalStorage.getItem(
+      "userDetails"
+    ) as string;
     if (userDetailsstore) {
       const userDetails = JSON.parse(userDetailsstore);
       setIsSC(userDetails.isSC);

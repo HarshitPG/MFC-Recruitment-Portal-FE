@@ -16,7 +16,6 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials, animations } = useGLTF("/model/fox1.gltf");
 
   const { actions, names } = useAnimations(animations || [], group);
-  console.log("actions", actions);
 
   const { setAnimations, animationIndex, setAnimationIndex } =
     useCharacterAnimations();

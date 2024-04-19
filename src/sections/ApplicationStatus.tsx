@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import TechApplicationStatus from "./TechApplicationStatus";
 import DesignApplicationStatus from "./DesignApplicationStatus";
 import ManagementApplicationStatus from "./ManagementApplicationStatus";
+import secureLocalStorage from "react-secure-storage";
+
 const ApplicationStatus = () => {
   const [selectedDomain, setSelectedDomain] = useState(-1);
   const [domains, setDomains] = useState<string[]>([]);
   useEffect(() => {
-    const userDetailsString = localStorage.getItem("userDetails");
-    if (userDetailsString) {
-      const userDetails = JSON.parse(userDetailsString);
+    const userDetailsString = secureLocalStorage.getItem("userDetails");
+    if (typeof userDetailsString === "string") {
+      const userDetails = JSON.parse(userDetailsString) as { domain: string[] };
       const userDomains = userDetails.domain;
       console.log("userDomains2:", userDomains);
       setDomains(userDomains);

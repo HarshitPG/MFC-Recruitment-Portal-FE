@@ -3,6 +3,7 @@ import TechTask from "./TechTask";
 import DesignTask from "./DesignTask";
 import ManagementTask from "./ManagementTask";
 import { useTabStore } from "../store";
+import secureLocalStorage from "react-secure-storage";
 
 const Task = () => {
   const { tabIndex, setTabIndex } = useTabStore();
@@ -14,9 +15,12 @@ const Task = () => {
   }, [selectedDomain]);
 
   useEffect(() => {
-    const userDetailsString = localStorage.getItem("userDetails");
+    const userDetailsString = secureLocalStorage.getItem(
+      "userDetails"
+    ) as string;
     if (userDetailsString) {
-      const userDetails = JSON.parse(userDetailsString);
+      const userDetails: { domain: string[]; isProfileDone: boolean } =
+        JSON.parse(userDetailsString);
       const userDomains = userDetails.domain;
       console.log("userDomains:", userDomains);
       setDomains(userDomains);
@@ -29,6 +33,7 @@ const Task = () => {
       }
     }
   }, []);
+
   return (
     <div className="w-full profile py-6 flex gap-4 flex-col lg:flex-row">
       <div className="nes-container with-title is-centered lg:w-[30%] w-full invert">

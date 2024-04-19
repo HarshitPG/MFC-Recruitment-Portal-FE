@@ -6,6 +6,8 @@ import { useEffect, useLayoutEffect, useState } from "react";
 // import { toast } from "react-toastify";
 import CustomToast, { ToastContent } from "../components/CustomToast";
 import { useTabStore } from "../store";
+import secureLocalStorage from "react-secure-storage";
+
 const Profile = () => {
   const { setTabIndex } = useTabStore();
   const [openToast, setOpenToast] = useState(false);
@@ -70,10 +72,10 @@ const Profile = () => {
       volunteeredEvent,
     };
     try {
-      const id = localStorage.getItem("id");
+      const id = secureLocalStorage.getItem("id");
 
       if (!id) {
-        throw new Error("User id not found in localStorage");
+        throw new Error("User id not found in secureLocalStorage");
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.put(
@@ -93,13 +95,13 @@ const Profile = () => {
         setToastContent({
           message: `${response.data.message}`,
         });
-        // let userDetails = localStorage.getItem("userDetails");
-        // const userDetailsStr = localStorage.getItem("userDetails");
+        // let userDetails = secureLocalStorage.getItem("userDetails");
+        // const userDetailsStr = secureLocalStorage.getItem("userDetails");
         // if (userDetailsStr) {
         //   const userDetails: UserDetails = JSON.parse(userDetailsStr);
         //   userDetails.isProfileDone = true;
         //   userDetails.domain = formData.domain;
-        //   localStorage.setItem("userDetails", JSON.stringify(userDetails));
+        //   secureLocalStorage.setItem("userDetails", JSON.stringify(userDetails));
         // }
         // setTabIndex(1);
         // fetchUserDetails();
@@ -125,10 +127,10 @@ const Profile = () => {
 
   const fetchUserDetails = async () => {
     try {
-      const id = localStorage.getItem("id");
+      const id = secureLocalStorage.getItem("id");
 
       if (!id) {
-        throw new Error("User id not found in localStorage");
+        throw new Error("User id not found in secureLocalStorage");
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
@@ -141,7 +143,7 @@ const Profile = () => {
       );
       console.log(response.data);
 
-      localStorage.setItem("userDetails", JSON.stringify(response.data));
+      secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
 
       console.log(response.data);
 
@@ -154,7 +156,9 @@ const Profile = () => {
   };
 
   useLayoutEffect(() => {
-    const userDetailsstore = localStorage.getItem("userDetails");
+    const userDetailsstore = secureLocalStorage.getItem(
+      "userDetails"
+    ) as string;
     if (userDetailsstore) {
       const userDetails = JSON.parse(userDetailsstore);
       setIsProfile(userDetails.isProfileDone);

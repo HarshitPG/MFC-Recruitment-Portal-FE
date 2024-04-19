@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
+import secureLocalStorage from "react-secure-storage";
 const Navbar = () => {
   const [menuHelper, setMenuHelper] = useState(-1);
 
@@ -78,7 +79,7 @@ const Navbar = () => {
         href="/"
         onClick={() => {
           Cookies.remove("jwtToken");
-          localStorage.clear();
+          secureLocalStorage.clear();
         }}
       >
         <img

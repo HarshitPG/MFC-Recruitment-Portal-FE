@@ -3,6 +3,7 @@ import { ToastContent } from "../components/CustomToast";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Navbar from "../components/Navbar";
+import secureLocalStorage from "react-secure-storage";
 
 const ChangeProfile = () => {
   const [domain, setDomain] = useState<string[]>([]);
@@ -30,10 +31,10 @@ const ChangeProfile = () => {
     };
     e.preventDefault();
     try {
-      const id = localStorage.getItem("id");
+      const id = secureLocalStorage.getItem("id");
 
       if (!id) {
-        throw new Error("User id not found in localStorage");
+        throw new Error("User id not found in secureLocalStorage");
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.put(
@@ -47,7 +48,10 @@ const ChangeProfile = () => {
       );
       if (response.data) {
         // fetchUserDetails();
-        localStorage.setItem("userDetails", JSON.stringify(response.data));
+        secureLocalStorage.setItem(
+          "userDetails",
+          JSON.stringify(response.data)
+        );
 
         console.log("ProfileIsDone", response.data.isProfileDone);
         setIsProfile(response.data.isProfileDone);
@@ -74,10 +78,10 @@ const ChangeProfile = () => {
 
   const fetchUserDetails = async () => {
     try {
-      const id = localStorage.getItem("id");
+      const id = secureLocalStorage.getItem("id");
 
       if (!id) {
-        throw new Error("User id not found in localStorage");
+        throw new Error("User id not found in secureLocalStorage");
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
@@ -90,7 +94,7 @@ const ChangeProfile = () => {
       );
       console.log(response.data);
       // TODO: After updating, show some message and redirect to dashboard
-      localStorage.setItem("userDetails", JSON.stringify(response.data));
+      secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
 
       console.log("ProfileIsDone", response.data.isProfileDone);
       setIsProfile(response.data.isProfileDone);
@@ -100,15 +104,22 @@ const ChangeProfile = () => {
   };
 
   useEffect(() => {
-    const localData = localStorage.getItem("userDetails");
-    const data = localData && JSON.parse(localData);
-    console.log(data.domain);
-    setDomain(data?.domain || []);
+    const localData = secureLocalStorage.getItem("userDetails");
+    if (typeof localData === "string") {
+      const data = JSON.parse(localData);
+      console.log(data.domain);
+      setDomain(data?.domain || []);
+    } else {
+      console.error(
+        "Unexpected data type retrieved from local storage:",
+        typeof localData
+      );
+    }
   }, []);
 
   useEffect(() => {
-    const userDetailsstore = localStorage.getItem("userDetails");
-    if (userDetailsstore) {
+    const userDetailsstore = secureLocalStorage.getItem("userDetails");
+    if (typeof userDetailsstore === "string") {
       const userDetails = JSON.parse(userDetailsstore);
       setIsProfile(userDetails.isProfileDone);
     }

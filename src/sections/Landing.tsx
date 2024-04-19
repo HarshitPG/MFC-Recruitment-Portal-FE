@@ -13,6 +13,8 @@ import React from "react";
 import { toast } from "react-toastify";
 import CustomToast from "../components/CustomToast";
 import { ToastContent } from "../components/CustomToast";
+import secureLocalStorage from "react-secure-storage";
+
 const Landing = () => {
   const [openToast, setOpenToast] = useState(false);
   const [toastContent, setToastContent] = useState<ToastContent>({});
@@ -57,9 +59,9 @@ const Landing = () => {
           autoClose: 3000,
           theme: "dark",
         });
-        localStorage.setItem("id", response.data.id);
-        localStorage.setItem("name", response.data.username);
-        localStorage.setItem("email", response.data.email);
+        secureLocalStorage.setItem("id", response.data.id);
+        secureLocalStorage.setItem("name", response.data.username);
+        secureLocalStorage.setItem("email", response.data.email);
         fetchUserDetails(response.data.id);
         console.log("response.data.id", response.data.id);
       }
@@ -83,24 +85,24 @@ const Landing = () => {
 
   const fetchUserDetails = async (userId: string) => {
     try {
-      const id = localStorage.getItem("id");
+      const id = secureLocalStorage.getItem("id");
 
       if (!id) {
-        throw new Error("User id not found in localStorage");
+        throw new Error("User id not found in secureLocalStorage");
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
         `https://mfc-recruitment-portal-be.vercel.app/user/user/${userId}`,
         {
           headers: {
-            Authorization: `Bearer ` + `${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       console.log(response.data);
-      localStorage.setItem("userDetails", JSON.stringify(response.data));
-      const userDetailsString = localStorage.getItem("userDetails");
-      if (userDetailsString) {
+      secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
+      const userDetailsString = secureLocalStorage.getItem("userDetails");
+      if (typeof userDetailsString === "string") {
         const userDetails = JSON.parse(userDetailsString);
         const isProfileDone = userDetails.isProfileDone;
         console.log("Is Profile Done:", isProfileDone);
@@ -112,7 +114,7 @@ const Landing = () => {
         }
         navigate("/dashboard");
       } else {
-        console.error("User details not found in localStorage");
+        console.error("User details not found in secureLocalStorage");
       }
     } catch (error) {
       console.log(error);

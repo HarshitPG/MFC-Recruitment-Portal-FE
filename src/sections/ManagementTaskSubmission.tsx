@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import secureLocalStorage from "react-secure-storage";
 // import { useTabStore } from "../store";
 
 const ManagementTaskSubmission = () => {
@@ -37,14 +38,12 @@ const ManagementTaskSubmission = () => {
     question25: "",
   });
 
-  interface localData {
-    isSC: boolean;
-  }
-
   useEffect(() => {
-    const localData = localStorage.getItem("userDetails");
-    const data: localData = localData && JSON.parse(localData);
-    if (data.isSC) {
+    const localData = secureLocalStorage.getItem("userDetails") as
+      | string
+      | null;
+    const data: { isSC?: boolean } = localData && JSON.parse(localData);
+    if (data && data.isSC) {
       setCoreType("senior");
     } else {
       setCoreType("junior");
@@ -83,9 +82,9 @@ const ManagementTaskSubmission = () => {
   ) => {
     e.preventDefault();
 
-    const id = localStorage.getItem("id");
+    const id = secureLocalStorage.getItem("id");
     if (!id) {
-      console.error("User id not found in localStorage");
+      console.error("User id not found in secureLocalStorage");
       return;
     }
 
@@ -118,10 +117,10 @@ const ManagementTaskSubmission = () => {
   };
   const fetchUserDetails = async () => {
     try {
-      const id = localStorage.getItem("id");
+      const id = secureLocalStorage.getItem("id");
 
       if (!id) {
-        throw new Error("User id not found in localStorage");
+        throw new Error("User id not found in secureLocalStorage");
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
@@ -134,7 +133,7 @@ const ManagementTaskSubmission = () => {
       );
       console.log(response.data);
 
-      localStorage.setItem("userDetails", JSON.stringify(response.data));
+      secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
 
       console.log(response.data);
 

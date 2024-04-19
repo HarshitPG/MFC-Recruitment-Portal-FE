@@ -7,6 +7,8 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import CustomToast from "../components/CustomToast";
 import { ToastContent } from "../components/CustomToast";
+import secureLocalStorage from "react-secure-storage";
+
 const ForgotPassword = () => {
   const [openToast, setOpenToast] = useState(false);
   const [toastContent, setToastContent] = useState<ToastContent>({});

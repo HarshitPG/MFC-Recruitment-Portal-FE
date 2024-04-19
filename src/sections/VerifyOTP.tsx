@@ -10,6 +10,7 @@ import Cookies from "js-cookie";
 import CustomToast from "../components/CustomToast";
 import { ToastContent } from "../components/CustomToast";
 import { NavLink, useNavigate } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
 
 const VerifyOTP: React.FC = () => {
   const navigate = useNavigate();
@@ -21,10 +22,10 @@ const VerifyOTP: React.FC = () => {
   const handleVerifyOTP = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const id = localStorage.getItem("id");
+      const id = secureLocalStorage.getItem("id");
 
       if (!id) {
-        throw new Error("User id not found in localStorage");
+        throw new Error("User id not found in secureLocalStorage");
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.post(
@@ -70,8 +71,8 @@ const VerifyOTP: React.FC = () => {
     try {
       {
         const token = Cookies.get("jwtToken");
-        const userId = localStorage.getItem("id");
-        const email = localStorage.getItem("email");
+        const userId = secureLocalStorage.getItem("id");
+        const email = secureLocalStorage.getItem("email");
         console.log("userId:", userId);
         console.log("email:", email);
 

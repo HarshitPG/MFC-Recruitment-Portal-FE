@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import TechTaskSubmission from "./TechTaskSubmission.";
 import DesignTaskSubmission from "./DesignTaskSubmission";
 import ManagementTaskSubmission from "./ManagementTaskSubmission";
+import secureLocalStorage from "react-secure-storage";
+
 const TaskSubmission = () => {
   const [selectedDomain, setSelectedDomain] = useState(-1);
   const [domains, setDomains] = useState<string[]>([]);
@@ -20,7 +22,9 @@ const TaskSubmission = () => {
   // };
 
   useEffect(() => {
-    const userDetailsString = localStorage.getItem("userDetails");
+    const userDetailsString = secureLocalStorage.getItem(
+      "userDetails"
+    ) as string;
     if (userDetailsString) {
       const userDetails = JSON.parse(userDetailsString);
       const userDomains = userDetails.domain;

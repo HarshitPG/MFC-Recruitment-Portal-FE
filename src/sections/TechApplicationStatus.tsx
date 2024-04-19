@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import secureLocalStorage from "react-secure-storage";
 
 const TechApplicationStatus = () => {
   const [status, setStatus] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const id = localStorage.getItem("id");
+      const id = secureLocalStorage.getItem("id");
       if (!id) {
-        console.error("User id not found in localStorage");
+        console.error("User id not found in secureLocalStorage");
         return;
       }
 

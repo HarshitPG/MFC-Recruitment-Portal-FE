@@ -6,6 +6,8 @@ import BoundingBox from "../components/BoundingBox";
 import Button from "../components/Button";
 import CustomToast, { ToastContent } from "../components/CustomToast";
 import Input from "../components/Input";
+import secureLocalStorage from "react-secure-storage";
+
 interface SignupFormValues {
   name: string;
   registerNumber: string;
@@ -103,9 +105,9 @@ const Signup: React.FC = () => {
           //   autoClose: 3000,
           //   theme: "dark",
           // });
-          localStorage.setItem("id", response.data.id);
-          localStorage.setItem("name", response.data.username);
-          localStorage.setItem("email", response.data.email);
+          secureLocalStorage.setItem("id", response.data.id);
+          secureLocalStorage.setItem("name", response.data.username);
+          secureLocalStorage.setItem("email", response.data.email);
           navigate("/verifyotp");
         }
 
