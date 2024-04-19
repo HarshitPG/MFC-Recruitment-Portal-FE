@@ -1,13 +1,6 @@
-import {
-  Route,
-  BrowserRouter as Router,
-  RouterProvider,
-  Routes,
-  createBrowserRouter,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./dashboard/Dashboard";
-//import Landing from "./sections/Landing";
 import ForgotPassword from "./sections/ForgotPasswordStep1";
 import Landing from "./sections/Landing";
 import ResetPassword from "./sections/ResetPassword";
@@ -19,49 +12,6 @@ import About from "./sections/About";
 import FAQs from "./sections/FAQs";
 import ChangeProfile from "./sections/ChangeProfile";
 
-// import { ToastContainer } from "react-toastify";
-// import ForgotPasswordStep1 from "./sections/ForgotPasswordStep1";
-// import ResetPassword from "./sections/ResetPassword";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Landing />,
-  },
-  {
-    path: "/signUp",
-    element: <Signup />,
-  },
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
-  },
-  {
-    path: "/verifyotp",
-    element: <VerifyOTP />,
-  },
-  {
-    path: "/resetpassword",
-    element: <ResetPassword />,
-  },
-  {
-    path: "/forgotpassword",
-    element: <ForgotPassword />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/faq",
-    element: <FAQs />,
-  },
-  {
-    path: "/profile",
-    element: <ChangeProfile />,
-  },
-]);
-
 function App() {
   return (
     <BaseWrapper>
@@ -70,7 +20,19 @@ function App() {
         rel="stylesheet"
       />
       <MainWrapper>
-        <RouterProvider router={router} />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/verifyotp" element={<VerifyOTP />} />
+            <Route path="/resetpassword" element={<ResetPassword />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/faq" element={<FAQs />} />
+            <Route path="/profile" element={<ChangeProfile />} />
+          </Routes>
+        </Router>
       </MainWrapper>
     </BaseWrapper>
   );
