@@ -173,7 +173,7 @@ const Landing = () => {
               <div className="mt-0 text-xs md:text-base">
                 {showComponents && isPlayButton && (
                   <>
-                    <div className="h-[65vh] pb-[15vh] w-[100%]">
+                    <div className="h-[55vh] pb-[15vh] w-[100%]">
                       <Scene3d />
                     </div>
                     <PlayBtn />
