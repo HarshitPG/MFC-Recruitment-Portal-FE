@@ -96,11 +96,11 @@ const ForgotPassword = () => {
             <span className="text-light text-base md:text-2xl">
               IS RECRUITING
             </span>
-            <div className="mt-6 text-xs md:text-base">
+            {/* <div className="mt-6 text-xs md:text-base">
               <Link className="nes-btn" to="/dashboard">
                 Go to Dashboard &rarr;
               </Link>
-            </div>
+            </div> */}
           </div>
           <div className="flex-grow h-full p-4 md:p-8 mt-4 md:mt-0">
             <form
