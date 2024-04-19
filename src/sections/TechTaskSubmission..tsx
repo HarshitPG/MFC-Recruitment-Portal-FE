@@ -67,7 +67,7 @@ const TechTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
 
     try {
       const response = await axios.post(
-        `https://mfc-recruitment-portal-be.vercel.app/upload/tech/${id}`,
+        `https://enrollments-backend.mozillavit.in/upload/tech/${id}`,
         updatedFormData,
         {
           headers: {
@@ -93,7 +93,7 @@ const TechTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
-        `https://mfc-recruitment-portal-be.vercel.app/user/user/${id}`,
+        `https://enrollments-backend.mozillavit.in/user/user/${id}`,
         {
           headers: {
             Authorization: `Bearer ` + `${token}`,

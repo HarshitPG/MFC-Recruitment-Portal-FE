@@ -44,7 +44,7 @@ const ForgotPassword = () => {
     // Form data is valid, proceed with password reset
     try {
       const response = await axios.post(
-        "https://mfc-recruitment-portal-be.vercel.app/auth/requestPasswordReset",
+        "https://enrollments-backend.mozillavit.in/auth/requestPasswordReset",
         { email, regno }
       );
 

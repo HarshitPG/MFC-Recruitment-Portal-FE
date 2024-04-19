@@ -41,15 +41,15 @@ const Landing = () => {
     e.preventDefault();
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
-    console.log('Trimmed Email:', trimmedEmail);
-    console.log('Trimmed Password:', trimmedPassword);
+    console.log("Trimmed Email:", trimmedEmail);
+    console.log("Trimmed Password:", trimmedPassword);
     const formData = {
       email,
       password,
     };
     try {
       const response = await axios.post(
-        "https://mfc-recruitment-portal-be.vercel.app/auth/login",
+        "https://enrollments-backend.mozillavit.in/auth/login",
         formData
       );
       if (response.data.token) {
@@ -94,7 +94,7 @@ const Landing = () => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
-        `https://mfc-recruitment-portal-be.vercel.app/user/user/${userId}`,
+        `https://enrollments-backend.mozillavit.in/user/user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

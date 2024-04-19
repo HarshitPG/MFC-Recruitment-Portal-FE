@@ -83,7 +83,6 @@ const Signup: React.FC = () => {
     const trimmedPassword = password.trim();
     const trimmedConfirmPassword = confirmpassword.trim();
 
-
     const isErrorValidation = validateData();
 
     const formData = {
@@ -96,7 +95,7 @@ const Signup: React.FC = () => {
     if (!isErrorValidation) {
       try {
         const response = await axios.post(
-          "https://mfc-recruitment-portal-be.vercel.app/auth/signup",
+          "https://enrollments-backend.mozillavit.in/auth/signup",
           formData
         );
         if (response.data.token) {

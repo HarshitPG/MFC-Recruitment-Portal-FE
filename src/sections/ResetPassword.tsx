@@ -35,7 +35,7 @@ const ResetPassword = () => {
     };
     try {
       const response = await axios.post(
-        "https://mfc-recruitment-portal-be.vercel.app/auth/updatepassword",
+        "https://enrollments-backend.mozillavit.in/auth/updatepassword",
         formData
       );
       if (response) {

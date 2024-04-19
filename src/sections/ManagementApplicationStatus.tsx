@@ -18,7 +18,7 @@ const ManagementApplicationStatus = () => {
       const token = Cookies.get("jwtToken");
       try {
         const response = await axios.get(
-          `https://mfc-recruitment-portal-be.vercel.app/applicatiostatus/statusmanagement/${id}`,
+          `https://enrollments-backend.mozillavit.in/applicatiostatus/statusmanagement/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

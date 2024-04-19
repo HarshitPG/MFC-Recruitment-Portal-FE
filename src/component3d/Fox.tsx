@@ -10,7 +10,7 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
   const redirectToURL = (url: string) => {
     window.open(url, "_blank");
   };
-  const texture = useLoader(TextureLoader, "/Dino.png");
+  const texture = useLoader(TextureLoader, "/link.svg");
   const group = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Mesh>(null);
   const { nodes, materials, animations } = useGLTF("/model/fox1.gltf");
@@ -212,7 +212,9 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
         position={[15, 15, 0]}
         // transparent
         // envMapIntensity={2}
-        onClick={() => redirectToURL("https://innovationx.mozillavit.in/")}
+        onClick={() =>
+          redirectToURL("https://www.youtube.com/@MozillaFirefoxClubVIT")
+        }
       >
         <planeGeometry args={[4, 4]} />
         <meshStandardMaterial map={texture} transparent />

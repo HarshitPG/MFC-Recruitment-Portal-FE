@@ -39,7 +39,7 @@ const ChangeProfile = () => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.put(
-        `https://mfc-recruitment-portal-be.vercel.app/user/updateuserdomain/${id}`,
+        `https://enrollments-backend.mozillavit.in/user/updateuserdomain/${id}`,
         formData,
         {
           headers: {
@@ -93,7 +93,7 @@ const ChangeProfile = () => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
-        `https://mfc-recruitment-portal-be.vercel.app/user/user/${id}`,
+        `https://enrollments-backend.mozillavit.in/user/user/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

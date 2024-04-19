@@ -102,7 +102,7 @@ const ManagementTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
 
     try {
       const response = await axios.post(
-        `https://mfc-recruitment-portal-be.vercel.app/upload/management/${id}`,
+        `https://enrollments-backend.mozillavit.in/upload/management/${id}`,
         updatedFormData,
         {
           headers: {
@@ -128,7 +128,7 @@ const ManagementTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
-        `https://mfc-recruitment-portal-be.vercel.app/user/user/${id}`,
+        `https://enrollments-backend.mozillavit.in/user/user/${id}`,
         {
           headers: {
             Authorization: `Bearer ` + `${token}`,
@@ -249,7 +249,10 @@ const ManagementTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
         ></textarea>
 
         <section className="my-2  text-xs md:text-sm">
-          <span className="text-prime">Answer some general questions: (Choose a sub-domain in order to procure your questions)</span>
+          <span className="text-prime">
+            Answer some general questions: (Choose a sub-domain in order to
+            procure your questions)
+          </span>
           <br />
           <br />
           {quizQuestions.map(

@@ -29,7 +29,7 @@ const VerifyOTP: React.FC = () => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.post(
-        `https://mfc-recruitment-portal-be.vercel.app/auth/verifyotp/${id}`,
+        `https://enrollments-backend.mozillavit.in/auth/verifyotp/${id}`,
         { otp },
         {
           headers: {
@@ -77,7 +77,7 @@ const VerifyOTP: React.FC = () => {
         console.log("email:", email);
 
         const response = await axios.post(
-          `https://mfc-recruitment-portal-be.vercel.app/auth/resendotp/${userId}`,
+          `https://enrollments-backend.mozillavit.in/auth/resendotp/${userId}`,
           { email },
           {
             headers: {
