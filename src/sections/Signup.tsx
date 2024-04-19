@@ -2,11 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 // import { toast } from "react-toastify";
+import secureLocalStorage from "react-secure-storage";
 import BoundingBox from "../components/BoundingBox";
 import Button from "../components/Button";
 import CustomToast, { ToastContent } from "../components/CustomToast";
 import Input from "../components/Input";
-import secureLocalStorage from "react-secure-storage";
 
 interface SignupFormValues {
   name: string;
@@ -78,6 +78,12 @@ const Signup: React.FC = () => {
   }
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+    const trimmedConfirmPassword = confirmpassword.trim();
+
+
     const isErrorValidation = validateData();
 
     const formData = {
@@ -197,7 +203,7 @@ const Signup: React.FC = () => {
                 type="text"
                 value={email}
                 onChange={(e) => {
-                  setEmail(e.target.value);
+                  setEmail(e.target.value.trim());
                 }}
                 required={true}
               />
@@ -226,7 +232,7 @@ const Signup: React.FC = () => {
                 placeholder="Password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value.trim())}
                 required={true}
               />
               {formErrors.password && (
@@ -239,7 +245,7 @@ const Signup: React.FC = () => {
                 placeholder="Confirm Password"
                 type="password"
                 value={confirmpassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={(e) => setConfirmPassword(e.target.value.trim())}
                 required={true}
               />
               {formErrors.confirmPassword && (

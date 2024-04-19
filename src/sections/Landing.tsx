@@ -1,19 +1,17 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
+import { toast } from "react-toastify";
 import BoundingBox from "../components/BoundingBox";
 import Button from "../components/Button";
+import CustomToast, { ToastContent } from "../components/CustomToast";
 import Input from "../components/Input";
-import { useTabStore } from "../store";
-import Scene3d from "../components/Scene3d";
 import PlayBtn from "../components/PlayBtn";
+import Scene3d from "../components/Scene3d";
 import { useCharacterAnimations } from "../context/CharAnimation";
-import React from "react";
-import { toast } from "react-toastify";
-import CustomToast from "../components/CustomToast";
-import { ToastContent } from "../components/CustomToast";
-import secureLocalStorage from "react-secure-storage";
+import { useTabStore } from "../store";
 
 const Landing = () => {
   const [openToast, setOpenToast] = useState(false);
@@ -41,6 +39,10 @@ const Landing = () => {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+    console.log('Trimmed Email:', trimmedEmail);
+    console.log('Trimmed Password:', trimmedPassword);
     const formData = {
       email,
       password,
@@ -185,14 +187,14 @@ const Landing = () => {
                 placeholder="Vit-Email"
                 type="text"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value.trim())}
               />
               <Input
                 label={"password"}
                 placeholder="Password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value.trim())}
               />
               <Button submit={true}>Sign In</Button>
               <NavLink
