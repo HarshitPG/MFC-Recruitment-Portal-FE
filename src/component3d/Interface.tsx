@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import { useCharacterAnimations } from "../context/CharAnimation";
 
 const Interface = () => {
-  const { isPlayButton, setIsPlayButton, animations, setAnimationIndex } =
+  const { isPlayButton, animations, setAnimationIndex } =
     useCharacterAnimations();
   const [showComponents, setShowComponents] = useState(false);
   useEffect(() => {

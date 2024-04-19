@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useTabStore } from "../store";
+// import { useTabStore } from "../store";
 
 const ManagementTaskSubmission = () => {
-  const [domain, setDomain] = useState<string[]>([]);
+  // const [domain, setDomain] = useState<string[]>([]);
   const [coreType, setCoreType] = useState("junior");
-  const { tabIndex, setTabIndex } = useTabStore();
+  // const { tabIndex, setTabIndex } = useTabStore();
   const [subdomain, setSubDomain] = useState<string[]>([]);
+
   const [formData, setFormData] = useState({
     question1: "",
     question2: "",
@@ -35,9 +36,11 @@ const ManagementTaskSubmission = () => {
     question24: "",
     question25: "",
   });
+
   interface localData {
     isSC: boolean;
   }
+
   useEffect(() => {
     const localData = localStorage.getItem("userDetails");
     const data: localData = localData && JSON.parse(localData);
@@ -47,6 +50,7 @@ const ManagementTaskSubmission = () => {
       setCoreType("junior");
     }
   }, []);
+
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -65,7 +69,12 @@ const ManagementTaskSubmission = () => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: [prevData[name] ? prevData[name][0] : question, value],
+      [name]: [
+        prevData[name as keyof typeof formData]
+          ? prevData[name as keyof typeof formData][0]
+          : question,
+        value,
+      ],
     }));
   };
 
@@ -90,7 +99,7 @@ const ManagementTaskSubmission = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5001/upload/management/${id}`,
+        `https://mfc-recruitment-portal-be.vercel.app/upload/management/${id}`,
         updatedFormData,
         {
           headers: {
@@ -207,7 +216,7 @@ const ManagementTaskSubmission = () => {
           className="nes-textarea is-dark min-h-[15rem]"
           required
           name="question1"
-          onChange={handleInputChange}
+          onChange={(e) => handleInputChange(e, "question1")}
           placeholder="Write here..."
         ></textarea>
 
@@ -216,7 +225,7 @@ const ManagementTaskSubmission = () => {
           <br />
           <br />
           {quizQuestions.map(
-            (quiz, index) =>
+            (quiz) =>
               quiz.subdomain &&
               subdomain.includes(quiz.subdomain) &&
               quiz.for === coreType && (

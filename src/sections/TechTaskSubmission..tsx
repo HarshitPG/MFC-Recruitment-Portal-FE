@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useTabStore } from "../store";
+// import { useTabStore } from "../store";
 
 const TechTaskSubmission = () => {
-  const { tabIndex, setTabIndex } = useTabStore();
+  // const { tabIndex, setTabIndex } = useTabStore();
   const [subdomain, setSubDomain] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     question1: "",
@@ -32,7 +32,12 @@ const TechTaskSubmission = () => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: [prevData[name] ? prevData[name][0] : question, value],
+      [name]: [
+        prevData[name as keyof typeof formData]
+          ? prevData[name as keyof typeof formData][0]
+          : question,
+        value,
+      ],
     }));
   };
 
@@ -184,7 +189,7 @@ const TechTaskSubmission = () => {
           className="nes-textarea is-dark min-h-[15rem]"
           // required
           name="question1"
-          onChange={handleInputChange}
+          onChange={(e) => handleInputChange(e, "question1")}
           required
           placeholder="Write here..."
         ></textarea>

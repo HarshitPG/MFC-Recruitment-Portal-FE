@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../components/PlayBtn.css";
 import { useCharacterAnimations } from "../context/CharAnimation";
 
 const PlayBtn: React.FC = () => {
-  const { isPlayButton, setIsPlayButton, animationIndex, setAnimationIndex } =
+  const { isPlayButton, setIsPlayButton, setAnimationIndex } =
     useCharacterAnimations();
   const handlePlayBtnClick = () => {
     const playElement = document.getElementById("play");

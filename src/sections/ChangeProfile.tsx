@@ -1,5 +1,5 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import CustomToast, { ToastContent } from "../components/CustomToast";
+import { useEffect, useState } from "react";
+import { ToastContent } from "../components/CustomToast";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Navbar from "../components/Navbar";

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Cookies from "js-cookie";
 const Navbar = () => {
   const [menuHelper, setMenuHelper] = useState(-1);

@@ -3,7 +3,7 @@ interface Task {
   label: string;
   description: string;
   title: string;
-  resources: string[];
+  resources?: string[];
 }
 interface Props {
   selectedSubDomain: string;

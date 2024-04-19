@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useTabStore } from "../store";
+// import { useTabStore } from "../store";
 
 const DesignTaskSubmission = () => {
-  const { tabIndex, setTabIndex } = useTabStore();
+  // const { tabIndex, setTabIndex } = useTabStore();
   const [subdomain, setSubDomain] = useState<string[]>([]);
-  const [formData, setFormData] = useState({
+  interface FormData {
+    [key: string]: string | [string, string];
+  }
+
+  const [formData, setFormData] = useState<FormData>({
     question1: "",
     question2: "",
     question3: "",
@@ -15,7 +19,7 @@ const DesignTaskSubmission = () => {
   });
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = e.target;
+    const { value, checked } = e.target as HTMLInputElement;
     if (checked) {
       setSubDomain((prevDomains) => [...prevDomains, value]);
     } else {
@@ -31,14 +35,16 @@ const DesignTaskSubmission = () => {
       | React.ChangeEvent<HTMLTextAreaElement>,
     question: string
   ) => {
-    const { name, value, type, checked } = e.target;
-    if (type === "radio") {
-      if (checked) {
+    const { name, value, type } = e.target as
+      | HTMLInputElement
+      | HTMLTextAreaElement;
+    if (type === "radio" && e.target instanceof HTMLInputElement) {
+      if (e.target.checked) {
         setFormData((prevData) => ({
           ...prevData,
           [name]: [prevData[name] ? prevData[name][0] : question, value],
         }));
-        console.log(name, value, type, checked);
+        console.log(name, value, type, e.target.checked);
       }
     } else {
       setFormData((prevData) => ({
@@ -176,7 +182,7 @@ const DesignTaskSubmission = () => {
           className="nes-textarea is-dark min-h-[15rem]"
           required
           name="question1"
-          onChange={handleInputChange}
+          onChange={(e) => handleInputChange(e, "question1")}
           placeholder="Write here..."
         ></textarea>
 

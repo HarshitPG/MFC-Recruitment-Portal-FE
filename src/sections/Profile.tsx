@@ -7,7 +7,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import CustomToast, { ToastContent } from "../components/CustomToast";
 import { useTabStore } from "../store";
 const Profile = () => {
-  const { tabIndex, setTabIndex } = useTabStore();
+  const { setTabIndex } = useTabStore();
   const [openToast, setOpenToast] = useState(false);
   const [toastContent, setToastContent] = useState<ToastContent>({});
   const [mobile, setMobileno] = useState("");
@@ -49,15 +49,16 @@ const Profile = () => {
     }
 
     if (mobile.length !== 10 || !/^\d{10}$/.test(mobile)) {
-      setError("Mobile number should be 10 digits long and in the correct format.");
+      setError(
+        "Mobile number should be 10 digits long and in the correct format."
+      );
       return;
-    } 
+    }
 
     if (!/^\S+@\S+\.\S+$/.test(emailpersonal)) {
       setError("Please enter a valid email address.");
       return;
     }
-    
 
     setError("");
 

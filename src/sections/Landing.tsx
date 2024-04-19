@@ -16,8 +16,7 @@ import { ToastContent } from "../components/CustomToast";
 const Landing = () => {
   const [openToast, setOpenToast] = useState(false);
   const [toastContent, setToastContent] = useState<ToastContent>({});
-  const { isPlayButton, setIsPlayButton, animationIndex, setAnimationIndex } =
-    useCharacterAnimations();
+  const { isPlayButton } = useCharacterAnimations();
   const { tabIndex, setTabIndex } = useTabStore();
   const [showComponents, setShowComponents] = useState(false);
   const [password, setPassword] = useState("");
