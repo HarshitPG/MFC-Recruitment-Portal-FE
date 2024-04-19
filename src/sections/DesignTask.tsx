@@ -36,14 +36,14 @@ const DesignTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
             onClick={() => setSelectedSubDomain("poster")}
             className="nes-btn is-error nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
-            Poster
+            Graphic Design
           </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("ui")}
             className="nes-btn is-error nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
-            UI
+            UI/UX
           </button>
           {/* <button
             type="button"
@@ -57,7 +57,8 @@ const DesignTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
             onClick={() => setSelectedSubDomain("video")}
             className="nes-btn is-error nes-btn-task w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
-            Video
+            Videoediting/ <br />
+            Photography
           </button>
         </div>
       )}
@@ -141,7 +142,7 @@ export default DesignTask;
 const designTaskData = [
   {
     label: "video",
-    title: "Video Editing",
+    title: "Videoediting/Photography",
     description:
       "Create a 60-second reel highlighting MFC (Mozilla Firefox Club) events, drawing inspiration from past successes like Gravitas, Riviera, or any other relevant events. Utilize background music, templates, and scripting as needed to craft a compelling narrative. Be sure to capture the essence and excitement of these events while showcasing the diverse range of activities and experiences they offer. Instruction : Download any reel from our official Insta handle, and add motion text, background music, stock videos to recreate it.",
     resources: [
@@ -157,7 +158,7 @@ const designTaskData = [
   },
   {
     label: "poster",
-    title: "Poster",
+    title: "Graphic Design",
     description:
       "Your task is to recreate either a past event poster or a personalized poster that reflects your identity and interests. For the past event poster, choose any event from our archive, such as Gravitas or Riviera, and reimagine its promotional material with fresh creativity and design. Alternatively, craft a personalized poster that showcases who you are, including your passions, skills, and aspirations. Ensure that your poster design aligns with the organization's branding guidelines while incorporating innovative elements to captivate the audience's attention. Provide a brief rationale for your design choices and any inspiration sources utilized. Be prepared to present and discuss your poster during the evaluation process.",
     resources: [],
