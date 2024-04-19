@@ -1,12 +1,20 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
 import secureLocalStorage from "react-secure-storage";
+import { useNavigate } from "react-router-dom";
+
 const Navbar = () => {
   const [menuHelper, setMenuHelper] = useState(-1);
+  const navigate = useNavigate();
 
   return (
     <div className="nav h-full  w-full md:max-w-[100px] flex flex-row md:flex-col justify-around md:border-8 border-dashed items-center border-prime md:border-r-0  p-4 md:p-0 border-b-0 border-4">
-      <a href="/dashboard" className="relative z-[150]">
+      <div
+        onClick={() => {
+          navigate("/dashboard");
+        }}
+        className="relative z-[150]"
+      >
         <img
           className="nes-avatar is-medium w-full invert scale-75 lg:scale-100"
           alt="Dashboard"
@@ -22,8 +30,13 @@ const Navbar = () => {
             </a>
           </div>
         )}
-      </a>
-      <a href="/about" className="relative z-[150] scale-75 lg:scale-100">
+      </div>
+      <div
+        onClick={() => {
+          navigate("/about");
+        }}
+        className="relative z-[150] scale-75 lg:scale-100"
+      >
         <img
           className="nes-avatar is-medium w-full"
           alt="About"
@@ -39,8 +52,13 @@ const Navbar = () => {
             </a>
           </div>
         )}
-      </a>
-      <a className="relative z-[150] scale-75 lg:scale-100" href="/faq">
+      </div>
+      <div
+        className="relative z-[150] scale-75 lg:scale-100"
+        onClick={() => {
+          navigate("/faq");
+        }}
+      >
         <img
           className="nes-avatar is-medium w-full invert"
           alt="Dashboard"
@@ -56,8 +74,13 @@ const Navbar = () => {
             </a>
           </div>
         )}
-      </a>
-      <a className="relative z-[150] scale-75 lg:scale-100" href="/profile">
+      </div>
+      <div
+        className="relative z-[150] scale-75 lg:scale-100"
+        onClick={() => {
+          navigate("/profile");
+        }}
+      >
         <img
           className="nes-avatar is-medium w-full invert"
           alt="Profile"
@@ -73,11 +96,11 @@ const Navbar = () => {
             </a>
           </div>
         )}
-      </a>
-      <a
+      </div>
+      <div
         className="relative z-[150] scale-75 lg:scale-100"
-        href="/"
         onClick={() => {
+          navigate("/");
           Cookies.remove("jwtToken");
           secureLocalStorage.clear();
         }}
@@ -97,7 +120,7 @@ const Navbar = () => {
             </a>
           </div>
         )}
-      </a>
+      </div>
     </div>
   );
 };
