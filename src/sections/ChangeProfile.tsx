@@ -10,6 +10,7 @@ const ChangeProfile = () => {
   const [openToast, setOpenToast] = useState(false);
   const [error, setError] = useState(false);
   const [toastContent, setToastContent] = useState<ToastContent>({});
+  const [isDomainChanged, setIsDomainChanged] = useState(false);
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
@@ -20,6 +21,7 @@ const ChangeProfile = () => {
         prevDomains.filter((domain) => domain !== value)
       );
     }
+    setIsDomainChanged(true);
   };
 
   const handleUserDomain = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,6 +60,7 @@ const ChangeProfile = () => {
       }
 
       setError(false);
+      setIsDomainChanged(false);
     } catch (error) {
       console.log(error);
       setOpenToast(true);
@@ -170,6 +173,7 @@ const ChangeProfile = () => {
                 type="submit"
                 className="nes-btn is-success float-right"
                 style={{ marginBlock: "10px" }}
+                disabled={!isDomainChanged}
               >
                 Update &rarr;
               </button>
