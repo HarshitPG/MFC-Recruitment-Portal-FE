@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import React, { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import { ToastContent } from "../components/CustomToast";
 // import { useTabStore } from "../store";
@@ -249,7 +249,7 @@ const ManagementTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
         ></textarea>
 
         <section className="my-2  text-xs md:text-sm">
-          <span className="text-prime">Answer some general questions:</span>
+          <span className="text-prime">Answer some general questions: (Choose a sub-domain in order to procure your questions)</span>
           <br />
           <br />
           {quizQuestions.map(
