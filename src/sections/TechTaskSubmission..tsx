@@ -100,7 +100,9 @@ const TechTaskSubmission = () => {
       secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
 
       console.log(response.data);
-
+      if (response.data.techIsDone) {
+        setIsTechDone(true);
+      }
       console.log("techIsDone", response.data.techIsDone);
     } catch (error) {
       console.log(error);

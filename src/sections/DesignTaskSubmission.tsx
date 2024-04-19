@@ -109,7 +109,9 @@ const DesignTaskSubmission = () => {
       console.log(response.data);
 
       secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
-
+      if (response.data.designIsDone) {
+        setDesignIsDone(true);
+      }
       console.log(response.data);
 
       console.log("techIsDone", response.data.techIsDone);
