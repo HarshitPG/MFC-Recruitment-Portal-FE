@@ -3,8 +3,11 @@ import TechTaskSubmission from "./TechTaskSubmission.";
 import DesignTaskSubmission from "./DesignTaskSubmission";
 import ManagementTaskSubmission from "./ManagementTaskSubmission";
 import secureLocalStorage from "react-secure-storage";
-
+import CustomToast from "../components/CustomToast";
+import { ToastContent } from "../components/CustomToast";
 const TaskSubmission = () => {
+  const [openToast, setOpenToast] = useState(false);
+  const [toastContent, setToastContent] = useState<ToastContent>({});
   const [selectedDomain, setSelectedDomain] = useState(-1);
   const [domains, setDomains] = useState<string[]>([]);
   // const domainArr = ["tech", "design", "management"];
@@ -35,6 +38,16 @@ const TaskSubmission = () => {
 
   return (
     <div className="w-full profile py-6 flex gap-4 flex-col lg:flex-row">
+      {openToast && (
+        <CustomToast
+          setToast={setOpenToast}
+          setToastContent={setToastContent}
+          message={toastContent.message}
+          type={toastContent.type}
+          customStyle={toastContent.customStyle}
+          duration={toastContent.duration}
+        />
+      )}
       <div className="nes-container with-title is-centered w-full lg:w-[30%] invert">
         <p className="title">Domains</p>
         <div className="flex flex-col justify-between h-full gap-4 lg:gap-8">
@@ -85,13 +98,22 @@ const TaskSubmission = () => {
             </div>
           )}
           {domains.includes("tech") && selectedDomain === 0 && (
-            <TechTaskSubmission />
+            <TechTaskSubmission
+              setOpenToast={setOpenToast}
+              setToastContent={setToastContent}
+            />
           )}
           {domains.includes("design") && selectedDomain === 1 && (
-            <DesignTaskSubmission />
+            <DesignTaskSubmission
+              setOpenToast={setOpenToast}
+              setToastContent={setToastContent}
+            />
           )}
           {domains.includes("management") && selectedDomain === 2 && (
-            <ManagementTaskSubmission />
+            <ManagementTaskSubmission
+              setOpenToast={setOpenToast}
+              setToastContent={setToastContent}
+            />
           )}
         </div>
       </div>

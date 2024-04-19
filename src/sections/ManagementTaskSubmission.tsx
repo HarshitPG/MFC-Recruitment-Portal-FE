@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import secureLocalStorage from "react-secure-storage";
+import { ToastContent } from "../components/CustomToast";
 // import { useTabStore } from "../store";
-
-const ManagementTaskSubmission = () => {
+interface Props {
+  setOpenToast: React.Dispatch<React.SetStateAction<boolean>>;
+  setToastContent: React.Dispatch<React.SetStateAction<ToastContent>>;
+}
+const ManagementTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
   // const [domain, setDomain] = useState<string[]>([]);
   const [coreType, setCoreType] = useState("junior");
   // const { tabIndex, setTabIndex } = useTabStore();
@@ -138,6 +142,8 @@ const ManagementTaskSubmission = () => {
       console.log(response.data);
       if (response.data.managementIsDone) {
         setManagementIsDone(true);
+        setOpenToast(true);
+        setToastContent({ message: "Task Submitted Successfully!" });
       }
       console.log("techIsDone", response.data.techIsDone);
     } catch (error) {

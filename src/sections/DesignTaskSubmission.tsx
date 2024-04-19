@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import secureLocalStorage from "react-secure-storage";
+import { ToastContent } from "../components/CustomToast";
 // import { useTabStore } from "../store";
-
-const DesignTaskSubmission = () => {
+interface Props {
+  setOpenToast: React.Dispatch<React.SetStateAction<boolean>>;
+  setToastContent: React.Dispatch<React.SetStateAction<ToastContent>>;
+}
+const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
   // const { tabIndex, setTabIndex } = useTabStore();
   const [subdomain, setSubDomain] = useState<string[]>([]);
   interface FormData {
@@ -111,6 +115,8 @@ const DesignTaskSubmission = () => {
       secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
       if (response.data.designIsDone) {
         setDesignIsDone(true);
+        setOpenToast(true);
+        setToastContent({ message: "Task Submitted Successfully!" });
       }
       console.log(response.data);
 

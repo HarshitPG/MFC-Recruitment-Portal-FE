@@ -4,8 +4,13 @@ import Cookies from "js-cookie";
 import secureLocalStorage from "react-secure-storage";
 
 // import { useTabStore } from "../store";
-
-const TechTaskSubmission = () => {
+import { ToastContent } from "../components/CustomToast";
+// import { useTabStore } from "../store";
+interface Props {
+  setOpenToast: React.Dispatch<React.SetStateAction<boolean>>;
+  setToastContent: React.Dispatch<React.SetStateAction<ToastContent>>;
+}
+const TechTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
   // const { tabIndex, setTabIndex } = useTabStore();
   const [subdomain, setSubDomain] = useState<string[]>([]);
   const [formData, setFormData] = useState({
@@ -102,6 +107,8 @@ const TechTaskSubmission = () => {
       console.log(response.data);
       if (response.data.techIsDone) {
         setIsTechDone(true);
+        setOpenToast(true);
+        setToastContent({ message: "Task Submitted Successfully!" });
       }
       console.log("techIsDone", response.data.techIsDone);
     } catch (error) {
