@@ -12,7 +12,7 @@ const ApplicationStatus = () => {
     if (typeof userDetailsString === "string") {
       const userDetails = JSON.parse(userDetailsString) as { domain: string[] };
       const userDomains = userDetails.domain;
-      console.log("userDomains2:", userDomains);
+      // console.log("userDomains2:", userDomains);
       setDomains(userDomains);
     }
   }, []);

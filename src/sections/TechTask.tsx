@@ -41,7 +41,7 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
       setIsSC(userDetails.isSC);
     }
   }, []);
-  console.log(isSC);
+  // console.log(isSC);
 
   return (
     <div

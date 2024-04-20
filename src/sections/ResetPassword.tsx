@@ -50,7 +50,7 @@ const ResetPassword = () => {
         // });
         navigate("/");
 
-        console.log("response", response);
+        // console.log("response", response);
       }
 
       setError(false);

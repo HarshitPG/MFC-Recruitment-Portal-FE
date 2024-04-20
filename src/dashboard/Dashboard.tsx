@@ -14,11 +14,11 @@ const Dashboard = () => {
   const { tabIndex, setTabIndex } = useTabStore();
   const navigator = useNavigate();
   useEffect(() => {
-    console.log(tabIndex);
+    // console.log(tabIndex);
   }, [tabIndex]);
   useEffect(() => {
     const token = Cookies.get("jwtToken");
-    console.log("token", token);
+    // console.log("token", token);
     if (!token) {
       navigator("/");
     }

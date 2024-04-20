@@ -57,7 +57,7 @@ const TechTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
       return;
     }
 
-    console.log("id1", id);
+    // console.log("id1", id);
     const token = Cookies.get("jwtToken");
 
     const updatedFormData = {
@@ -75,11 +75,11 @@ const TechTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
           },
         }
       );
-      console.log("response", response);
+      // console.log("response", response);
       if (response.data) {
         fetchUserDetails();
       }
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -100,17 +100,17 @@ const TechTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
           },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
 
       secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
 
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data.techIsDone) {
         setIsTechDone(true);
         setOpenToast(true);
         setToastContent({ message: "Task Submitted Successfully!" });
       }
-      console.log("techIsDone", response.data.techIsDone);
+      // console.log("techIsDone", response.data.techIsDone);
     } catch (error) {
       console.log(error);
     }
@@ -123,7 +123,7 @@ const TechTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
       const userDetails = JSON.parse(userDetailsString) as {
         techIsDone: boolean[];
       };
-      console.log(userDetails);
+      // console.log(userDetails);
       const isTechDone = userDetails.techIsDone;
       setIsTechDone(isTechDone[0]);
       // console.log("userDomains2:", userDomains);

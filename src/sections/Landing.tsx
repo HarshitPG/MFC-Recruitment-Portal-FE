@@ -23,7 +23,7 @@ const Landing = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  console.log(error);
+  // console.log(error);
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -41,8 +41,8 @@ const Landing = () => {
     e.preventDefault();
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
-    console.log("Trimmed Email:", trimmedEmail);
-    console.log("Trimmed Password:", trimmedPassword);
+    // console.log("Trimmed Email:", trimmedEmail);
+    // console.log("Trimmed Password:", trimmedPassword);
     const formData = {
       email,
       password,
@@ -65,7 +65,7 @@ const Landing = () => {
         secureLocalStorage.setItem("name", response.data.username);
         secureLocalStorage.setItem("email", response.data.email);
         fetchUserDetails(response.data.id);
-        console.log("response.data.id", response.data.id);
+        // console.log("response.data.id", response.data.id);
       }
       if (response.data.error) {
         setToastContent({
@@ -76,7 +76,7 @@ const Landing = () => {
 
       setError(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setOpenToast(true);
       setToastContent({
         message: "Invalid Username or Password",
@@ -107,18 +107,18 @@ const Landing = () => {
           },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
       const userDetailsString = secureLocalStorage.getItem("userDetails");
       if (typeof userDetailsString === "string") {
         const userDetails = JSON.parse(userDetailsString);
         const isProfileDone = userDetails.isProfileDone;
-        console.log("Is Profile Done:", isProfileDone);
+        // console.log("Is Profile Done:", isProfileDone);
         if (isProfileDone) {
           setTabIndex(1);
         } else {
           setTabIndex(0);
-          console.log("tabIndex", tabIndex);
+          // console.log("tabIndex", tabIndex);
         }
         navigate("/dashboard");
       } else {

@@ -54,7 +54,7 @@ const ChangeProfile = () => {
           JSON.stringify(response.data)
         );
 
-        console.log("ProfileIsDone", response.data.isProfileDone);
+        // console.log("ProfileIsDone", response.data.isProfileDone);
         setIsProfile(response.data.isProfileDone);
         if (response.data.isProfileDone) {
           setOpenToast(true);
@@ -74,7 +74,7 @@ const ChangeProfile = () => {
       setError(false);
       setIsDomainChanged(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setOpenToast(true);
       setToastContent({
         message: "Invalid Username or Password",
@@ -100,14 +100,14 @@ const ChangeProfile = () => {
           },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       // TODO: After updating, show some message and redirect to dashboard
       secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
 
-      console.log("ProfileIsDone", response.data.isProfileDone);
+      // console.log("ProfileIsDone", response.data.isProfileDone);
       setIsProfile(response.data.isProfileDone);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -115,7 +115,7 @@ const ChangeProfile = () => {
     const localData = secureLocalStorage.getItem("userDetails");
     if (typeof localData === "string") {
       const data = JSON.parse(localData);
-      console.log(data.domain);
+      // console.log(data.domain);
       setDomain(data?.domain || []);
     } else {
       console.error(

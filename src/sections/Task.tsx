@@ -22,14 +22,14 @@ const Task = () => {
       const userDetails: { domain: string[]; isProfileDone: boolean } =
         JSON.parse(userDetailsString);
       const userDomains = userDetails.domain;
-      console.log("userDomains:", userDomains);
+      // console.log("userDomains:", userDomains);
       setDomains(userDomains);
       const isProfileDone = userDetails.isProfileDone;
       if (isProfileDone) {
         setTabIndex(1);
       } else {
         setTabIndex(0);
-        console.log("tabIndex", tabIndex);
+        // console.log("tabIndex", tabIndex);
       }
     }
   }, []);

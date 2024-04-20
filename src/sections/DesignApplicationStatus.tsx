@@ -14,7 +14,7 @@ const DesignApplicationStatus = () => {
         return;
       }
 
-      console.log("id12", id);
+      // console.log("id12", id);
       const token = Cookies.get("jwtToken");
       try {
         const response = await axios.get(
@@ -27,7 +27,7 @@ const DesignApplicationStatus = () => {
             },
           }
         );
-        console.log("response", response);
+        // console.log("response", response);
         if (response.data) {
           setStatus(response.data.message);
         }

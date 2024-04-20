@@ -92,7 +92,7 @@ const ManagementTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
       return;
     }
 
-    console.log("id1", id);
+    // console.log("id1", id);
     const token = Cookies.get("jwtToken");
 
     const updatedFormData = {
@@ -110,11 +110,11 @@ const ManagementTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
           },
         }
       );
-      console.log("response", response);
+      // console.log("response", response);
       if (response.data) {
         fetchUserDetails();
       }
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -135,17 +135,17 @@ const ManagementTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
           },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
 
       secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
 
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data.managementIsDone) {
         setManagementIsDone(true);
         setOpenToast(true);
         setToastContent({ message: "Task Submitted Successfully!" });
       }
-      console.log("techIsDone", response.data.techIsDone);
+      // console.log("techIsDone", response.data.techIsDone);
     } catch (error) {
       console.log(error);
     }
@@ -157,7 +157,7 @@ const ManagementTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
       const userDetails = JSON.parse(userDetailsString) as {
         managementIsDone: boolean[];
       };
-      console.log(userDetails);
+      // console.log(userDetails);
       const isTechDone = userDetails.managementIsDone;
       setManagementIsDone(isTechDone[0]);
       // console.log("userDomains2:", userDomains);

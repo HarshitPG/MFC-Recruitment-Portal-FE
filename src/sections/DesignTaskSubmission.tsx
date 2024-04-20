@@ -49,7 +49,7 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
           ...prevData,
           [name]: [prevData[name] ? prevData[name][0] : question, value],
         }));
-        console.log(name, value, type, e.target.checked);
+        // console.log(name, value, type, e.target.checked);
       }
     } else {
       setFormData((prevData) => ({
@@ -67,7 +67,7 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
       return;
     }
 
-    console.log("id1", id);
+    // console.log("id1", id);
     const token = Cookies.get("jwtToken");
 
     const updatedFormData = {
@@ -85,11 +85,11 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
           },
         }
       );
-      console.log("response", response);
+      // console.log("response", response);
       if (response.data) {
         fetchUserDetails();
       }
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -110,7 +110,7 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
           },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
 
       secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
       if (response.data.designIsDone) {
@@ -118,11 +118,11 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
         setOpenToast(true);
         setToastContent({ message: "Task Submitted Successfully!" });
       }
-      console.log(response.data);
+      // console.log(response.data);
 
-      console.log("techIsDone", response.data.techIsDone);
+      // console.log("techIsDone", response.data.techIsDone);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   const [designIsDone, setDesignIsDone] = useState(false);
@@ -132,7 +132,7 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
       const userDetails = JSON.parse(userDetailsString) as {
         designIsDone: boolean[];
       };
-      console.log(userDetails);
+      // console.log(userDetails);
       const isTechDone = userDetails.designIsDone;
       setDesignIsDone(isTechDone[0]);
       // console.log("userDomains2:", userDomains);

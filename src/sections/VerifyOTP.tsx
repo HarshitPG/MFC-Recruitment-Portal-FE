@@ -67,14 +67,14 @@ const VerifyOTP: React.FC = () => {
   };
 
   const handleResendClick = async () => {
-    console.log("Resend button clicked");
+    // console.log("Resend button clicked");
     try {
       {
         const token = Cookies.get("jwtToken");
         const userId = secureLocalStorage.getItem("id");
         const email = secureLocalStorage.getItem("email");
-        console.log("userId:", userId);
-        console.log("email:", email);
+        // console.log("userId:", userId);
+        // console.log("email:", email);
 
         const response = await axios.post(
           `${import.meta.env.VITE_BASE_URL}/auth/resendotp/${userId}`,

@@ -141,13 +141,13 @@ const Profile = () => {
           },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
 
       secureLocalStorage.setItem("userDetails", JSON.stringify(response.data));
 
-      console.log(response.data);
+      // console.log(response.data);
 
-      console.log("ProfileIsDone", response.data.isProfileDone);
+      // console.log("ProfileIsDone", response.data.isProfileDone);
       setIsNextpage(true);
       setIsProfile(response.data.isProfileDone);
     } catch (error) {
@@ -165,7 +165,7 @@ const Profile = () => {
     }
   }, []);
 
-  console.log("isProfile", isProfile);
+  // console.log("isProfile", isProfile);
   useEffect(() => {
     if (isProfile === true && isNextPage === true) {
       setTabIndex(1);

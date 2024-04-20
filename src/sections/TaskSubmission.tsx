@@ -31,7 +31,7 @@ const TaskSubmission = () => {
     if (userDetailsString) {
       const userDetails = JSON.parse(userDetailsString);
       const userDomains = userDetails.domain;
-      console.log("userDomains2:", userDomains);
+      // console.log("userDomains2:", userDomains);
       setDomains(userDomains);
     }
   }, []);
