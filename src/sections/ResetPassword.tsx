@@ -4,9 +4,8 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 // import { toast } from "react-toastify";
 import BoundingBox from "../components/BoundingBox";
 import Button from "../components/Button";
+import CustomToast, { ToastContent } from "../components/CustomToast";
 import Input from "../components/Input";
-import CustomToast from "../components/CustomToast";
-import { ToastContent } from "../components/CustomToast";
 const ResetPassword = () => {
   const [openToast, setOpenToast] = useState(false);
   const [toastContent, setToastContent] = useState<ToastContent>({});
@@ -108,14 +107,14 @@ const ResetPassword = () => {
                 placeholder="Password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value.trim())}
               />
               <Input
                 label={"confirmPassword"}
                 placeholder="confirmPassword"
                 type="password"
                 value={confirmpassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={(e) => setConfirmPassword(e.target.value.trim())}
               />
               <Button submit={true}>Reset Password</Button>
             </form>

@@ -1,13 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 // import { toast } from "react-toastify";
 import BoundingBox from "../components/BoundingBox";
 import Button from "../components/Button";
+import CustomToast, { ToastContent } from "../components/CustomToast";
 import Input from "../components/Input";
-import CustomToast from "../components/CustomToast";
-import { ToastContent } from "../components/CustomToast";
-import secureLocalStorage from "react-secure-storage";
 
 const ForgotPassword = () => {
   const [openToast, setOpenToast] = useState(false);
@@ -112,7 +110,7 @@ const ForgotPassword = () => {
                 placeholder="Vit-Email"
                 type="text"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value.toLowerCase().trim())}
               />
               {emailError && (
                 <p className="text-red-500 text-sm">{emailError}</p>
@@ -122,7 +120,7 @@ const ForgotPassword = () => {
                 placeholder="Registration Number"
                 type="text"
                 value={regno}
-                onChange={(e) => setRegno(e.target.value)}
+                onChange={(e) => setRegno(e.target.value.toUpperCase())}
               />
               {regnoError && (
                 <p className="text-red-500 text-sm">{regnoError}</p>

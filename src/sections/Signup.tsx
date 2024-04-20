@@ -38,7 +38,7 @@ const Signup: React.FC = () => {
       isError = false;
     }
 
-    const registerNumberRegex = /^(21|22|23)[A-Z]{3}\d{4}$/;
+    const registerNumberRegex = /^(21|22|23)[a-zA-Z]{3}\d{4}$/;
     if (!regno) {
       errors.registerNumber = "Register number is required";
       isError = true;
@@ -220,7 +220,7 @@ const Signup: React.FC = () => {
                 type="text"
                 value={regno}
                 onChange={(e) => {
-                  setRegno(e.target.value);
+                  setRegno(e.target.value.toUpperCase);
                 }}
                 required={true}
               />
