@@ -124,11 +124,11 @@ const Signup: React.FC = () => {
         // TODO: Set the appropriate error message here
       } catch (error) {
         console.log(error);
-        setOpenToast(true);
-        setToastContent({
-          message: "Error while signup",
-          type: "error",
-        });
+        // setOpenToast(true);
+        // setToastContent({
+        //   message: "Error while signup",
+        //   type: "error",
+        // });
         // toast.error("Invalid Username or Password", {
         //   className: "custom-bg-error",
         //   autoClose: 3000,
