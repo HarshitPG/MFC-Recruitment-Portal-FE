@@ -45,13 +45,13 @@ const DesignTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
           >
             UI/UX
           </button>
-          {/* <button
+          <button
             type="button"
             onClick={() => setSelectedSubDomain("3d")}
             className="nes-btn is-error  w-[47%] md:w-[22%] aspect-[2] custom-nes-error text-xs"
           >
             3D
-          </button> */}
+          </button>
           <button
             type="button"
             onClick={() => setSelectedSubDomain("video")}
@@ -164,5 +164,13 @@ const designTaskData = [
     description:
       "Your task is to recreate either a past event poster or a personalized poster that reflects your identity and interests. For the past event poster, choose any event from our archive, such as Gravitas or Riviera, and reimagine its promotional material with fresh creativity and design. Alternatively, craft a personalized poster that showcases who you are, including your passions, skills, and aspirations. Ensure that your poster design aligns with the organization's branding guidelines while incorporating innovative elements to captivate the audience's attention. Provide a brief rationale for your design choices and any inspiration sources utilized. Be prepared to present and discuss your poster during the evaluation process.",
     resources: [],
+  },
+
+  {
+    label: "3d",
+    title: "3D",
+    description:
+      "Recreate the following 2D image to a 3D model.",
+    resources: ["https://drive.google.com/file/d/1GeoLTRphTOrNCvwJDFMstL2hDUocp76L/view?usp=sharing"],
   },
 ];
