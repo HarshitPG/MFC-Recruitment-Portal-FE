@@ -213,7 +213,7 @@ const Fox = (props: JSX.IntrinsicElements["group"]) => {
         // transparent
         // envMapIntensity={2}
         onClick={() =>
-          redirectToURL("https://www.youtube.com/@MozillaFirefoxClubVIT")
+          redirectToURL("https://youtu.be/Ab9s-6RbJMw?si=uaBsOOFGB-EcDCqo")
         }
       >
         <planeGeometry args={[4, 4]} />
