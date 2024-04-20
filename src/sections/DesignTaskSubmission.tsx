@@ -225,6 +225,7 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
                 backgroundColor: "rgba(0,0,0,0)",
                 padding: "1rem",
               }}
+              key={index}
               className="nes-field is-inline flex flex-col mb-6"
             >
               <label
@@ -238,8 +239,11 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
                 style={{ backgroundColor: "#212529", padding: "1rem 0" }}
                 className="w-full flex flex-wrap justify-between"
               >
-                {quiz.options.map((option) => (
-                  <label className="w-full md:w-[45%] text-xs mb-4">
+                {quiz.options.map((option, index) => (
+                  <label
+                    className="w-full md:w-[45%] text-xs mb-4"
+                    key={index + 19992}
+                  >
                     <input
                       type="radio"
                       className="nes-radio is-dark"
@@ -266,6 +270,7 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
                 backgroundColor: "rgba(0,0,0,0)",
                 padding: "1rem",
               }}
+              key={index}
               className="nes-field is-inline flex flex-col mb-6"
             >
               <label

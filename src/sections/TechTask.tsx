@@ -124,7 +124,7 @@ const TechTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
                   <span className="flex flex-col md:text-sm text-xs md:flex-row">
                     {task.resources &&
                       task.resources.map((resource, index) => (
-                        <a href={resource} target="_blank">
+                        <a href={resource} target="_blank" key={index}>
                           Resource {index + 1} &nbsp;
                         </a>
                       ))}

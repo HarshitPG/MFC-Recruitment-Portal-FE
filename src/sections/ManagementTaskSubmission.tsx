@@ -256,7 +256,7 @@ const ManagementTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
           <br />
           <br />
           {quizQuestions.map(
-            (quiz) =>
+            (quiz, index) =>
               quiz.subdomain &&
               subdomain.includes(quiz.subdomain) &&
               quiz.for === coreType && (
@@ -265,6 +265,7 @@ const ManagementTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
                     backgroundColor: "rgba(0,0,0,0)",
                     padding: "1rem",
                   }}
+                  key={index}
                   className="nes-field is-inline flex flex-col mb-6"
                 >
                   <label

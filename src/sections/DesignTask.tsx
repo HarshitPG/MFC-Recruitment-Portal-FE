@@ -79,7 +79,7 @@ const DesignTask = ({ selectedSubDomain, setSelectedSubDomain }: Props) => {
                   <span className="md:text-sm text-xs">Resources:</span>
                   <span className="flex flex-col md:text-sm text-xs md:flex-row">
                     {task.resources.map((resource, index) => (
-                      <a href={resource} target="_blank">
+                      <a href={resource} target="_blank" key={index}>
                         Resource {index + 1} &nbsp;
                       </a>
                     ))}
@@ -169,8 +169,9 @@ const designTaskData = [
   {
     label: "3d",
     title: "3D",
-    description:
-      "Recreate the following 2D image to a 3D model.",
-    resources: ["https://drive.google.com/file/d/1GeoLTRphTOrNCvwJDFMstL2hDUocp76L/view?usp=sharing"],
+    description: "Recreate the following 2D image to a 3D model.",
+    resources: [
+      "https://drive.google.com/file/d/1GeoLTRphTOrNCvwJDFMstL2hDUocp76L/view?usp=sharing",
+    ],
   },
 ];
