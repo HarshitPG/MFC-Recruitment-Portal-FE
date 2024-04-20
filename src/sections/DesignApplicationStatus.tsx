@@ -18,7 +18,9 @@ const DesignApplicationStatus = () => {
       const token = Cookies.get("jwtToken");
       try {
         const response = await axios.get(
-          `https://enrollments-backend.mozillavit.in/applicatiostatus/statusdesign/${id}`,
+          `${
+            import.meta.env.VITE_BASE_URL
+          }/applicatiostatus/statusdesign/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

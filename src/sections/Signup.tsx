@@ -91,7 +91,7 @@ const Signup: React.FC = () => {
     if (!isErrorValidation) {
       try {
         const response = await axios.post(
-          "https://enrollments-backend.mozillavit.in/auth/signup",
+          `${import.meta.env.VITE_BASE_URL}/auth/signup`,
           formData
         );
         if (response.data.token) {

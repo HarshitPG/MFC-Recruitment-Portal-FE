@@ -34,7 +34,7 @@ const ResetPassword = () => {
     };
     try {
       const response = await axios.post(
-        "https://enrollments-backend.mozillavit.in/auth/updatepassword",
+        `${import.meta.env.VITE_BASE_URL}/auth/updatepassword`,
         formData
       );
       if (response) {

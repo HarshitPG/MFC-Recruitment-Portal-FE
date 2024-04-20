@@ -42,7 +42,7 @@ const ForgotPassword = () => {
     // Form data is valid, proceed with password reset
     try {
       const response = await axios.post(
-        "https://enrollments-backend.mozillavit.in/auth/requestPasswordReset",
+        `${import.meta.env.VITE_BASE_URL}/auth/requestPasswordReset`,
         { email, regno }
       );
 

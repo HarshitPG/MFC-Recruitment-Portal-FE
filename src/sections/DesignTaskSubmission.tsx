@@ -77,7 +77,7 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
 
     try {
       const response = await axios.post(
-        `https://enrollments-backend.mozillavit.in/upload/design/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/upload/design/${id}`,
         updatedFormData,
         {
           headers: {
@@ -103,7 +103,7 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
-        `https://enrollments-backend.mozillavit.in/user/user/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/user/user/${id}`,
         {
           headers: {
             Authorization: `Bearer ` + `${token}`,

@@ -79,7 +79,7 @@ const Profile = () => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.put(
-        `https://enrollments-backend.mozillavit.in/user/updateuser/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/user/updateuser/${id}`,
         formData,
         {
           headers: {
@@ -134,7 +134,7 @@ const Profile = () => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
-        `https://enrollments-backend.mozillavit.in/user/user/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/user/user/${id}`,
         {
           headers: {
             Authorization: `Bearer ` + `${token}`,

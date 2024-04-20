@@ -67,7 +67,7 @@ const TechTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
 
     try {
       const response = await axios.post(
-        `https://enrollments-backend.mozillavit.in/upload/tech/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/upload/tech/${id}`,
         updatedFormData,
         {
           headers: {
@@ -93,7 +93,7 @@ const TechTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
-        `https://enrollments-backend.mozillavit.in/user/user/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/user/user/${id}`,
         {
           headers: {
             Authorization: `Bearer ` + `${token}`,

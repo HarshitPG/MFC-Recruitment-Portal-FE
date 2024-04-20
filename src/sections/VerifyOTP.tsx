@@ -29,7 +29,7 @@ const VerifyOTP: React.FC = () => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.post(
-        `https://enrollments-backend.mozillavit.in/auth/verifyotp/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/auth/verifyotp/${id}`,
         { otp },
         {
           headers: {
@@ -77,7 +77,7 @@ const VerifyOTP: React.FC = () => {
         console.log("email:", email);
 
         const response = await axios.post(
-          `https://enrollments-backend.mozillavit.in/auth/resendotp/${userId}`,
+          `${import.meta.env.VITE_BASE_URL}/auth/resendotp/${userId}`,
           { email },
           {
             headers: {

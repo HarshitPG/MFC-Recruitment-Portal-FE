@@ -49,7 +49,7 @@ const Landing = () => {
     };
     try {
       const response = await axios.post(
-        "https://enrollments-backend.mozillavit.in/auth/login",
+        `${import.meta.env.VITE_BASE_URL}/auth/login`,
         formData
       );
       if (response.data.token) {
@@ -100,7 +100,7 @@ const Landing = () => {
       }
       const token = Cookies.get("jwtToken");
       const response = await axios.get(
-        `https://enrollments-backend.mozillavit.in/user/user/${userId}`,
+        `${import.meta.env.VITE_BASE_URL}/user/user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
