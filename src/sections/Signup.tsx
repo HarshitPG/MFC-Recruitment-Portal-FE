@@ -220,7 +220,7 @@ const Signup: React.FC = () => {
                 type="text"
                 value={regno}
                 onChange={(e) => {
-                  setRegno(e.target.value.toUpperCase);
+                  setRegno(e.target.value.toUpperCase());
                 }}
                 required={true}
               />
