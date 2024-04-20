@@ -235,7 +235,7 @@ const TechTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
                 backgroundColor: "rgba(0,0,0,0)",
                 padding: "1rem",
               }}
-              className="nes-field is-inline flex flex-col"
+              className="nes-field is-inline flex flex-col mt-4"
               key={index}
             >
               <label
