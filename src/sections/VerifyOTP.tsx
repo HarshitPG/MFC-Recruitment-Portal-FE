@@ -18,6 +18,7 @@ const VerifyOTP: React.FC = () => {
   const [toastContent, setToastContent] = useState<ToastContent>({});
   const [otp, setOTP] = useState("");
   const [error, setError] = useState(false);
+  const [mutex, setMutex] = useState(false);
 
   const handleVerifyOTP = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ const VerifyOTP: React.FC = () => {
         throw new Error("User id not found in secureLocalStorage");
       }
       const token = Cookies.get("jwtToken");
+      setMutex(true);
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/auth/verifyotp/${id}`,
         { otp },
@@ -43,6 +45,7 @@ const VerifyOTP: React.FC = () => {
           message: `${response.data.message}`,
           // type: "error",
         });
+        setMutex(false);
         // toast.success(`${response.data.message}`);
         setTimeout(() => {
           navigate("/");
@@ -51,6 +54,7 @@ const VerifyOTP: React.FC = () => {
 
       setError(false);
     } catch (error) {
+      setMutex(false);
       console.log(error);
       setOpenToast(true);
       setToastContent({
@@ -174,7 +178,20 @@ const VerifyOTP: React.FC = () => {
               >
                 Resend OTP
               </button>
-              <Button submit={true}>Verify</Button>
+              <Button submit={true} disabled={mutex}>
+                {mutex === true ? (
+                  <div className="flex items-center justify-center gap-4">
+                    <span>Verifying</span>
+                    <img
+                      src="/loader.png"
+                      alt="loading..."
+                      className="w-6 invert animation-spin"
+                    />
+                  </div>
+                ) : (
+                  "Verify"
+                )}
+              </Button>
             </form>
           </div>
         </div>
