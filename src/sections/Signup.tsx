@@ -103,7 +103,7 @@ const Signup: React.FC = () => {
             message: "OTP SENT",
             // type: "error",
           });
-          setMutex(false);
+
           // toast.success("OTP SENT", {
           //   className: "custom-bg",
           //   autoClose: 3000,
@@ -113,6 +113,7 @@ const Signup: React.FC = () => {
           secureLocalStorage.setItem("name", response.data.username);
           secureLocalStorage.setItem("email", response.data.email);
           navigate("/verifyotp");
+          setMutex(false);
         }
         if (response.data.error) {
           setOpenToast(true);

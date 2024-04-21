@@ -45,11 +45,21 @@ const VerifyOTP: React.FC = () => {
           message: `${response.data.message}`,
           // type: "error",
         });
-        setMutex(false);
+
         // toast.success(`${response.data.message}`);
         setTimeout(() => {
           navigate("/");
+          setMutex(false);
         }, 1000);
+      }
+      if (response.data.message !== "verified") {
+        setOpenToast(true);
+        setToastContent({
+          message: `${response.data.message}`,
+          type: "error",
+        });
+        setMutex(false);
+        // toast.success(`${response.data.message}`);
       }
 
       setError(false);
