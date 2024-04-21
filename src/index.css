@@ -324,3 +324,14 @@ input[type="password"] {
 .desc-task {
   word-spacing: 7px;
 }
+.animation-spin {
+  animation: spin 3s infinite linear;
+}
+@keyframes spin {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}

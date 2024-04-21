@@ -26,6 +26,7 @@ const Signup: React.FC = () => {
   const [regno, setRegno] = useState("");
   const [error, setError] = useState(false);
   const [formErrors, setFormErrors] = useState<Partial<SignupFormValues>>({});
+  const [mutex, setMutex] = useState(false);
   const navigate = useNavigate();
   function validateData() {
     const errors: Partial<SignupFormValues> = {};
@@ -90,6 +91,7 @@ const Signup: React.FC = () => {
     };
     if (!isErrorValidation) {
       try {
+        setMutex(true);
         const response = await axios.post(
           `${import.meta.env.VITE_BASE_URL}/auth/signup`,
           formData
@@ -101,6 +103,7 @@ const Signup: React.FC = () => {
             message: "OTP SENT",
             // type: "error",
           });
+          setMutex(false);
           // toast.success("OTP SENT", {
           //   className: "custom-bg",
           //   autoClose: 3000,
@@ -117,6 +120,7 @@ const Signup: React.FC = () => {
             message: `${response.data.error}`,
             type: "error",
           });
+          setMutex(false);
         }
 
         setError(false);
@@ -124,6 +128,7 @@ const Signup: React.FC = () => {
         // TODO: Set the appropriate error message here
       } catch (error) {
         console.log(error);
+        setMutex(false);
         // setOpenToast(true);
         // setToastContent({
         //   message: "Error while signup",
@@ -255,7 +260,20 @@ const Signup: React.FC = () => {
                   {formErrors.confirmPassword}
                 </div>
               )}
-              <Button submit={true}>Sign Up</Button>
+              <Button submit={true} disabled={mutex}>
+                {mutex === true ? (
+                  <div className="flex items-center justify-center gap-4">
+                    <span>Loading</span>
+                    <img
+                      src="/loader.png"
+                      alt="loading..."
+                      className="w-6 invert animation-spin"
+                    />
+                  </div>
+                ) : (
+                  "Sign Up"
+                )}
+              </Button>
             </form>
           </div>
         </div>
