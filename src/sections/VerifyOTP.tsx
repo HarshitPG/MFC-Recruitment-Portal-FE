@@ -45,11 +45,21 @@ const VerifyOTP: React.FC = () => {
           message: `${response.data.message}`,
           // type: "error",
         });
-        setMutex(false);
+
         // toast.success(`${response.data.message}`);
         setTimeout(() => {
           navigate("/");
+          setMutex(false);
         }, 1000);
+      }
+      if (response.data.message !== "verified") {
+        setOpenToast(true);
+        setToastContent({
+          message: `${response.data.message}`,
+          type: "error",
+        });
+        setMutex(false);
+        // toast.success(`${response.data.message}`);
       }
 
       setError(false);
@@ -75,13 +85,13 @@ const VerifyOTP: React.FC = () => {
     try {
       {
         const token = Cookies.get("jwtToken");
-        const userId = secureLocalStorage.getItem("id");
+        const id = secureLocalStorage.getItem("id");
         const email = secureLocalStorage.getItem("email");
         // console.log("userId:", userId);
         // console.log("email:", email);
 
         const response = await axios.post(
-          `${import.meta.env.VITE_BASE_URL}/auth/resendotp/${userId}`,
+          `${import.meta.env.VITE_BASE_URL}/auth/resendotp/${id}`,
           { email },
           {
             headers: {
