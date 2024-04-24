@@ -247,7 +247,7 @@ const DesignTaskSubmission = ({ setOpenToast, setToastContent }: Props) => {
                     <input
                       type="radio"
                       className="nes-radio is-dark"
-                      name={`question${index + 2}`}
+                      name={quiz.question}
                       value={option}
                       onChange={(e) => handleInputChange(e, quiz.question)}
                     />
